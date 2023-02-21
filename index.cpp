@@ -4,7 +4,6 @@
 #include <vector>
 
 using namespace std;
-void TranferMoney(int Fromuer, int Touser, double money, double Data[]);
 
 struct user
 {
@@ -19,56 +18,5 @@ int main()
     double MoneyData[] = {};
     MoneyData[0] = u1.money;
     MoneyData[1] = u2.money;
-    int user, Touser;
-    double amount;
-    cout << MoneyData[0] << " " << MoneyData[1];
-    do
-    {
-        cout << "\nwhich user do you what to enter [1-10] : ";
-        cin >> user;
-        if (user <= 0)
-        {
-            cout << "plz in put [1-10]";
-        }
 
-    } while (user <= 0);
-
-    do
-    {
-        cout << "\nwhich user do you want to move to : ";
-        cin >> Touser;
-        if (Touser <= 0)
-        {
-            cout << "\nplz in put [1-10]";
-        }
-
-    } while (Touser <= 0);
-
-    do
-    {
-        cout << "How much to move ";
-        cin >> amount;
-        if (amount < 0)
-        {
-            cout << "\nplz in put [1-10]";
-        }
-
-    } while (amount < 0);
-
-    TranferMoney(user, Touser, amount, MoneyData);
-}
-
-void TranferMoney(int Fromuer, int Touser, double money, double Data[])
-{
-    if (money > Data[Fromuer])
-    {
-        cout << "You don't have enough money";
-    }
-    else
-    {
-        Data[Fromuer - 1] = Data[Fromuer - 1] - money;
-        Data[Touser - 1] = Data[Touser - 1] + money;
-        cout << "Now money is " << Data[Fromuer - 1] << endl;
-        cout << "Now money is " << Data[Touser - 1] << endl;
-    }
 }
