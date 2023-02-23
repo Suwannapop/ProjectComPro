@@ -29,7 +29,7 @@ int main()
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
 
-    while (getline(data, line)) // ระบบดูเงิน
+    while (getline(data, line)) //importfile
     {
         sscanf(line.c_str(), "%d,%f", &idnumber[i], &balance[i]);
         if (id == idnumber[i])
