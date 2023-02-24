@@ -5,14 +5,19 @@
 
 using namespace std;
 
-void TransferMoney(int idnumber[], float balance[], int indexFrom, int indexTo, double amountmoney);
+void TransferMoney(int indexFrom , int indexTo , double amount, vector<float> &money );
+void ImportFile(vector<int> &name, vector<float> &money);
+void CheckIndex(int &, int &,vector<int>  , vector<float> );
+struct Dataformat
+{
+    vector<int> ID;
+    vector<float> money;
+};
 
 int main()
 {
     ofstream write;
-    write.open("C:\\Users\\User\\Desktop\\compro\\Project\\ProjectComPro\\Datafile.txt");
-    ifstream data;
-    data.open("C:\\Users\\User\\Desktop\\compro\\Project\\ProjectComPro\\Datafile.txt");
+    write.open("Datafile.txt");
     string line;
     write << "650612100"
           << ","
@@ -21,53 +26,72 @@ int main()
           << ","
           << "500" << endl;
     write.close();
-    int id, idnumber[3], IdTranfer, i = 0, indexFrom = 0, indexTo = 0;
-    double amount;
-    float balance[3];
+    Dataformat ID;
+    Dataformat money;
+    int id, IdTranfer;
+    float amount;
     cout << "input your id : ";
     cin >> id;
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
 
-    while (getline(data, line)) //importfile
-    {
-        sscanf(line.c_str(), "%d,%f", &idnumber[i], &balance[i]);
-        if (id == idnumber[i])
-        {
-            indexFrom = i;
-        }
-        if (IdTranfer == idnumber[i])
-        {
-            indexTo = i;
-        }
-        i++;
-    }
+    ImportFile(ID.ID, money.money); // importfile
+    CheckIndex(id , IdTranfer ,ID.ID ,money.money);
+
     cout << "How much money : ";
     cin >> amount;
-    TransferMoney(idnumber, balance, indexFrom, indexTo, amount);
-    cout << idnumber[indexFrom] << " To " << idnumber[indexTo] << endl;
-    cout << idnumber[indexFrom] << " now " << balance[indexFrom] << endl;
-    cout << idnumber[indexTo] << " now " << balance[indexTo] << endl;
-    write.open("C:\\Users\\User\\Desktop\\compro\\Project\\ProjectComPro\\Datafile.txt");
-    write << "650612100"
+    TransferMoney(id , IdTranfer ,amount ,money.money);
+    cout << "You Tranfer Money From ID To ID \n" << ID.ID[id] << " -----> " << ID.ID[IdTranfer] << endl;
+    cout << "Now : ID : " <<  ID.ID[id] << " Is " << money.money[id]<< endl;
+    cout << "Now : ID : " <<  ID.ID[IdTranfer] << " Is " << money.money[IdTranfer]<< endl;
+    write.open("Datafile.txt");
+    write << ID.ID[id]
           << ","
-          << balance[indexFrom] << endl;
-    write << "650612001"
+          << money.money[id]<< endl;
+    write << ID.ID[IdTranfer]
           << ","
-          << balance[indexTo] << endl;
+          << money.money[IdTranfer] << endl;
     write.close();
-
+}
+void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID , vector<float> money )
+{
+    for ( unsigned int i = 0; i < ID.size(); i++)
+    {
+        if (indexFrom == ID[i])
+        {
+            indexFrom = i ;
+        }if (indexTo == ID[i])
+        {
+            indexTo = i ;
+        }
+    }
+    
+}
+void ImportFile(vector<int> &name, vector<float> &money)
+{
+    ifstream data;
+    data.open("Datafile.txt");
+    string line;
+    int idnumber;
+    float balnace;
+    while (getline(data, line)) // importfile
+    {
+        sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
+        name.push_back(idnumber);
+        money.push_back(balnace);
+    }
 }
 
-void TransferMoney(int idnumber[], float balance[], int indexFrom, int indexTo, double amountmoney) // เเปปปกติ
+void TransferMoney(int indexFrom , int indexTo , double amount, vector<float> &money ) // เเปปปกติ
 {
-    if (amountmoney > balance[indexFrom])
+    if (amount > money[indexFrom])
     {
-        cout << "You don't have enough money\n" ;
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << money[indexFrom] << " You can't tranfer money\n";
     }
     else
     {
-        balance[indexFrom ] = balance[indexFrom ] - amountmoney;
-        balance[indexTo] = balance[indexTo] + amountmoney;
+        money[indexFrom] = money[indexFrom] - amount;
+        money[indexTo] = money[indexTo] + amount;
     }
 }
