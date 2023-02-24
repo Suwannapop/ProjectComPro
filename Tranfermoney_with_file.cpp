@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void TransferMoney(int indexFrom , int indexTo , double amount, vector<float> &money );
+void TransferMoney(int indexFrom , int indexTo , double amount);
 void ImportFile(vector<int> &name, vector<float> &money);
 void CheckIndex(int &, int &,vector<int>  , vector<float> );
 struct Dataformat
@@ -53,7 +53,7 @@ int main()
           << money.money[IdTranfer] << endl;
     write.close();
 }
-void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID , vector<float> money )
+void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID )
 {
     for ( unsigned int i = 0; i < ID.size(); i++)
     {
