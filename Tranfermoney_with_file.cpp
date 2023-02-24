@@ -5,9 +5,9 @@
 
 using namespace std;
 
-void TransferMoney(int indexFrom , int indexTo , double amount);
-void ImportFile(vector<int> &name, vector<float> &money);
-void CheckIndex(int &, int &,vector<int>  , vector<float> );
+void TransferMoney(int , int , double , vector<float> &);
+void ImportFile(vector<int> &, vector<float> &, string );
+void CheckIndex(int &, int &,vector<int>);
 struct Dataformat
 {
     vector<int> ID;
@@ -16,8 +16,9 @@ struct Dataformat
 
 int main()
 {
+    string fileindex = "Datafile.txt" ;
     ofstream write;
-    write.open("Datafile.txt");
+    write.open(fileindex);
     string line;
     write << "650612100"
           << ","
@@ -35,8 +36,8 @@ int main()
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
 
-    ImportFile(ID.ID, money.money); // importfile
-    CheckIndex(id , IdTranfer ,ID.ID ,money.money);
+    ImportFile(ID.ID, money.money,fileindex); // importfile
+    CheckIndex(id , IdTranfer ,ID.ID);
 
     cout << "How much money : ";
     cin >> amount;
@@ -44,7 +45,7 @@ int main()
     cout << "You Tranfer Money From ID To ID \n" << ID.ID[id] << " -----> " << ID.ID[IdTranfer] << endl;
     cout << "Now : ID : " <<  ID.ID[id] << " Is " << money.money[id]<< endl;
     cout << "Now : ID : " <<  ID.ID[IdTranfer] << " Is " << money.money[IdTranfer]<< endl;
-    write.open("Datafile.txt");
+    write.open(fileindex);
     write << ID.ID[id]
           << ","
           << money.money[id]<< endl;
@@ -67,10 +68,10 @@ void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID )
     }
     
 }
-void ImportFile(vector<int> &name, vector<float> &money)
+void ImportFile(vector<int> &name, vector<float> &money , string fileindex)
 {
     ifstream data;
-    data.open("Datafile.txt");
+    data.open(fileindex);
     string line;
     int idnumber;
     float balnace;
