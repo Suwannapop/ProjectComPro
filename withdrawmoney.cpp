@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void TransferMoney(double , vector<float> &);
+void Withdraw(double , vector<float> &);
 void ImportFile(vector<int> &, vector<float> &, string );
 struct Dataformat
 {
@@ -17,61 +17,43 @@ int main()
 {
     Dataformat ID;
     Dataformat money;
-    string id, IdTranfer;
+    string id;
     float amount;
     cout << "input your id : ";
     cin >> id;
-    cout << "What ID you want to tranfer : ";
-    cin >> IdTranfer;
+
     string userfile_1 = id+".txt";
-    string userfile_2 = IdTranfer+".txt";
-    ofstream writefile_1 ,writefile_2 ;
+
+    ofstream writefile_1;
     writefile_1.open(userfile_1);
-    writefile_2.open(userfile_2);
+
     writefile_1 << "650612100"
-          << ","
-          << "10000" << endl;
-    writefile_2 << "650612001"
-          << ","
-          << "500" << endl;
+    << ","
+    << "10000" << endl;
+
     writefile_1.close();
-    writefile_2.close();
 
-    ImportFile(ID.ID, money.money,userfile_1); // importfile
-    ImportFile(ID.ID, money.money,userfile_2);
-    //CheckIndex(id , IdTranfer ,ID.ID);
 
-    cout << "How much money : ";
+    ImportFile(ID.ID, money.money,userfile_1); 
+
+
+
+    cout << "Enter amount : ";
     cin >> amount;
-    TransferMoney(amount ,money.money);
-    cout << "You Tranfer Money From ID To ID \n" << ID.ID[0] << " -----> " << ID.ID[1] << endl;
-    cout << "Now : ID : " <<  ID.ID[0] << " Is " << money.money[0]<< endl;
-    cout << "Now : ID : " <<  ID.ID[1] << " Is " << money.money[1]<< endl;
+    Withdraw(amount ,money.money);
+    cout << "withdraw : " << amount ;
+    cout << "\nNow : ID : " <<ID.ID[0] << ", total balance is : " << money.money[0]<< endl;
+
     writefile_1.open(userfile_1);
-    writefile_2.open(userfile_2);
+
     writefile_1 << ID.ID[0]
-          << ","
-          << money.money[0]<< endl;
-    writefile_2 << ID.ID[1]
-          << ","
-          << money.money[1] << endl;
+    << ","
+    << money.money[0]<< endl;
+
     writefile_1.close();
-    writefile_2.close();
+
 }
-/*void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID )
-{
-    for ( unsigned int i = 0; i < ID.size(); i++)
-    {
-        if (indexFrom == ID[i])
-        {
-            indexFrom = i ;
-        }if (indexTo == ID[i])
-        {
-            indexTo = i ;
-        }
-    }
-    
-}*/
+
 void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
 {
     ifstream data;
@@ -81,22 +63,22 @@ void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
     float balnace;
     while (getline(data, line)) // importfile
     {
-        sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
-        ID.push_back(idnumber);
-        money.push_back(balnace);
+    sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
+    ID.push_back(idnumber);
+    money.push_back(balnace);
     }
 }
 
-void TransferMoney(double amount, vector<float> &money ) // เเปปปกติ
+void Withdraw(double amount, vector<float> &money ) 
 {
     if (amount > money[0])
     {
         cout << "You don't have enough money\n";
-        cout << "Now you have : " << money[0] << " You can't tranfer money\n";
+    cout << "Now you have : " << money[0] << " You can't withdraw money\n";
     }
     else
     {
-        money[0] = money[0] - amount;
-        money[1] = money[1] + amount;
+    money[0] = money[0] - amount;
+
     }
 }
