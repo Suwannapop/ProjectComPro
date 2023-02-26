@@ -7,14 +7,13 @@ using namespace std;
 
 void TransferMoney(double , vector<float> &);
 void ImportFile(vector<int> &, vector<float> &, string );
-void CheckIndex(int &, int &,vector<int>);
 struct Dataformat
 {
     vector<int> ID;
     vector<float> money;
 };
 
-int main()
+void TranfersMoney()
 {
     Dataformat ID;
     Dataformat money;
@@ -59,20 +58,6 @@ int main()
     writefile_1.close();
     writefile_2.close();
 }
-/*void CheckIndex(int &indexFrom , int &indexTo ,vector<int> ID )
-{
-    for ( unsigned int i = 0; i < ID.size(); i++)
-    {
-        if (indexFrom == ID[i])
-        {
-            indexFrom = i ;
-        }if (indexTo == ID[i])
-        {
-            indexTo = i ;
-        }
-    }
-    
-}*/
 void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
 {
     ifstream data;
