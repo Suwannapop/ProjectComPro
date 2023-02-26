@@ -10,7 +10,6 @@ int id, password; //login
 char ch; //login && ATM
 int choice = 1; //ATM
 float balance ; //ลบออก
-string s ;
 
 
 //higlight atm menu
