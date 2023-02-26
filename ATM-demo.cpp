@@ -12,6 +12,75 @@ int choice = 1; //ATM
 float balance ; //ลบออก
 
 
+struct Dataformat
+{
+    vector<int> ID;
+    vector<float> money;
+};
+
+void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
+{
+    ifstream data;
+    data.open(fileindex);
+    string line;
+    int idnumber;
+    float balnace;
+    while (getline(data, line)) // importfile
+    {
+        sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
+        ID.push_back(idnumber);
+        money.push_back(balnace);
+    }
+    data.close();
+}
+void TransferMoney(double amount, vector<float> &money ) // เเปปปกติ
+{
+    if (amount > money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << money[0] << " You can't tranfer money\n";
+    }
+    else
+    {
+        money[0] = money[0] - amount;
+        money[1] = money[1] + amount;
+    }
+}
+
+void mainTransferMoney( string id )
+{
+    Dataformat ID;
+    Dataformat money;
+    string IdTranfer;
+    float amount;
+    cout << "What ID you want to tranfer : ";
+    cin >> IdTranfer;
+    string userfile_1 = id+".txt";
+    string userfile_2 = IdTranfer+".txt";
+    ofstream writefile_1 ,writefile_2 ;
+    
+    ImportFile(ID.ID, money.money,userfile_1); // importfile
+    ImportFile(ID.ID, money.money,userfile_2);
+    //CheckIndex(id , IdTranfer ,ID.ID);
+
+    cout << "How much money : ";
+    cin >> amount;
+    TransferMoney(amount ,money.money);
+    cout << "You Tranfer Money From ID To ID \n" << ID.ID[0] << " -----> " << ID.ID[1] << endl;
+    cout << "Now : ID : " <<  ID.ID[0] << " Is " << money.money[0]<< endl;
+    cout << "Now : ID : " <<  ID.ID[1] << " Is " << money.money[1]<< endl;
+    writefile_1.open(userfile_1);
+    writefile_2.open(userfile_2);
+    writefile_1 << ID.ID[0]
+          << ","
+          << money.money[0]<< endl;
+    writefile_2 << ID.ID[1]
+          << ","
+          << money.money[1] << endl;
+    writefile_1.close();
+    writefile_2.close();
+}
+
 //higlight atm menu
 void highlight_ATM_MENU(int index, bool selected) { 
     int l = 0 ;
@@ -97,9 +166,8 @@ int Login_failed (){
 }
 
 //Login ATM
-int login(){
-    //int id, password;
-    //char ch;
+int login(string &id , int &password ){
+    char ch;
     // Display login window frame
     system("cls");
     cout << "+-------------------------------------+\n" ;
@@ -127,9 +195,16 @@ int login(){
 
 //ทำฟังก์ชั่น เรียกฟังก์ชั่น
 int main(){
+    int password;
+    string id ;
+    Dataformat ID;
+    Dataformat money;
     //login
-    login();
-    if (id-650610000 == password ) {
+    login(id , password);
+    string fileindex = id + ".txt" ;
+    ImportFile(ID.ID , money.money , fileindex);
+    
+    if (ID.ID[0]-650610000 == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
@@ -168,7 +243,7 @@ int main(){
                         cout << "+-------------------------------------+\n";
                         cout << "|           Balance Inquiry           |\n"; 
                         cout << "+-------------------------------------+\n";
-                        cout << "Your current balance is: $" << fixed << setprecision(2) << balance << "\n";
+                        cout << "Your current balance is: $" << fixed << setprecision(2) << money.money[0] << "\n";
                         Sleep(2000); // Wait for 1000 milliseconds
                         system("cls"); // clear the console
                         cout << "+-------------------------------------+\n";
@@ -292,6 +367,7 @@ int main(){
                         cout << "+-------------------------------------+\n";
                         cout << "|           Transfers money           |\n"; 
                         cout << "+-------------------------------------+\n";
+                        mainTransferMoney(id);
                         Sleep(2000);
                         main();
                         break;
