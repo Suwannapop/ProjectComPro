@@ -7,7 +7,7 @@ int main() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(1, 9);
-    for (int i = 650610000; i <= 650610001; i++) {
+    for (int i = 650610000; i <= 650619000; i++) {
         int id_user = 650610000;
         std::string id = std::to_string(i);
         std::string filename = std::to_string(i) + ".txt";
