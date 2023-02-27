@@ -28,7 +28,6 @@ int main()
     string userfile_1 = id + ".txt";
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
-    
     ImportFile(ID1, userfile_1); // importfile
     ImportFile(ID2, userfile_2);
     cout << "How much money : ";
