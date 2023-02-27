@@ -7,6 +7,9 @@ using namespace std;
 
 int main()
 {
-   fstream data ;
-   data.open("Datafile.txt"); //อันนี้เเล้วเเต่คนว่าจะเก็บไฟล์Data ไว้ที่ไหนนะ
+   string name ;
+   cout << "hhhhh" ;
+   cin >> name ;
+   name = name + ".txt";
+   cout << name ;
 }
