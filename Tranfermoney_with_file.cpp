@@ -6,17 +6,18 @@
 using namespace std;
 
 void TransferMoney(double , vector<float> &);
-void ImportFile(vector<int> &, vector<float> &, string );
+void ImportFile(vector<int> &Password , vector<int> &ID, vector<float> &money , string fileindex);
 struct Dataformat
 {
+    vector<int> Pass ;
     vector<int> ID;
     vector<float> money;
 };
 
-void TranfersMoney()
+int main()
 {
-    Dataformat ID;
-    Dataformat money;
+    Dataformat ID1;
+    Dataformat ID2;
     string id, IdTranfer;
     float amount;
     cout << "input your id : ";
@@ -37,14 +38,13 @@ void TranfersMoney()
     writefile_1.close();
     writefile_2.close();
 
-    ImportFile(ID.ID, money.money,userfile_1); // importfile
-    ImportFile(ID.ID, money.money,userfile_2);
-    //CheckIndex(id , IdTranfer ,ID.ID);
+    ImportFile( ID1.Pass, ID1.ID , ID1.money ,userfile_1); // importfile
+    ImportFile( ID2.Pass, ID2.ID , ID2.money ,userfile_2);
 
     cout << "How much money : ";
     cin >> amount;
-    TransferMoney(amount ,money.money);
-    cout << "You Tranfer Money From ID To ID \n" << ID.ID[0] << " -----> " << ID.ID[1] << endl;
+    TransferMoney(amount,ID1.money,ID2.money );
+    cout << "You Tranfer Money From ID To ID \n" << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
     cout << "Now : ID : " <<  ID.ID[0] << " Is " << money.money[0]<< endl;
     cout << "Now : ID : " <<  ID.ID[1] << " Is " << money.money[1]<< endl;
     writefile_1.open(userfile_1);
@@ -58,31 +58,32 @@ void TranfersMoney()
     writefile_1.close();
     writefile_2.close();
 }
-void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
+void ImportFile(vector<int> &Password , vector<int> &ID, vector<float> &money , string fileindex)
 {
     ifstream data;
     data.open(fileindex);
     string line;
-    int idnumber;
+    int idnumber , pass ;
     float balnace;
     while (getline(data, line)) // importfile
     {
-        sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
+        sscanf(line.c_str(), "%d,%d,%f", &pass , &idnumber, &balnace);
+        Password.push_back(pass);
         ID.push_back(idnumber);
         money.push_back(balnace);
     }
 }
 
-void TransferMoney(double amount, vector<float> &money ) // เเปปปกติ
+void TransferMoney(double amount, vector<float> &money1 ,vector<float> &money2 ) // เเปปปกติ
 {
-    if (amount > money[0])
+    if (amount > money1[0])
     {
         cout << "You don't have enough money\n";
-        cout << "Now you have : " << money[0] << " You can't tranfer money\n";
+        cout << "Now you have : " << money1[0] << " You can't tranfer money\n";
     }
     else
     {
-        money[0] = money[0] - amount;
-        money[1] = money[1] + amount;
+        money1[0] = money1[0] - amount;
+        money2[0] = money2[0] + amount;
     }
 }
