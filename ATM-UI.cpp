@@ -4,8 +4,6 @@
 #include <windows.h> //sleep
 #include <fstream>
 #include <vector>
-#include <sstream>
-#include <string>
 
 using namespace std;
 int id, password; //login
@@ -35,6 +33,7 @@ void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
     }
     data.close();
 }
+
 void TransferMoney(double amount, vector<float> &money ) // เเปปปกติ
 {
     if (amount > money[0])
@@ -207,17 +206,17 @@ int main(){
     ImportFile(ID.ID , money.money , fileindex);
 ///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
-    int value3;
+    int value1;
     ifstream inFile(id+".txt"); // open the file for reading
     if (inFile.is_open()) { // check if the file was successfully opened
-        inFile.ignore(1000, ','); // ignore the first value
-        inFile.ignore(1000, ','); // ignore the second value
-        inFile >> value3; // read the third value
+        //inFile.ignore(1000, ','); // ignore the first value
+        //inFile.ignore(1000, ','); // ignore the second value
+        inFile >> value1; // read the third value
         inFile.close(); // close the file
-        pass_id =  value3 ;
+        pass_id =  value1 ;
     } else {
         Login_failed();
-        Sleep(2000);
+        Sleep(1500);
         main();
     }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -302,7 +301,7 @@ int main(){
 
                          } else {
                                     cout << "Invalid deposit amount.\n";
-                                    Sleep(2000); // Wait for 1000 milliseconds
+                                    Sleep(4000); // Wait for 1000 milliseconds
                                     main();
                                 }
                                 break;
