@@ -1,9 +1,11 @@
 #include <iostream>
 #include <conio.h> // for getch() function
-#include <iomanip>
+#include <iomanip> 
 #include <windows.h> //sleep
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <string>
 
 using namespace std;
 int id, password; //login
@@ -193,9 +195,9 @@ int login(string &id , int &password ){
     } 
 }
 
-//ทำฟังก์ชั่น เรียกฟังก์ชั่น
 int main(){
     int password;
+    int pass_id;
     string id ;
     Dataformat ID;
     Dataformat money;
@@ -203,8 +205,26 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID.ID , money.money , fileindex);
+///////////////////////////////////////////////////////////////////////////////////
+    //pass chkce
+    int value3;
+    ifstream inFile(id+".txt"); // open the file for reading
+    if (inFile.is_open()) { // check if the file was successfully opened
+        inFile.ignore(1000, ','); // ignore the first value
+        inFile.ignore(1000, ','); // ignore the second value
+        inFile >> value3; // read the third value
+        inFile.close(); // close the file
+        pass_id =  value3 ;
+    } else {
+        Login_failed();
+        Sleep(2000);
+        main();
+    }
+///////////////////////////////////////////////////////////////////////////////////
+    ifstream myfile;
+    myfile.open(id + ".txt");
     
-    if (ID.ID[0]-650610000 == password ) {
+    if (pass_id == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
@@ -385,10 +405,10 @@ int main(){
                         }
 
                         return 0; 
-    } else {
+    /*} else {
         Login_failed();
         Sleep(1500); // Wait for 1000 milliseconds
-        main();
+        main();*/
                  
     }
     
