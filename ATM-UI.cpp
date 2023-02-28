@@ -198,7 +198,7 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
-/*///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
     ifstream inFile(id+".txt"); // open the file for reading
@@ -213,11 +213,11 @@ int main(){
         Sleep(1500);
         main();
     }
-///////////////////////////////////////////////////////////////////////////////////*/
+////////////////////////////////////////////////////////////////////////////////////
     ifstream myfile;
     myfile.open(id + ".txt");
     
-    if (ID1.Pass[0] == password ) {
+    if (pass_id == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
@@ -398,7 +398,7 @@ int main(){
                         }
 
                         return 0; 
-    /*} else {
+   /* } else {
         Login_failed();
         Sleep(1500); // Wait for 1000 milliseconds
         main();*/
