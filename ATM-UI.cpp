@@ -29,14 +29,11 @@ int deposit()
     
     string id;
     float amount;
-    cout << "input your id : ";
+    cout << "input your id : "; //รับจาก login
     cin >> id;
 
     string userfile_1 = id+".txt";
     ofstream writefile_1;
-    writefile_1.open(userfile_1);
-    writefile_1 << "2100"<<","<<"650612100" << "," << "10000" << endl;
-    writefile_1.close();
 
     ImportFile(ID1, userfile_1); 
 	deposit(ID1);
@@ -44,27 +41,6 @@ int deposit()
 	writefile_1.open(userfile_1);
     writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0]<< endl;
     writefile_1.close();
-}
-
-void ImportFile(Dataformat &ID, string fileindex)
-{
-    ifstream data;
-    data.open(fileindex);
-    string line;
-    int idnumber, pass;
-    float balnace;
-    if (data.is_open())
-    {
-        while (getline(data, line)) // importfile
-        {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
-            ID.Pass.push_back(pass);
-            ID.ID.push_back(idnumber);
-            ID.money.push_back(balnace);
-        }
-    }else {
-        cout << "Don't have ID : " << fileindex << "in datauser" ;
-    }
 }
 
 void deposit(Dataformat &ID1 ){
@@ -174,7 +150,7 @@ int Login_failed (){
         cout << setw(28) <<"Please try again.\n" ;
 }
 
-void ImportFile(Dataformat &ID, string fileindex)
+void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอนโอน
 {
     ifstream data;
     data.open(fileindex);
@@ -570,7 +546,42 @@ int main(){
                         }
 
                         return 0; 
-   }
+   }else {
+        do{
+                Login_failed();
+                cout << "+-------------------------------------+\n" ;
+                cout << "|     If you don't have an accoun     |\n" ;
+                cout << "|    Want to create a new account?    | ";
+            for (int i = 1; i < 3; i++) {
+                cout << "\n| ";
+                higlight_Yes_or_No(i, i == choice);
+                }
+                cout << "\n+-------------------------------------+\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1) { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 3) { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13);
+                switch (choice)
+                {
+                case 1:
+                    cout << "Yes";
+                    break;
+                case 2:
+                    cout << "No";
+                    main();
+                    break;
+                default:
+                    break;
+                }
+                 
+    }
    
     
 }
