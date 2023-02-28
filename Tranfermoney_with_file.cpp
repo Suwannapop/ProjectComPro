@@ -78,5 +78,9 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
         }
+    }else if (amount <= 0)
+    {
+        cout << "You can't tranfer money less than 0 or = 0\n";
     }
+    
 }
