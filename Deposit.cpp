@@ -18,18 +18,15 @@ void ImportFile(Dataformat &ID, string fileindex);
 int main()
 {
 	Dataformat ID1;
-    
     string id;
     float amount;
     cout << "input your id : ";
     cin >> id;
-
     string userfile_1 = id+".txt";
     ofstream writefile_1;
     writefile_1.open(userfile_1);
     writefile_1 << "2100"<<","<<"650612100" << "," << "10000" << endl;
     writefile_1.close();
-
     ImportFile(ID1, userfile_1); 
 	deposit(ID1);
 
