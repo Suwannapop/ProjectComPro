@@ -148,7 +148,7 @@ void highlight_Withdraw_MENU(int index, bool selected) {
             break;
     }
 
-    cout << "\033[0m"  << setw(l)<<" | \n"; // window
+    cout << "\033[0m"  << setw(l)<<" | \n";  // window
 }
 
 //Login failed

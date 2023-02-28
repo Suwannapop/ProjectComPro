@@ -1,25 +1,26 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <random>
+
+using namespace std;
 
 int main() {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 9);
-    for (int i = 650610000; i <= 650610005; i++) {
-        int id_user = 650610000;
-        std::string id = std::to_string(i);
-        std::string filename = std::to_string(i) + ".txt";
-        std::ofstream outfile(filename);
+    int ID_USER , PASS_USER , money ;
+    cout << "ID :" ;
+    cin >> ID_USER ;
+    cout << "Pass :" ;
+    cin >> PASS_USER ;
+    cout << "Money :" ;
+    cin >> money ;
+        string id = to_string(ID_USER);
+        string filename = to_string(ID_USER) + ".txt";
+        ofstream outfile(filename);
         if (outfile.is_open()) {
-            int num = dist(gen) * 1000;
-            outfile  << i-id_user << "," << id << "," << num  ;
+            outfile  << PASS_USER << "," << id << "," << money  ;
             outfile.close();
-            std::cout << "File created: " << id << std::endl;
+            cout << "File created: " << id << endl;
         } else {
-            std::cout << "Error creating file: " << id << std::endl;
+            cout << "Error creating file: " << id << endl;
         }
-    }
     return 0;
 }
