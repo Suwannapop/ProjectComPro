@@ -25,17 +25,12 @@ void ImportFile(Dataformat &ID, string fileindex)
     string line;
     int idnumber, pass;
     float balnace;
-    if (data.is_open())
+    while (getline(data, line)) // importfile
     {
-        while (getline(data, line)) // importfile
-        {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
-            ID.Pass.push_back(pass);
-            ID.ID.push_back(idnumber);
-            ID.money.push_back(balnace);
-        }
-    }else {
-        cout << "Don't have ID : " << fileindex << "in datauser" ;
+        sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+        ID.Pass.push_back(pass);
+        ID.ID.push_back(idnumber);
+        ID.money.push_back(balnace);
     }
 }
 
@@ -204,7 +199,7 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
-/*///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
     ifstream inFile(id+".txt"); // open the file for reading
@@ -219,11 +214,11 @@ int main(){
         Sleep(1500);
         main();
     }
-///////////////////////////////////////////////////////////////////////////////////*/
+////////////////////////////////////////////////////////////////////////////////////
     ifstream myfile;
     myfile.open(id + ".txt");
     
-    if (ID1.Pass[0] == password ) {
+    if (pass_id == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
@@ -289,7 +284,7 @@ int main(){
                             cout << "+-------------------------------------+\n";
                             cout << "|               Deposit               |\n"; 
                             cout << "+-------------------------------------+\n";
-                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
+                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << balance << "\n";
                             Sleep(2000); // Wait for 1000 milliseconds
                             system("cls"); // clear the console
                             cout << "+-------------------------------------+\n";
