@@ -52,7 +52,6 @@ void ImportFile(Dataformat &ID, string fileindex)
                  
     }
 
-    }
 }
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
@@ -209,7 +208,7 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
-////////////////////////////////////////////////////////////////////////////////////
+/*///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
     ifstream inFile(id+".txt"); // open the file for reading
@@ -224,11 +223,11 @@ int main(){
         Sleep(1500);
         main();
     }
-////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////*/
     ifstream myfile;
     myfile.open(id + ".txt");
     
-    if (pass_id == password ) {
+    if (ID1.Pass[0] == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
