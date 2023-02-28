@@ -198,8 +198,6 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
-    cout << "\n" <<ID1.Pass[0];
-    Sleep(2000);
 /*///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
