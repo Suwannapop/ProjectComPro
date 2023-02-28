@@ -14,7 +14,6 @@ struct Dataformat
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2);
 void ImportFile(Dataformat &ID, string fileindex);
 
-
 int main()
 {
     Dataformat ID1;
@@ -32,7 +31,7 @@ int main()
     ImportFile(ID2, userfile_2);
     cout << "How much money : ";
     cin >> amount;
-    TransferMoney(amount,ID1,ID2);
+    TransferMoney(amount, ID1, ID2);
     cout << "You Tranfer Money From ID To ID \n"
          << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
     cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
@@ -51,12 +50,17 @@ void ImportFile(Dataformat &ID, string fileindex)
     string line;
     int idnumber, pass;
     float balnace;
-    while (getline(data, line)) // importfile
+    if (data.is_open())
     {
-        sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
-        ID.Pass.push_back(pass);
-        ID.ID.push_back(idnumber);
-        ID.money.push_back(balnace);
+        while (getline(data, line)) // importfile
+        {
+            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            ID.Pass.push_back(pass);
+            ID.ID.push_back(idnumber);
+            ID.money.push_back(balnace);
+        }
+    }else {
+        cout << "Don't have ID : " << fileindex << "in datauser" ;
     }
 }
 
