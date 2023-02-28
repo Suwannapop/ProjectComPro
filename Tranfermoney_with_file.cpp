@@ -14,7 +14,6 @@ struct Dataformat
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2);
 void ImportFile(Dataformat &ID, string fileindex);
 
-
 int main()
 {
     Dataformat ID1;
@@ -32,7 +31,7 @@ int main()
     ImportFile(ID2, userfile_2);
     cout << "How much money : ";
     cin >> amount;
-    TransferMoney(amount,ID1,ID2);
+    TransferMoney(amount, ID1, ID2);
     cout << "You Tranfer Money From ID To ID \n"
          << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
     cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
@@ -62,14 +61,17 @@ void ImportFile(Dataformat &ID, string fileindex)
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
-    if (amount > ID1.money[0])
+    if (amount > 0)
     {
-        cout << "You don't have enough money\n";
-        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
-    }
-    else
-    {
-        ID1.money[0] = ID1.money[0] - amount;
-        ID2.money[0] = ID2.money[0] + amount;
+        if (amount > ID1.money[0])
+        {
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+        }
+        else
+        {
+            ID1.money[0] = ID1.money[0] - amount;
+            ID2.money[0] = ID2.money[0] + amount;
+        }
     }
 }
