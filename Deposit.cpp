@@ -6,20 +6,19 @@
 using namespace std;
 
 
-void deposit(double , vector<float> &);
-
-void ImportFile(vector<int> &, vector<float> &, string );
-
 struct Dataformat
 {
+	vector<int> Pass;
     vector<int> ID;
     vector<float> money;
 };
+void deposit(Dataformat &ID1 );
+void ImportFile(Dataformat &ID, string fileindex);
 
 int main()
 {
-	Dataformat ID;
-    Dataformat money;
+	Dataformat ID1;
+    
     string id;
     float amount;
     cout << "input your id : ";
@@ -28,36 +27,42 @@ int main()
     string userfile_1 = id+".txt";
     ofstream writefile_1;
     writefile_1.open(userfile_1);
-    writefile_1 << "650612100" << "," << "10000" << endl;
+    writefile_1 << "2100"<<","<<"650612100" << "," << "10000" << endl;
     writefile_1.close();
 
-    ImportFile(ID.ID, money.money,userfile_1); 
-
-	deposit(amount ,money.money);
+    ImportFile(ID1, userfile_1); 
+	deposit(ID1);
 
 	writefile_1.open(userfile_1);
-    writefile_1 << ID.ID[0] << "," << money.money[0]<< endl;
+    writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0]<< endl;
     writefile_1.close();
 }
 
-void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
+void ImportFile(Dataformat &ID, string fileindex)
 {
     ifstream data;
     data.open(fileindex);
     string line;
-    int idnumber;
+    int idnumber, pass;
     float balnace;
-    while (getline(data, line)) // importfile
+    if (data.is_open())
     {
-    sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
-    ID.push_back(idnumber);
-    money.push_back(balnace);
+        while (getline(data, line)) // importfile
+        {
+            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            ID.Pass.push_back(pass);
+            ID.ID.push_back(idnumber);
+            ID.money.push_back(balnace);
+        }
+    }else {
+        cout << "Don't have ID : " << fileindex << "in datauser" ;
     }
 }
 
-void deposit(double amount, vector<float> &money){
+void deposit(Dataformat &ID1 ){
 
 	int option = 0;	
+	float amount;
 	bool notfinished = true;
 
 	do {
@@ -67,37 +72,45 @@ void deposit(double amount, vector<float> &money){
 		cout << "3 - $100" << endl;
 		cout << "4 - $200" << endl;
 		cout << "5 - $500" << endl;
-		cout << "6 - cancel deposition" << endl;
-		cout << "choose a deposit option (1-6)" << endl;
+		cout << "6 - choose your own deposition amount" << endl;
+		cout << "7 - cancal deposition \n";
+		cout << "choose a deposit option (1-7)" << endl;
 		cin >> option;
 
 		switch (option) {
 			case 1:
-				money = money + 20;
-				cout << "Successfully deposited $20 to your account. Current balance is $" << balance << "." << endl;
+				ID1.money[0] = ID1.money[0] + 20;
+				cout << "Successfully deposited $20 to your account. Current balance is $" << ID1.money[0] << "." << endl;
 				notfinished = false;
 				break;
 			case 2:
-				money = money + 50;
-				cout << "Successfully deposited $50 to your account. Current balance is $" << balance << "." << endl;
+				ID1.money[0] = ID1.money[0] + 50;
+				cout << "Successfully deposited $50 to your account. Current balance is $" << ID1.money[0] << "." << endl;
 				notfinished = false;
 				break;
 			case 3:
-				money = money + 100;
-				cout << "Successfully deposited $100 to your account. Current balance is $" << balance << "." << endl;
+				ID1.money[0] = ID1.money[0] + 100;
+				cout << "Successfully deposited $100 to your account. Current balance is $" << ID1.money[0] << "." << endl;
 				notfinished = false;
 				break;
 			case 4:
-				money = money + 200;
-				cout << "Successfully deposited $200 to your account. Current balance is $" << balance << "." << endl;
+				ID1.money[0] = ID1.money[0] + 200;
+				cout << "Successfully deposited $200 to your account. Current balance is $" << ID1.money[0] << "." << endl;
 				notfinished = false;
 				break;
 			case 5:
-				money = money + 500;
-				cout << "Successfully deposited $500 to your account. Current balance is $" << balance << "." << endl;
+				ID1.money[0] = ID1.money[0] + 500;
+				cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
 				notfinished = false;	
 				break;
 			case 6:
+				cout << "How manny do you want to Deposit." ;
+				cin >> amount;
+				ID1.money[0] = ID1.money[0] + amount;
+				cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+				notfinished = false;
+				break;
+			case 7:
 				cout << "Deposition canceled." << endl;
 				notfinished = false;
 				break;
