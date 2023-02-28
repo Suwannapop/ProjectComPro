@@ -198,8 +198,9 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
-    cout << ID1.Pass[0];
-///////////////////////////////////////////////////////////////////////////////////
+    cout << "\n" <<ID1.Pass[0];
+    Sleep(2000);
+/*///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
     ifstream inFile(id+".txt"); // open the file for reading
@@ -214,11 +215,11 @@ int main(){
         Sleep(1500);
         main();
     }
-///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////*/
     ifstream myfile;
     myfile.open(id + ".txt");
     
-    if (ID1.Pass == password ) {
+    if (ID1.Pass[0] == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
