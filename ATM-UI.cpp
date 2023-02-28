@@ -11,12 +11,23 @@ char ch; //login && ATM
 int choice = 1; //ATM
 float balance ; //ลบออก
 
+int main();
 struct Dataformat
 {
     vector<int> Pass;
     vector<int> ID;
     vector<float> money;
 };
+
+//Login failed
+int Login_failed (){
+    system("cls");
+    cout << "+-------------------------------------+" ;
+    cout << "\nLogin failed. Incorrect ID or password. \n" ;
+    cout << "+-------------------------------------+\n" ;
+    cout << setw(28) <<"Please try again." ;
+    cout << "\n+-------------------------------------+\n" ;
+}
 
 void ImportFile(Dataformat &ID, string fileindex)
 {
@@ -35,7 +46,12 @@ void ImportFile(Dataformat &ID, string fileindex)
             ID.money.push_back(balnace);
         }
     }else {
-        cout << "Don't have ID : " << fileindex << "in datauser" ;
+        Login_failed();
+        Sleep(1500); 
+        main();
+                 
+    }
+
     }
 }
 
@@ -154,16 +170,6 @@ void highlight_Withdraw_MENU(int index, bool selected) {
     }
 
     cout << "\033[0m"  << setw(l)<<" | \n";  // window
-}
-
-//Login failed
-int Login_failed (){
-    system("cls");
-    cout << "+-------------------------------------+" ;
-    cout << "\nLogin failed. Incorrect ID or password. \n" ;
-    cout << "+-------------------------------------+\n" ;
-    cout << setw(28) <<"Please try again." ;
-    cout << "\n+-------------------------------------+\n" ;
 }
 
 //Login ATM
@@ -403,11 +409,6 @@ int main(){
                         }
 
                         return 0; 
-   /* } else {
-        Login_failed();
-        Sleep(1500); // Wait for 1000 milliseconds
-        main();*/
-                 
-    }
+   } 
     
 }
