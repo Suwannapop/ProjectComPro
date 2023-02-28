@@ -2,7 +2,7 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
-
+#include <windows.h> 
 using namespace std;
 
 
@@ -106,16 +106,26 @@ void deposit(Dataformat &ID1 ){
 			case 6:
 				cout << "How manny do you want to Deposit." ;
 				cin >> amount;
-				ID1.money[0] = ID1.money[0] + amount;
-				cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
-				notfinished = false;
-				break;
+				if (amount > 0)
+				{
+
+					ID1.money[0] = ID1.money[0] + amount;
+					cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+					notfinished = false;
+					break;
+				}else {
+					cout << "Invalid! Please try again." << endl;
+					Sleep(1000);
+					break;
+				}
+				
 			case 7:
 				cout << "Deposition canceled." << endl;
 				notfinished = false;
 				break;
 			default:
 				cout << "Invalid! Please try again." << endl;
+				Sleep(1000);
 				break;
 		} 
 	} while (notfinished);
