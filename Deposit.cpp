@@ -1,12 +1,61 @@
 #include <iostream>
+#include <cmath>
 #include <fstream>
+#include <vector>
+
 using namespace std;
 
-int account = 650612100;
-int balance = 9500;
 
+void deposit(double , vector<float> &);
 
-void deposit(int account, double balance){
+void ImportFile(vector<int> &, vector<float> &, string );
+
+struct Dataformat
+{
+    vector<int> ID;
+    vector<float> money;
+};
+
+int main()
+{
+	Dataformat ID;
+    Dataformat money;
+    string id;
+    float amount;
+    cout << "input your id : ";
+    cin >> id;
+
+    string userfile_1 = id+".txt";
+    ofstream writefile_1;
+    writefile_1.open(userfile_1);
+    writefile_1 << "650612100" << "," << "10000" << endl;
+    writefile_1.close();
+
+    ImportFile(ID.ID, money.money,userfile_1); 
+
+	deposit(amount ,money.money);
+
+	writefile_1.open(userfile_1);
+    writefile_1 << ID.ID[0] << "," << money.money[0]<< endl;
+    writefile_1.close();
+}
+
+void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
+{
+    ifstream data;
+    data.open(fileindex);
+    string line;
+    int idnumber;
+    float balnace;
+    while (getline(data, line)) // importfile
+    {
+    sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
+    ID.push_back(idnumber);
+    money.push_back(balnace);
+    }
+}
+
+void deposit(double amount, vector<float> &money){
 
 	int option = 0;	
 	bool notfinished = true;
@@ -24,27 +73,27 @@ void deposit(int account, double balance){
 
 		switch (option) {
 			case 1:
-				balance = balance + 20;
+				money = money + 20;
 				cout << "Successfully deposited $20 to your account. Current balance is $" << balance << "." << endl;
 				notfinished = false;
 				break;
 			case 2:
-				balance = balance + 50;
+				money = money + 50;
 				cout << "Successfully deposited $50 to your account. Current balance is $" << balance << "." << endl;
 				notfinished = false;
 				break;
 			case 3:
-				balance = balance + 100;
+				money = money + 100;
 				cout << "Successfully deposited $100 to your account. Current balance is $" << balance << "." << endl;
 				notfinished = false;
 				break;
 			case 4:
-				balance = balance + 200;
+				money = money + 200;
 				cout << "Successfully deposited $200 to your account. Current balance is $" << balance << "." << endl;
 				notfinished = false;
 				break;
 			case 5:
-				balance = balance + 500;
+				money = money + 500;
 				cout << "Successfully deposited $500 to your account. Current balance is $" << balance << "." << endl;
 				notfinished = false;	
 				break;
@@ -58,11 +107,4 @@ void deposit(int account, double balance){
 		} 
 	} while (notfinished);
 
-}
-
-int main()
-{
-	//fstream data;
-	//data.open("Datafile.txt");
-	deposit(account,balance);
 }
