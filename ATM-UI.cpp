@@ -284,7 +284,7 @@ int main(){
                             cout << "+-------------------------------------+\n";
                             cout << "|               Deposit               |\n"; 
                             cout << "+-------------------------------------+\n";
-                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << balance << "\n";
+                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
                             Sleep(2000); // Wait for 1000 milliseconds
                             system("cls"); // clear the console
                             cout << "+-------------------------------------+\n";
