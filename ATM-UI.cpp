@@ -11,73 +11,70 @@ char ch; //login && ATM
 int choice = 1; //ATM
 float balance ; //ลบออก
 
-
 struct Dataformat
 {
+    vector<int> Pass;
     vector<int> ID;
     vector<float> money;
 };
 
-void ImportFile(vector<int> &ID, vector<float> &money , string fileindex)
+void ImportFile(Dataformat &ID, string fileindex)
 {
     ifstream data;
     data.open(fileindex);
     string line;
-    int idnumber;
+    int idnumber, pass;
     float balnace;
     while (getline(data, line)) // importfile
     {
-        sscanf(line.c_str(), "%d,%f", &idnumber, &balnace);
-        ID.push_back(idnumber);
-        money.push_back(balnace);
+        sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+        ID.Pass.push_back(pass);
+        ID.ID.push_back(idnumber);
+        ID.money.push_back(balnace);
     }
-    data.close();
 }
 
-void TransferMoney(double amount, vector<float> &money ) // เเปปปกติ
+void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
-    if (amount > money[0])
+    if (amount > ID1.money[0])
     {
         cout << "You don't have enough money\n";
-        cout << "Now you have : " << money[0] << " You can't tranfer money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
     }
     else
     {
-        money[0] = money[0] - amount;
-        money[1] = money[1] + amount;
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
     }
 }
 
+
 void mainTransferMoney( string id )
 {
-    Dataformat ID;
-    Dataformat money;
-    string IdTranfer;
+    Dataformat ID1;
+    Dataformat ID2;
+    string id, IdTranfer;
     float amount;
+    cout << "input your id : ";
+    cin >> id;
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
-    string userfile_1 = id+".txt";
-    string userfile_2 = IdTranfer+".txt";
-    ofstream writefile_1 ,writefile_2 ;
-    
-    ImportFile(ID.ID, money.money,userfile_1); // importfile
-    ImportFile(ID.ID, money.money,userfile_2);
-    //CheckIndex(id , IdTranfer ,ID.ID);
-
+    string userfile_1 = id + ".txt";
+    string userfile_2 = IdTranfer + ".txt";
+    ofstream writefile_1, writefile_2;
+    ImportFile(ID1, userfile_1); // importfile
+    ImportFile(ID2, userfile_2);
     cout << "How much money : ";
     cin >> amount;
-    TransferMoney(amount ,money.money);
-    cout << "You Tranfer Money From ID To ID \n" << ID.ID[0] << " -----> " << ID.ID[1] << endl;
-    cout << "Now : ID : " <<  ID.ID[0] << " Is " << money.money[0]<< endl;
-    cout << "Now : ID : " <<  ID.ID[1] << " Is " << money.money[1]<< endl;
+    TransferMoney(amount,ID1,ID2);
+    cout << "You Tranfer Money From ID To ID \n"
+         << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
+    cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
+    cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
-    writefile_1 << ID.ID[0]
-          << ","
-          << money.money[0]<< endl;
-    writefile_2 << ID.ID[1]
-          << ","
-          << money.money[1] << endl;
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << endl;
     writefile_1.close();
     writefile_2.close();
 }
@@ -198,12 +195,11 @@ int main(){
     int password;
     int pass_id;
     string id ;
-    Dataformat ID;
-    Dataformat money;
+    Dataformat ID1;
     //login
     login(id , password);
     string fileindex = id + ".txt" ;
-    ImportFile(ID.ID , money.money , fileindex);
+    ImportFile(ID1, fileindex);
 ///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
@@ -223,7 +219,7 @@ int main(){
     ifstream myfile;
     myfile.open(id + ".txt");
     
-    if (pass_id == password ) {
+    if (ID1.Pass == password ) {
         system("cls");
         cout << "+-------------------------------------+\n";
         cout << "|          Login successful!          |\n";
@@ -262,7 +258,7 @@ int main(){
                         cout << "+-------------------------------------+\n";
                         cout << "|           Balance Inquiry           |\n"; 
                         cout << "+-------------------------------------+\n";
-                        cout << "Your current balance is: $" << fixed << setprecision(2) << money.money[0] << "\n";
+                        cout << "Your current balance is: $" << fixed << setprecision(2) <<ID1.money[0] << "\n";
                         Sleep(2000); // Wait for 1000 milliseconds
                         system("cls"); // clear the console
                         cout << "+-------------------------------------+\n";
