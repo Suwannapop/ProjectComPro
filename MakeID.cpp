@@ -14,7 +14,7 @@ int main() {
         std::ofstream outfile(filename);
         if (outfile.is_open()) {
             int num = dist(gen) * 1000;
-            outfile << id << "," << num << ".00" << "," << i-id_user;
+            outfile  << i-id_user << "," << id << "," << num  ;
             outfile.close();
             std::cout << "File created: " << id << std::endl;
         } else {
