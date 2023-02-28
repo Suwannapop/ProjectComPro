@@ -53,10 +53,8 @@ void mainTransferMoney( string id )
 {
     Dataformat ID1;
     Dataformat ID2;
-    string id, IdTranfer;
+    string IdTranfer;
     float amount;
-    cout << "input your id : ";
-    cin >> id;
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
     string userfile_1 = id + ".txt";
@@ -200,6 +198,7 @@ int main(){
     login(id , password);
     string fileindex = id + ".txt" ;
     ImportFile(ID1, fileindex);
+    cout << ID1.Pass[0];
 ///////////////////////////////////////////////////////////////////////////////////
     //pass chkce
     int value1;
