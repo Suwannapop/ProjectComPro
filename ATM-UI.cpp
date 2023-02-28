@@ -23,21 +23,12 @@ struct Dataformat
 void deposit(Dataformat &ID1 );
 void ImportFile(Dataformat &ID, string fileindex);
 
-int deposit()
+int main_deposit(Dataformat ID1,string userfile_1)
 {
-	Dataformat ID1;
     
-    string id;
-    float amount;
-    cout << "input your id : "; //รับจาก login
-    cin >> id;
-
-    string userfile_1 = id+".txt";
-    ofstream writefile_1;
-
     ImportFile(ID1, userfile_1); 
 	deposit(ID1);
-
+    ofstream writefile_1;
 	writefile_1.open(userfile_1);
     writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0]<< endl;
     writefile_1.close();
@@ -414,7 +405,7 @@ int main(){
 
                     case 2:
                         // Deposit
-                        deposit();
+                        main_deposit(ID1,fileindex);
                         
                         /*
                         system("cls"); // clear the console
