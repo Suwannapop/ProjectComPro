@@ -25,8 +25,6 @@ void ImportFile(Dataformat &ID, string fileindex);
 
 int main_deposit(Dataformat ID1,string userfile_1)
 {
-    
-    ImportFile(ID1, userfile_1); 
 	deposit(ID1);
     ofstream writefile_1;
 	writefile_1.open(userfile_1);
