@@ -19,14 +19,39 @@ struct Dataformat
     vector<float> money;
 };
 
+//higlight_yes_or_No
+void higlight_Yes_or_No(int index, bool selected) { 
+    int l = 0 ;
+    if (selected) {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    cout << index << ". ";
+
+    // print the option label
+    switch (index) {
+        case 1:
+            l = 31 ;
+            cout << "Yes";
+            break;
+        case 2:
+            l = 32 ;
+            cout << "No";
+            break;
+        default:
+            break;
+    }
+
+    cout << "\033[0m"  << setw(l)<<" |";  // window
+}
+
 //Login failed
 int Login_failed (){
-    system("cls");
-    cout << "+-------------------------------------+" ;
-    cout << "\nLogin failed. Incorrect ID or password. \n" ;
-    cout << "+-------------------------------------+\n" ;
-    cout << setw(28) <<"Please try again." ;
-    cout << "\n+-------------------------------------+\n" ;
+        system("cls");
+        cout << "+-------------------------------------+\n";
+        cout << "|             Login failed.           |\n";
+        cout << "|       Incorrect ID or password.     |\n";
+        cout << "+-------------------------------------+\n";
+        cout << setw(28) <<"Please try again.\n" ;
 }
 
 void ImportFile(Dataformat &ID, string fileindex)
@@ -46,9 +71,39 @@ void ImportFile(Dataformat &ID, string fileindex)
             ID.money.push_back(balnace);
         }
     }else {
-        Login_failed();
-        Sleep(1500); 
-        main();
+        do{
+                Login_failed();
+                cout << "+-------------------------------------+\n" ;
+                cout << "|     If you don't have an accoun     |\n" ;
+                cout << "|    Want to create a new account?    | ";
+            for (int i = 1; i < 3; i++) {
+                cout << "\n| ";
+                higlight_Yes_or_No(i, i == choice);
+                }
+                cout << "\n+-------------------------------------+\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1) { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 3) { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13);
+                switch (choice)
+                {
+                case 1:
+                    cout << "Yes";
+                    break;
+                case 2:
+                    cout << "No";
+                    main();
+                    break;
+                default:
+                    break;
+                }
                  
     }
 
@@ -408,6 +463,7 @@ int main(){
                         }
 
                         return 0; 
-   } 
+   }
+   
     
 }
