@@ -25,12 +25,17 @@ void ImportFile(Dataformat &ID, string fileindex)
     string line;
     int idnumber, pass;
     float balnace;
-    while (getline(data, line)) // importfile
+    if (data.is_open())
     {
-        sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
-        ID.Pass.push_back(pass);
-        ID.ID.push_back(idnumber);
-        ID.money.push_back(balnace);
+        while (getline(data, line)) // importfile
+        {
+            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            ID.Pass.push_back(pass);
+            ID.ID.push_back(idnumber);
+            ID.money.push_back(balnace);
+        }
+    }else {
+        cout << "Don't have ID : " << fileindex << "in datauser" ;
     }
 }
 
@@ -194,7 +199,6 @@ int main(){
     int pass_id;
     string id ;
     Dataformat ID1;
-    
     //login
     login(id , password);
     string fileindex = id + ".txt" ;
@@ -284,7 +288,7 @@ int main(){
                             cout << "+-------------------------------------+\n";
                             cout << "|               Deposit               |\n"; 
                             cout << "+-------------------------------------+\n";
-                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << balance << "\n";
+                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
                             Sleep(2000); // Wait for 1000 milliseconds
                             system("cls"); // clear the console
                             cout << "+-------------------------------------+\n";
