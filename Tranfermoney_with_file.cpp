@@ -8,7 +8,7 @@ struct Dataformat
 {
     vector<int> Pass;
     vector<int> ID;
-    vector<float> money;
+    vector<double> money;
 };
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2);
@@ -19,7 +19,7 @@ int main()
     Dataformat ID1;
     Dataformat ID2;
     string id, IdTranfer;
-    float amount;
+    double amount;
     cout << "input your id : ";
     cin >> id;
     cout << "What ID you want to tranfer : ";
@@ -49,12 +49,12 @@ void ImportFile(Dataformat &ID, string fileindex)
     data.open(fileindex);
     string line;
     int idnumber, pass;
-    float balnace;
+    double balnace;
     if (data.is_open())
     {
         while (getline(data, line)) // importfile
         {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
             ID.Pass.push_back(pass);
             ID.ID.push_back(idnumber);
             ID.money.push_back(balnace);
