@@ -134,7 +134,6 @@ int new_account() {
     }
 }
 
-
 //deposit
 void deposit(Dataformat &ID1,string userfile_1 );
 void ImportFile(Dataformat &ID, string fileindex);
