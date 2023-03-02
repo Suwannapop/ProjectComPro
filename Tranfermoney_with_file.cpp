@@ -2,13 +2,14 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 struct Dataformat
 {
     vector<int> Pass;
     vector<int> ID;
-    vector<float> money;
+    vector<double> money;
 };
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2);
@@ -19,7 +20,7 @@ int main()
     Dataformat ID1;
     Dataformat ID2;
     string id, IdTranfer;
-    float amount;
+    double amount;
     cout << "input your id : ";
     cin >> id;
     cout << "What ID you want to tranfer : ";
@@ -38,8 +39,8 @@ int main()
     cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
-    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << endl;
-    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << endl;
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000)<< ID1.money[0] << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000)<< ID2.money[0] << endl;
     writefile_1.close();
     writefile_2.close();
 }
@@ -49,12 +50,12 @@ void ImportFile(Dataformat &ID, string fileindex)
     data.open(fileindex);
     string line;
     int idnumber, pass;
-    float balnace;
+    double balnace;
     if (data.is_open())
     {
         while (getline(data, line)) // importfile
         {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
             ID.Pass.push_back(pass);
             ID.ID.push_back(idnumber);
             ID.money.push_back(balnace);
