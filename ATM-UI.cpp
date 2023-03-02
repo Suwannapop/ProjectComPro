@@ -4,6 +4,7 @@
 #include <windows.h> //sleep
 #include <fstream>
 #include <vector>
+#include <string>
 
 using namespace std;
 int id, password; //login
@@ -20,88 +21,184 @@ struct Dataformat
 };
 
 //deposit
-void deposit(Dataformat &ID1 );
+void deposit(Dataformat &ID1,string userfile_1 );
 void ImportFile(Dataformat &ID, string fileindex);
 
 int main_deposit(Dataformat ID1,string userfile_1)
 {
-	deposit(ID1);
-    ofstream writefile_1;
-	writefile_1.open(userfile_1);
-    writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0]<< endl;
-    writefile_1.close();
+    ImportFile(ID1, userfile_1); 
+	deposit(ID1,userfile_1);
 }
 
-void deposit(Dataformat &ID1 ){
+//higlight_deposit
+void higlight_deposit (int index, bool selected) { 
+    int l = 0 ;
+    if (selected) {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    cout << index << ". ";
 
+    // print the option label
+    switch (index) {
+        case 1:
+            l = 29 ;
+            cout << "20 THB";
+            break;
+        case 2:
+            l = 29 ;
+            cout << "50 THB";
+            break;
+        case 3:
+            l = 28 ;
+            cout << "100 THB";
+            break;
+        case 4:
+            l = 28 ;
+            cout << "200 THB";
+            break;
+        case 5:
+            l = 28 ;
+            cout << "500 THB";
+            break;
+        case 6:
+            l = 9 ;
+            cout << "Choose your own deposition";
+            break;
+        case 7:
+            l = 18 ;
+            cout << "Cancal deposition";
+            break;
+        default:
+            break;
+    }
+
+    cout << "\033[0m"  << setw(l)<<" |\n";  // window
+}
+
+void deposit(Dataformat &ID1 ,string userfile_1){
+    ofstream writefile_1;
 	int option = 0;	
 	float amount;
 	bool notfinished = true;
 
 	do {
-		cout << "How much money do you want to deposit? :" << endl;
-		cout << "1 - $20" << endl;
-		cout << "2 - $50" << endl;	
-		cout << "3 - $100" << endl;
-		cout << "4 - $200" << endl;
-		cout << "5 - $500" << endl;
-		cout << "6 - choose your own deposition amount" << endl;
-		cout << "7 - cancal deposition \n";
-		cout << "choose a deposit option (1-7)" << endl;
-		cin >> option;
+        system("cls"); // clear the console
+            cout << "+-------------------------------------+\n";
+            cout << "|               Deposit               |\n"; 
+            cout << "+-------------------------------------+\n";
+            // display the menu options
+            for (int i = 1; i < 8; i++) {
+            cout << "| ";
+            higlight_deposit(i, i == choice);
+            }
+            //cout << "|                                     |\n";
+            cout << "+-------------------------------------+\n";
 
-		switch (option) {
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1) { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 8) { // down arrow key
+                choice++;
+            }
+		//cout << "How much money do you want to deposit? :" << endl;
+		//cout << "choose a deposit option (1-7)" << endl;
+
+	} while (ch != 13) ; 
+        	switch (choice) {
 			case 1:
+		        //cout << "1 - $20" ;
 				ID1.money[0] = ID1.money[0] + 20;
-				cout << "Successfully deposited $20 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+				cout << "Successfully deposited $20 to your account. Current balance is $" << ID1.money[0] << "." ;
 				notfinished = false;
+                writefile_1.open(userfile_1);
+                writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                writefile_1.close();
+                Sleep(1500);
+                main();
 				break;
 			case 2:
+        		//cout << "2 - $50" ;	
 				ID1.money[0] = ID1.money[0] + 50;
-				cout << "Successfully deposited $50 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+				cout << "Successfully deposited $50 to your account. Current balance is $" << ID1.money[0] << "." ;
 				notfinished = false;
+                writefile_1.open(userfile_1);
+                writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                writefile_1.close();
+                Sleep(1500);
+                main();
 				break;
 			case 3:
+        		//cout << "3 - $100" ;
 				ID1.money[0] = ID1.money[0] + 100;
-				cout << "Successfully deposited $100 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+				cout << "Successfully deposited $100 to your account. Current balance is $" << ID1.money[0] << "." ;
 				notfinished = false;
+                writefile_1.open(userfile_1);
+                writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                writefile_1.close();
+                Sleep(1500);
+                main();
 				break;
 			case 4:
+        		//cout << "4 - $200" ;
 				ID1.money[0] = ID1.money[0] + 200;
-				cout << "Successfully deposited $200 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+				cout << "Successfully deposited $200 to your account. Current balance is $" << ID1.money[0] << "." ;
 				notfinished = false;
+                writefile_1.open(userfile_1);
+                writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                writefile_1.close();
+                Sleep(1500);
+                main();
 				break;
 			case 5:
+        		//cout << "5 - $500" ;
 				ID1.money[0] = ID1.money[0] + 500;
-				cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
-				notfinished = false;	
+				cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." ;
+				notfinished = false;
+                writefile_1.open(userfile_1);
+                writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                writefile_1.close();
+                Sleep(1500);
+                main();	
 				break;
 			case 6:
+        		//cout << "6 - choose your own deposition amount" ;
 				cout << "How manny do you want to Deposit." ;
 				cin >> amount;
 				if (amount > 0)
 				{
-
 					ID1.money[0] = ID1.money[0] + amount;
-					cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+					cout << "Successfully deposited "<< setprecision(1000000)<<ID1.money[0]<< "to your account. Current balance is $" <<setprecision(1000000)<< ID1.money[0] << "." << endl;
 					notfinished = false;
+                    writefile_1.open(userfile_1);
+                    writefile_1 <<ID1.Pass[0]<<","<< ID1.ID[0] << "," << ID1.money[0];
+                    writefile_1.close();
+                    Sleep(1500);
+                    main();
 					break;
 				}else {
-					cout << "Invalid! Please try again." << endl;
-					Sleep(1000);
+					cout << "Invalid! Please try again." ;
+					Sleep(1500);
+                    main();
 					break;
 				}
 				
 			case 7:
-				cout << "Deposition canceled." << endl;
+        		//cout << "7 - cancal deposition \n";
+				cout << "Deposition canceled." ;
 				notfinished = false;
+                Sleep(1500);
+                main();
 				break;
 			default:
-				cout << "Invalid! Please try again." << endl;
-				Sleep(1000);
+				cout << "Invalid! Please try again." ;
+				Sleep(1500);
+                main();
 				break;
-		} 
-	} while (notfinished);
+		
+    }
 
 }
 //higlight_yes_or_No
