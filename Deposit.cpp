@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <iomanip>
-#include <window.h>
+#include <windows.h>
 using namespace std;
 
 
@@ -108,7 +108,7 @@ void deposit(Dataformat &ID1 ){
 				{
 
 					ID1.money[0] = ID1.money[0] + amount;
-					cout << "Successfully deposited $500 to your account. Current balance is $" <<setprecision(1000000)<< ID1.money[0] << "." << endl;
+					cout << "Successfully deposited "<< setprecision(1000000)<<ID1.money[0]<< "to your account. Current balance is $" <<setprecision(1000000)<< ID1.money[0] << "." << endl;
 					notfinished = false;
 					break;
 				}else {
