@@ -2,7 +2,8 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
-#include <windows.h> 
+#include <iomanip>
+#include <window.h>
 using namespace std;
 
 
@@ -10,7 +11,7 @@ struct Dataformat
 {
 	vector<int> Pass;
     vector<int> ID;
-    vector<float> money;
+    vector<double> money;
 };
 void deposit(Dataformat &ID1 );
 void ImportFile(Dataformat &ID, string fileindex);
@@ -19,7 +20,7 @@ int main()
 {
 	Dataformat ID1;
     string id;
-    float amount;
+    double amount;
     cout << "input your id : ";
     cin >> id;
     string userfile_1 = id+".txt";
@@ -41,12 +42,12 @@ void ImportFile(Dataformat &ID, string fileindex)
     data.open(fileindex);
     string line;
     int idnumber, pass;
-    float balnace;
+    double balnace;
     if (data.is_open())
     {
         while (getline(data, line)) // importfile
         {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
             ID.Pass.push_back(pass);
             ID.ID.push_back(idnumber);
             ID.money.push_back(balnace);
@@ -59,7 +60,7 @@ void ImportFile(Dataformat &ID, string fileindex)
 void deposit(Dataformat &ID1 ){
 
 	int option = 0;	
-	float amount;
+	double amount;
 	bool notfinished = true;
 
 	do {
@@ -107,7 +108,7 @@ void deposit(Dataformat &ID1 ){
 				{
 
 					ID1.money[0] = ID1.money[0] + amount;
-					cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << "." << endl;
+					cout << "Successfully deposited $500 to your account. Current balance is $" <<setprecision(1000000)<< ID1.money[0] << "." << endl;
 					notfinished = false;
 					break;
 				}else {
