@@ -17,7 +17,7 @@ struct Dataformat
 {
     vector<int> Pass;
     vector<int> ID;
-    vector<float> money;
+    vector<double> money;
 };
 
 //deposit
@@ -242,12 +242,12 @@ void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอน�
     data.open(fileindex);
     string line;
     int idnumber, pass;
-    float balnace;
+    double balnace;
     if (data.is_open())
     {
         while (getline(data, line)) // importfile
         {
-            sscanf(line.c_str(), "%d,%d,%f", &pass, &idnumber, &balnace);
+            sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
             ID.Pass.push_back(pass);
             ID.ID.push_back(idnumber);
             ID.money.push_back(balnace);
@@ -293,16 +293,23 @@ void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอน�
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
-    if (amount > ID1.money[0])
+    if (amount > 0)
     {
-        cout << "You don't have enough money\n";
-        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
-    }
-    else
+        if (amount > ID1.money[0])
+        {
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+        }
+        else
+        {
+            ID1.money[0] = ID1.money[0] - amount;
+            ID2.money[0] = ID2.money[0] + amount;
+        }
+    }else if (amount <= 0)
     {
-        ID1.money[0] = ID1.money[0] - amount;
-        ID2.money[0] = ID2.money[0] + amount;
+        cout << "You can't tranfer money less than 0 or = 0\n";
     }
+    
 }
 
 
