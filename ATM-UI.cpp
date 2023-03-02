@@ -20,6 +20,121 @@ struct Dataformat
     vector<double> money;
 };
 
+void higlight_new_account_Yes_or_No(int index, bool selected) { 
+    int l = 0 ;
+    if (selected) {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    cout << index << ". ";
+
+    // print the option label
+    switch (index) {
+        case 1:
+            l = 25 ;
+            cout << "Try again";
+            break;
+        case 2:
+            l = 30 ;
+            cout << "Exit";
+            break;
+        default:
+            break;
+    }
+
+    cout << "\033[0m"  << setw(l)<<" |";  // window
+}
+
+//new_account
+int new_account() {
+    system("cls");
+    int UserPass1, UserPass2 , UserID, money ;
+    cout << "+-------------------------------------+\n" ;
+    cout << "|         Create your account         |\n" ;
+    cout << "|    Want to create a new account?    |\n";
+    cout << "+-------------------------------------+\n";
+    cout << "Enter your ID: " ;
+    cin >> UserID ;
+    cout << "Enter your password: " ;
+        UserPass1 = 0;
+    while ((ch = _getch()) != '\r') {  // Stop reading when user presses Enter key
+        if (ch == '\b') {  // Handle backspace character
+            if (UserPass1 > 0) {
+                UserPass1 /= 10;
+                cout << "\b \b";  // Move cursor back and overwrite character with space
+            }
+        } else if (isdigit(ch)) {  // Handle numeric characters
+            UserPass1 = UserPass1 * 10 + (ch - '0');
+            cout << "*";
+        }
+    }
+
+    cout << "\nConfirm password: " ;
+        UserPass2 = 0;
+    while ((ch = _getch()) != '\r') {  // Stop reading when user presses Enter key
+        if (ch == '\b') {  // Handle backspace character
+            if (UserPass2 > 0) {
+                UserPass2 /= 10;
+                cout << "\b \b";  // Move cursor back and overwrite character with space
+            }
+        } else if (isdigit(ch)) {  // Handle numeric characters
+            UserPass2 = UserPass2 * 10 + (ch - '0');
+            cout << "*";
+        }
+    }
+        if(UserPass1 == UserPass2 ){
+            cout << "\nEnter your money: ";
+            cin >> money ;
+                string identification = to_string(UserID);
+                string filename = to_string(UserID) + ".txt" ;
+                ofstream outfile(filename);
+                if (outfile.is_open()){
+                    outfile << UserPass1 << "," << identification << " " << "," << money ;
+                    outfile.close();
+                    cout << "Created successfully" << identification << endl;
+                }
+        }else{
+            do {
+                system("cls");
+                cout << "+-------------------------------------+\n";
+                cout << "|        Passwords do not match       |\n";
+                cout << "+-------------------------------------+\n";
+                cout << setw(28) <<"Please try again.\n" ;
+                cout << "+-------------------------------------+";
+            // display the menu options
+            for (int i = 1; i < 3; i++) {
+            cout << "\n| ";
+            higlight_new_account_Yes_or_No(i, i == choice);
+            }
+            cout << "\n+-------------------------------------+\n";
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1) { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 5) { // down arrow key
+                choice++;
+            }
+            } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice) {
+                    case 1:
+                        cout << "Try again";
+                        new_account();
+                        break;
+                    case 2:
+                        cout << "Exit";
+                        main();
+                        break;
+                    default:
+                        break;
+                }
+                       
+    }
+}
+
+
 //deposit
 void deposit(Dataformat &ID1,string userfile_1 );
 void ImportFile(Dataformat &ID, string fileindex);
@@ -234,6 +349,7 @@ int Login_failed (){
         cout << "|       Incorrect ID or password.     |\n";
         cout << "+-------------------------------------+\n";
         cout << setw(28) <<"Please try again.\n" ;
+        cout << "+-------------------------------------+\n";
 }
 
 void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอนโอน
@@ -254,7 +370,11 @@ void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอน�
         }
     }else {
         do{
-                Login_failed();
+                system("cls");
+                cout << "+-------------------------------------+\n";
+                cout << "|             Login failed.           |\n";
+                cout << "|           account not found         |\n";
+                cout << "+-------------------------------------+\n";
                 cout << "+-------------------------------------+\n" ;
                 cout << "|     If you don't have an accoun     |\n" ;
                 cout << "|    Want to create a new account?    | ";
@@ -277,7 +397,9 @@ void ImportFile(Dataformat &ID, string fileindex) //ใช้ฝากถอน�
                 switch (choice)
                 {
                 case 1:
-                    cout << "Yes";
+                    new_account();
+                    Sleep(2000);
+                    main();
                     break;
                 case 2:
                     cout << "No";
@@ -304,10 +426,17 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         {
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
+            cout << "You Tranfer Money From ID To ID \n"
+                 << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
+            Sleep(1500);
+            cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
+            cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
+            Sleep(2000);
         }
     }else if (amount <= 0)
     {
         cout << "You can't tranfer money less than 0 or = 0\n";
+        Sleep(2000);
     }
     
 }
@@ -329,10 +458,6 @@ void mainTransferMoney( string id )
     cout << "How much money : ";
     cin >> amount;
     TransferMoney(amount,ID1,ID2);
-    cout << "You Tranfer Money From ID To ID \n"
-         << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
-    cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
-    cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
     writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << endl;
@@ -508,38 +633,7 @@ int main(){
                     case 2:
                         // Deposit
                         main_deposit(ID1,fileindex);
-                        
-                        /*
-                        system("cls"); // clear the console
-                        cout << "+-------------------------------------+\n";
-                        cout << "|               Deposit               |\n"; 
-                        cout << "+-------------------------------------+\n";
-                        double depositAmount;
-                        cout << "Enter the amount to deposit: ";
-                        cin >> depositAmount;
-    
-                        if (depositAmount > 0) {
-                            balance += depositAmount;
-                            system("cls"); // clear the console
-                            cout << "+-------------------------------------+\n";
-                            cout << "|               Deposit               |\n"; 
-                            cout << "+-------------------------------------+\n";
-                            cout << "Deposit successful!" << "\nYour new balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
-                            Sleep(2000); // Wait for 1000 milliseconds
-                            system("cls"); // clear the console
-                            cout << "+-------------------------------------+\n";
-                            cout << "|               Deposit               |\n"; 
-                            cout << "+-------------------------------------+\n";
-                            cout << "Thank you for using this ATM. Goodbye!\n";
-                            Sleep(2000); // Wait for 1000 milliseconds
-                            main();
-
-                         } else {
-                                    cout << "Invalid deposit amount.\n";
-                                    Sleep(4000); // Wait for 1000 milliseconds
-                                    main();
-                                }*/
-                                break;
+                        break;
                     
                     case 3:
                         // Withdraw
@@ -640,39 +734,10 @@ int main(){
 
                         return 0; 
    }else {
-        do{
-                Login_failed();
-                cout << "+-------------------------------------+\n" ;
-                cout << "|     If you don't have an accoun     |\n" ;
-                cout << "|    Want to create a new account?    | ";
-            for (int i = 1; i < 3; i++) {
-                cout << "\n| ";
-                higlight_Yes_or_No(i, i == choice);
-                }
-                cout << "\n+-------------------------------------+\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1) { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 3) { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13);
-                switch (choice)
-                {
-                case 1:
-                    cout << "Yes";
-                    break;
-                case 2:
-                    cout << "No";
-                    main();
-                    break;
-                default:
-                    break;
-                }
+        Login_failed();
+        Sleep(2000);
+        main();
+        
                  
     }
    
