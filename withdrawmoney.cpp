@@ -6,7 +6,15 @@
 
 using namespace std;
 
-void Withdraw(double, vector<float> &);
+struct Dataformat
+{
+    vector<int> Pass;
+    vector<int> ID;
+    vector<double> money;
+};
+
+
+void Withdraw(double, Dataformat &);
 void ImportFile(vector<int> &, vector<float> &, string);
 struct Dataformat
 {
@@ -27,7 +35,7 @@ int mainWithdraw(Dataformat ID , string userfile_1)
     cout << "\nNow : ID : " << ID.ID[0] << ", total balance is : " <<setprecision(1000000)<< ID.money[0] << endl;
 
     writefile_1.open(userfile_1);
-    writefile_1 <<ID.Pass[0]<< ID.ID[0]<< ","<< ID.money[0] << endl;
+    writefile_1 <<ID.Pass[0]<<","<< ID.ID[0]<< ","<< ID.money[0] << endl;
     writefile_1.close();
 }
 
