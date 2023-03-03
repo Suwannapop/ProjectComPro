@@ -386,7 +386,7 @@ int Login_failed()
     cout << "+-------------------------------------+\n";
 }
 
-void ImportFile(Dataformat &ID, string fileindex, bool check = false) // ใช้ฝากถอนโอน
+void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 {
     ifstream data;
     data.open(fileindex);
@@ -466,7 +466,12 @@ void ImportFile(Dataformat &ID, string fileindex, bool check = false) // ใช�
         }
         else
         {
-            cout << "Don't have ID in Database " ;
+            system("cls");
+            cout << "+-------------------------------------+\n";
+            cout << "|       Don't have ID in Databas      |\n";
+            cout << "+-------------------------------------+\n";
+            
+            Sleep(2000);
             main();
         }
     }
@@ -488,8 +493,8 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
             cout << "You Tranfer Money From ID To ID \n"
                  << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
             Sleep(1500);
-            cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
-            cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
+            cout << "Now : ID : " << ID1.ID[0] << " Is "<< setprecision(10000) << ID1.money[0] << endl;
+            cout << "Now : ID : " << ID2.ID[0] << " Is "<< setprecision(10000) << ID2.money[0] << endl;
             Sleep(2000);
         }
     }
@@ -775,7 +780,7 @@ int main()
                 cout << "|               Withdraw              |\n";
                 cout << "+-------------------------------------+\n";
                 cout << "Withdrawal successful!"
-                     << "\nYour new balance is: $" << fixed << setprecision(2) << balance << "\n";
+                     << "\nYour new balance is: $" << fixed << setprecision(10000) << balance << "\n";
                 Sleep(2000);   // Wait for 1000 milliseconds
                 system("cls"); // clear the console
                 cout << "+-------------------------------------+\n";
