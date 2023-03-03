@@ -88,7 +88,7 @@ int new_account() {
                 string filename = to_string(UserID) + ".txt" ;
                 ofstream outfile(filename);
                 if (outfile.is_open()){
-                    outfile << UserPass1 << "," << identification << " " << "," << money ;
+                    outfile << UserPass1 << "," << identification << "," << money ;
                     outfile.close();
                     cout << "Created successfully" << identification << endl;
                 }
