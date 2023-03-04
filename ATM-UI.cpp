@@ -201,11 +201,11 @@ void higlight_deposit(int index, bool selected)
         break;
     case 6:
         l = 9;
-        cout << "Choose your own deposition";
+        cout << "Choose your own Deposition";
         break;
     case 7:
         l = 18;
-        cout << "Cancal deposition";
+        cout << "Cancal Deposition";
         break;
     default:
         break;
@@ -569,46 +569,6 @@ void highlight_ATM_MENU(int index, bool selected)
     cout << "\033[0m" << setw(l) << " | \n"; // window
 }
 
-// higlighat Withdraw menu
-void highlight_Withdraw_MENU(int index, bool selected)
-{
-    int l = 0;
-    if (selected)
-    {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
-    }
-    cout << index << ". ";
-
-    // print the option label
-    switch (index)
-    {
-    case 1:
-        l = 33;
-        cout << "100";
-        break;
-    case 2:
-        l = 33;
-        cout << "500";
-        break;
-    case 3:
-        l = 32;
-        cout << "1000";
-        break;
-    case 4:
-        l = 13;
-        cout << "choose amount of money";
-        break;
-    case 5:
-        l = 32;
-        cout << "Exit";
-        break;
-    default:
-        break;
-    }
-
-    cout << "\033[0m" << setw(l) << " | \n"; // window
-}
-
 // Login ATM
 int login(string &id, int &password)
 {
@@ -643,46 +603,197 @@ int login(string &id, int &password)
     }
 }
 
+// higlighat Withdraw menu
+void higlight_Withdraw(int index, bool selected)
+{
+    int l = 0;
+    if (selected)
+    {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    cout << index << ". ";
 
-//-----------------------------------------------------------------------------------------------------------------------------------
+    // print the option label
+    switch (index)
+    {
+    case 1:
+        l = 29;
+        cout << "20 THB";
+        break;
+    case 2:
+        l = 29;
+        cout << "50 THB";
+        break;
+    case 3:
+        l = 28;
+        cout << "100 THB";
+        break;
+    case 4:
+        l = 28;
+        cout << "200 THB";
+        break;
+    case 5:
+        l = 28;
+        cout << "500 THB";
+        break;
+    case 6:
+        l = 11;
+        cout << "Choose your own Withdraw";
+        break;
+    case 7:
+        l = 20;
+        cout << "Cancal Withdraw";
+        break;
+    default:
+        break;
+    }
 
-void Withdraw(double, vector<float> &);
-int mainWithdraw(Dataformat ID , string userfile_1)
+    cout << "\033[0m" << setw(l) << " |\n"; // window
+}
+
+
+void Withdraw(double, Dataformat&);
+int mainWithdraw(Dataformat ID1 , string userfile_1)
 {
     float amount;
     ofstream writefile_1;
-    ImportFile(ID,userfile_1);
-    cout << "Enter amount : ";
-    cin >> amount;
-    Withdraw(amount, ID);
-    cout << "withdraw : " << amount;
-    cout << "\nNow : ID : " << ID.ID[0] << ", total balance is : " <<setprecision(1000000)<< ID.money[0] << endl;
-
-    writefile_1.open(userfile_1);
-    writefile_1 <<ID.Pass[0]<< ID.ID[0]<< ","<< ID.money[0] << endl;
-    writefile_1.close();
-}
-void Withdraw(double amount, Dataformat &ID)
-{
-    if (amount > 0)
+    ImportFile(ID1,userfile_1);
+    Withdraw(amount, ID1);
+    
+    do
     {
-        if (amount > ID.money[0])
+        system("cls"); // clear the console
+        cout << "+-------------------------------------+\n";
+        cout << "|              Withdraw               |\n";
+        cout << "+-------------------------------------+\n";
+        // display the menu options
+        for (int i = 1; i < 8; i++)
         {
-            cout << "You don't have enough money\n";
-            cout << "Now you have : " << setprecision(1000000) << ID.money[0] << " You can't withdraw money\n";
+            cout << "| ";
+            higlight_Withdraw(i, i == choice);
+        }
+        // cout << "|                                     |\n";
+        cout << "+-------------------------------------+\n";
+
+        ch = getch(); // wait for a key press
+
+        // update the choice variable based on the arrow key input
+        if (ch == 72 && choice > 1)
+        { // up arrow key
+            choice--;
+        }
+        else if (ch == 80 && choice < 8)
+        { // down arrow key
+            choice++;
+        }
+        // cout << "How much money do you want to deposit? :" << endl;
+        // cout << "choose a deposit option (1-7)" << endl;
+
+    } while (ch != 13);
+    switch (choice)
+    {
+    case 1:
+        // cout << "1 - $20" ;
+        ID1.money[0] = ID1.money[0] - 20;
+        cout << "Successfully Withdraw $20 to your account. Current balance is $" << ID1.money[0] << ".";
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+        writefile_1.close();
+        Sleep(1500);
+        main();
+        break;
+    case 2:
+        // cout << "2 - $50" ;
+        ID1.money[0] = ID1.money[0] - 50;
+        cout << "Successfully Withdraw $50 to your account. Current balance is $" << ID1.money[0] << ".";
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+        writefile_1.close();
+        Sleep(1500);
+        main();
+        break;
+    case 3:
+        // cout << "3 - $100" ;
+        ID1.money[0] = ID1.money[0] - 100;
+        cout << "Successfully Withdraw $100 to your account. Current balance is $" << ID1.money[0] << ".";
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+        writefile_1.close();
+        Sleep(1500);
+        main();
+        break;
+    case 4:
+        // cout << "4 - $200" ;
+        ID1.money[0] = ID1.money[0] - 200;
+        cout << "Successfully Withdraw $200 to your account. Current balance is $" << ID1.money[0] << ".";
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+        writefile_1.close();
+        Sleep(1500);
+        main();
+        break;
+    case 5:
+        // cout << "5 - $500" ;
+        ID1.money[0] = ID1.money[0] + 500;
+        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] << ".";
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+        writefile_1.close();
+        Sleep(1500);
+        main();
+        break;
+    case 6:
+        // cout << "6 - choose your own Withdraw amount" ;
+        cout << "How manny do you want to Withdraw.";
+        cin >> amount;
+        if (amount > 0)
+        {
+            ID1.money[0] = ID1.money[0] - amount;
+            cout << "Successfully Withdraw. " << setprecision(1000000) << ID1.money[0] << "to your account. Current balance is $" << setprecision(1000000) << ID1.money[0] << "." << endl ; 
+            writefile_1.open(userfile_1);
+            writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
+            writefile_1.close();
+            Sleep(1500);
+            main();
+            break;
         }
         else
         {
-            ID.money[0] = ID.money[0] - amount;
+            cout << "Invalid! Please try again.";
+            Sleep(1500);
+            main();
+            break;
         }
+
+    case 7:
+        // cout << "7 - cancal deposition \n";
+        cout << "Withdraw canceled.";
+        Sleep(1500);
+        main();
+        break;
+    default:
+        cout << "Invalid! Please try again.";
+        Sleep(1500);
+        main();
+        break;
     }
 }
 
-
-
-
-
-
+void Withdraw(double amount, Dataformat &ID1)
+{
+    if (amount > 0)
+    {
+        if (amount > ID1.money[0])
+        {
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << setprecision(1000000) << ID1.money[0] << " You can't withdraw money\n";
+        }
+        else
+        {
+            ID1.money[0] = ID1.money[0] - amount;
+        }
+    }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -762,83 +873,7 @@ int main()
 
         case 3:
             // Withdraw
-            double withdrawAmount;
-            do
-            {
-                system("cls");
-                cout << "+-------------------------------------+\n";
-                cout << "|               Withdraw              |\n";
-                cout << "+-------------------------------------+\n";
-                for (int i = 1; i < 6; i++)
-                {
-                    cout << "| ";
-                    highlight_Withdraw_MENU(i, i == choice);
-                }
-                cout << "|                                     |\n";
-                cout << "+-------------------------------------+\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 6)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13);
-            switch (choice)
-            {
-            case 1:
-                cout << "100";
-                withdrawAmount = 100;
-                break;
-            case 2:
-                cout << "500";
-                withdrawAmount = 500;
-                break;
-            case 3:
-                cout << "1000";
-                withdrawAmount = 1000;
-                break;
-            case 4:
-                cout << "choose amount of monney";
-                cout << "Enter the amount to withdraw: ";
-                cin >> withdrawAmount;
-            case 5:
-                cout << "Exit";
-                main();
-                break;
-            default:
-                break;
-            }
-
-            if (withdrawAmount <= balance && withdrawAmount > 0)
-            {
-                balance -= withdrawAmount;
-                system("cls"); // clear the console
-                cout << "+-------------------------------------+\n";
-                cout << "|               Withdraw              |\n";
-                cout << "+-------------------------------------+\n";
-                cout << "Withdrawal successful!"
-                     << "\nYour new balance is: $" << fixed << setprecision(10000) << balance << "\n";
-                Sleep(2000);   // Wait for 1000 milliseconds
-                system("cls"); // clear the console
-                cout << "+-------------------------------------+\n";
-                cout << "|               Withdraw              |\n";
-                cout << "+-------------------------------------+\n";
-                cout << "Thank you for using this ATM. Goodbye!\n";
-                Sleep(2000); // Wait for 1000 milliseconds
-                main();
-            }
-            else
-            {
-                cout << "Invalid withdrawal amount.\n";
-                Sleep(2000); // Wait for 1000 milliseconds
-                main();
-            }
+            mainWithdraw(ID1, fileindex);
             break;
 
         case 4:
