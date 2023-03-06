@@ -735,7 +735,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] << ;
+        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
