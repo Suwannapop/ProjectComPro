@@ -315,7 +315,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] + amount;
-            cout << "Successfully deposited " << setprecision(1000000) << ID1.money[0] << "to your account. Current balance is $" << setprecision(1000000) << ID1.money[0] << "." << endl;
+            cout << "Successfully deposited " << setprecision(2) << ID1.money[0] << "to your account. Current balance is $" << setprecision(2) << ID1.money[0] << "." << endl;
             notfinished = false;
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -493,8 +493,8 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
             cout << "You Tranfer Money From ID To ID \n"
                  << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
             Sleep(1500);
-            cout << "Now : ID : " << ID1.ID[0] << " Is "<< setprecision(10000) << ID1.money[0] << endl;
-            cout << "Now : ID : " << ID2.ID[0] << " Is "<< setprecision(10000) << ID2.money[0] << endl;
+            cout << "Now : ID : " << ID1.ID[0] << " Is "<< setprecision(2) << ID1.money[0] << endl;
+            cout << "Now : ID : " << ID2.ID[0] << " Is "<< setprecision(2) << ID2.money[0] << endl;
             Sleep(2000);
         }
     }
@@ -695,7 +695,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 1:
         // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] - 20;
-        cout << "Successfully Withdraw $20 to your account. Current balance is $" << ID1.money[0] << ".";
+        cout << "Successfully Withdraw $20 to your account. Current balance is $" << ID1.money[0] ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -705,7 +705,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 2:
         // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] - 50;
-        cout << "Successfully Withdraw $50 to your account. Current balance is $" << ID1.money[0] << ".";
+        cout << "Successfully Withdraw $50 to your account. Current balance is $" << ID1.money[0] ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -715,7 +715,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 3:
         // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] - 100;
-        cout << "Successfully Withdraw $100 to your account. Current balance is $" << ID1.money[0] << ".";
+        cout << "Successfully Withdraw $100 to your account. Current balance is $" << ID1.money[0] ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -725,7 +725,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] - 200;
-        cout << "Successfully Withdraw $200 to your account. Current balance is $" << ID1.money[0] << ".";
+        cout << "Successfully Withdraw $200 to your account. Current balance is $" << ID1.money[0] ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -735,7 +735,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] << ".";
+        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] << ;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -749,7 +749,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
-            cout << "Successfully Withdraw. " << setprecision(1000000) << ID1.money[0] << "to your account. Current balance is $" << setprecision(1000000) << ID1.money[0] << "." << endl ; 
+            cout << "Successfully Withdraw. " << setprecision(2) << ID1.money[0] << "to your account. Current balance is $" << setprecision(2) << ID1.money[0] << "." << endl ; 
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
@@ -786,7 +786,7 @@ void Withdraw(double amount, Dataformat &ID1)
         if (amount > ID1.money[0])
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have : " << setprecision(1000000) << ID1.money[0] << " You can't withdraw money\n";
+            cout << "Now you have : " << setprecision(2) << ID1.money[0] << " You can't withdraw money\n";
         }
         else
         {
