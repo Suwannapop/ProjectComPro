@@ -18,6 +18,7 @@ struct Dataformat
     vector<int> Pass;
     vector<int> ID;
     vector<double> money;
+    string name;
 };
 
 void higlight_new_account_Yes_or_No(int index, bool selected)
@@ -386,23 +387,25 @@ int Login_failed()
     cout << "+-------------------------------------+\n";
 }
 
-void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+void ImportFile(Dataformat &ID, string fileindex, bool twopeople) // ใช้ฝากถอนโอน
 {
     ifstream data;
     data.open(fileindex);
     string line;
     int idnumber, pass;
     double balnace;
-    if (check = false)
+    char name[99];
+    if (twopeople = false)
     {
         if (data.is_open())
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
         else
@@ -452,16 +455,17 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             }
         }
     }
-    else if (check = true)
+    else if (twopeople = true)
     {
         if (data.is_open())
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
         else
@@ -470,7 +474,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             cout << "+-------------------------------------+\n";
             cout << "|       Don't have ID in Databas      |\n";
             cout << "+-------------------------------------+\n";
-            
+
             Sleep(2000);
             main();
         }
@@ -493,8 +497,8 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
             cout << "You Tranfer Money From ID To ID \n"
                  << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
             Sleep(1500);
-            cout << "Now : ID : " << ID1.ID[0] << " Is "<< setprecision(10000) << ID1.money[0] << endl;
-            cout << "Now : ID : " << ID2.ID[0] << " Is "<< setprecision(10000) << ID2.money[0] << endl;
+            cout << "Now : ID : " << ID1.ID[0] << " Is " << setprecision(10000) << ID1.money[0] << endl;
+            cout << "Now : ID : " << ID2.ID[0] << " Is " << setprecision(10000) << ID2.money[0] << endl;
             Sleep(2000);
         }
     }
@@ -517,7 +521,7 @@ void mainTransferMoney(string id)
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1); // importfile
-    ImportFile(ID2, userfile_2 , true);
+    ImportFile(ID2, userfile_2, true);
     cout << "How much money : ";
     cin >> amount;
     TransferMoney(amount, ID1, ID2);
@@ -651,15 +655,14 @@ void higlight_Withdraw(int index, bool selected)
     cout << "\033[0m" << setw(l) << " |\n"; // window
 }
 
-
-void Withdraw(double, Dataformat&);
-int mainWithdraw(Dataformat ID1 , string userfile_1)
+void Withdraw(double, Dataformat &);
+int mainWithdraw(Dataformat ID1, string userfile_1)
 {
     float amount;
     ofstream writefile_1;
-    ImportFile(ID1,userfile_1);
+    ImportFile(ID1, userfile_1);
     Withdraw(amount, ID1);
-    
+
     do
     {
         system("cls"); // clear the console
@@ -749,7 +752,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
-            cout << "Successfully Withdraw. " << setprecision(1000000) << ID1.money[0] << "to your account. Current balance is $" << setprecision(1000000) << ID1.money[0] << "." << endl ; 
+            cout << "Successfully Withdraw. " << setprecision(1000000) << ID1.money[0] << "to your account. Current balance is $" << setprecision(1000000) << ID1.money[0] << "." << endl;
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
@@ -786,7 +789,7 @@ void Withdraw(double amount, Dataformat &ID1)
         if (amount > ID1.money[0])
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have : " << setprecision(1000000) << ID1.money[0] << " You can't withdraw money\n";
+            cout << "Now you have : " << setprecision(1000000) << ID1.money[0];
         }
         else
         {
@@ -861,7 +864,7 @@ int main()
             cout << "+-------------------------------------+\n";
             cout << "|           Balance Inquiry           |\n";
             cout << "+-------------------------------------+\n";
-            cout << "Thank you for using this ATM. Goodbye!\n";
+            cout <<"  Thank you for using this ATM. Goodbye!\n"; //Can add name here
             Sleep(2000); // Wait for 1000 milliseconds
             main();
             break;
