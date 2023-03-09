@@ -2,6 +2,7 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
+#include <string>
 
 using namespace std;
 struct Dataformat
@@ -22,12 +23,12 @@ int main()
     double amount;
     cout << "input your id : ";
     cin >> id;
+    string userfile_1 = id + ".txt";
+    ImportFile(ID1, userfile_1);
     cout << "What ID you want to tranfer : ";
     cin >> IdTranfer;
-    string userfile_1 = id + ".txt";
     string userfile_2 = IdTranfer + ".txt";
-    ofstream writefile_1, writefile_2;
-    ImportFile(ID1, userfile_1); // importfile
+    ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID2, userfile_2);
     cout << "How much money : ";
     cin >> amount;
@@ -50,6 +51,7 @@ void ImportFile(Dataformat &ID, string fileindex)
     string line;
     int idnumber, pass;
     double balnace;
+    string name = fileindex ;
     if (data.is_open())
     {
         while (getline(data, line)) // importfile
@@ -60,7 +62,8 @@ void ImportFile(Dataformat &ID, string fileindex)
             ID.money.push_back(balnace);
         }
     }else {
-        cout << "Don't have ID : " << fileindex << "in datauser" ;
+        cout << "Don't have ID : " << name << " in datauser \n" ;
+        main();
     }
 }
 
