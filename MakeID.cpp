@@ -5,7 +5,10 @@
 using namespace std;
 
 int main() {
-    int ID_USER , PASS_USER , money ;
+    int ID_USER , PASS_USER , money  ;
+    string name ;
+    cout << "What is your name " ;
+    getline(cin , name) ;
     cout << "ID :" ;
     cin >> ID_USER ;
     cout << "Pass :" ;
@@ -16,7 +19,7 @@ int main() {
         string filename = to_string(ID_USER) + ".txt";
         ofstream outfile(filename);
         if (outfile.is_open()) {
-            outfile  << PASS_USER << "," << id << "," << money  ;
+            outfile  << PASS_USER << "," << id << "," << money << "," << name  ;
             outfile.close();
             cout << "File created: " << id << endl;
         } else {
