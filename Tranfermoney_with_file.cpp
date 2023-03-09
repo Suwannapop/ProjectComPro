@@ -39,8 +39,8 @@ int main()
     cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
-    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << endl;
-    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << endl;
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000)<< ID1.money[0] << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000)<< ID2.money[0] << endl;
     writefile_1.close();
     writefile_2.close();
 }
@@ -69,21 +69,14 @@ void ImportFile(Dataformat &ID, string fileindex)
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
-    if (amount > 0)
+    if (amount > ID1.money[0])
     {
-        if (amount > ID1.money[0])
-        {
-            cout << "You don't have enough money\n";
-            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
-        }
-        else
-        {
-            ID1.money[0] = ID1.money[0] - amount;
-            ID2.money[0] = ID2.money[0] + amount;
-        }
-    }else if (amount <= 0)
-    {
-        cout << "You can't tranfer money less than 0 or = 0\n";
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
     }
-    
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
 }
