@@ -20,8 +20,34 @@ struct Dataformat
     vector<double> money;
 };
 
+// higlight_back_to_menu
+void higlight_back_to_menu(int index, bool selected)
+{
+    //int l = 0;
+    if (selected)
+    {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    //cout << index << ". ";
+
+    // print the option label
+    switch (index)
+    {
+    case 1:
+        //l = 12;
+        cout  << "\n|            Back To Login Menu         |"; 
+        break;
+    default:
+        break;
+    }
+
+    cout << "\033[0m" ;//<< setw(l) << " |"; // window
+}
+
 void receipt_depos(Dataformat ID1,float amount){
-            system("cls"); // clear the console
+     do
+        {
+            system("cls");
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + RECIRPT +             |\n";
@@ -36,8 +62,40 @@ void receipt_depos(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
             cout << "|_______________________________________|\n";
+            cout << "|                                       |";
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << "\n|_______________________________________|\n";
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 2)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            break;
+        }
 }
 void receipt_wdraw(Dataformat ID1,float amount){
+    do
+        {
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
@@ -53,7 +111,38 @@ void receipt_wdraw(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
             cout << "|_______________________________________|\n";
+            cout << "|                                       |";
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << "\n|_______________________________________|\n";
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 2)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            break;
+        }
 }
+
 void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             system("cls"); // clear the console
             cout << " _______________________________________\n";
@@ -94,6 +183,8 @@ void receipt_paybill(Dataformat ID1,float amount){
             cout << "|_______________________________________|\n";
 }
 
+
+// higlight_new_account_Yes_or_No
 void higlight_new_account_Yes_or_No(int index, bool selected)
 {
     int l = 0;
