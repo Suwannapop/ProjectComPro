@@ -335,7 +335,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(15000);
+        Sleep(1500);
         main();
         break;
     case 2:
@@ -479,14 +479,26 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 ID.money.push_back(balnace);
             }
         }
+    }
+    else if (check = true)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
+            {
+                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+            }
+        }
         else
         {
             do
             {
                 system("cls");
                 cout << "+-------------------------------------+\n";
-                cout << "|             Login failed.           |\n";
-                cout << "|           account not found         |\n";
+                cout << "|       Don't have ID in Databas      |\n";
                 cout << "+-------------------------------------+\n";
                 cout << "+-------------------------------------+\n";
                 cout << "|     If you don't have an accoun     |\n";
@@ -524,29 +536,6 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             default:
                 break;
             }
-        }
-    }
-    else if (check = true)
-    {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-            }
-        }
-        else
-        {
-            system("cls");
-            cout << "+-------------------------------------+\n";
-            cout << "|       Don't have ID in Databas      |\n";
-            cout << "+-------------------------------------+\n";
-            
-            Sleep(2000);
-            main();
         }
     }
 }
