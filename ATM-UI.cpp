@@ -144,6 +144,8 @@ void receipt_wdraw(Dataformat ID1,float amount){
 }
 
 void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
+    do
+        {
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
@@ -164,8 +166,42 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
             cout << "|_______________________________________|\n";
+            cout << "|                                       |";
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << "\n|_______________________________________|\n";
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 2)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            break;
+        }
 }
+
+
 void receipt_paybill(Dataformat ID1,float amount){
+    do
+        {
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
@@ -181,6 +217,36 @@ void receipt_paybill(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
             cout << "|_______________________________________|\n";
+            cout << "|                                       |";
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << "\n|_______________________________________|\n";
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 2)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            break;
+        }
 }
 
 
