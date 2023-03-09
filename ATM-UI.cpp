@@ -20,6 +20,80 @@ struct Dataformat
     vector<double> money;
 };
 
+void receipt_depos(Dataformat ID1,float amount){
+            system("cls"); // clear the console
+            cout << " _______________________________________\n";
+            cout << "|                                       |\n";
+            cout << "|               + RECIRPT +             |\n";
+            cout << "|                 DEPOSIT               |\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Deposit Amount :  "<< setw(19) << amount << setw(3) << "|\n";
+            cout << "|                                       |\n";
+            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "|               Skrt Bank <3            |\n";
+            cout << "|_______________________________________|\n";
+}
+void receipt_wdraw(Dataformat ID1,float amount){
+            system("cls"); // clear the console
+            cout << " _______________________________________\n";
+            cout << "|                                       |\n";
+            cout << "|               + RECIRPT +             |\n";
+            cout << "|                 WITHDRAW              |\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Withdraw Amount : "<< setw(19) << amount << setw(3) << "|\n";
+            cout << "|                                       |\n";
+            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<"|\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "|               Skrt Bank <3            |\n";
+            cout << "|_______________________________________|\n";
+}
+void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
+            system("cls"); // clear the console
+            cout << " _______________________________________\n";
+            cout << "|                                       |\n";
+            cout << "|               + RECIRPT +             |\n";
+            cout << "|             TRANSFER MONEY            |\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Transfer Amount : "<< setw(19) << amount <<  " |\n";
+            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<  "|\n";
+            cout << "|                                       |\n";
+            cout << "| ------------- transfer to ----------- |\n";
+            cout << "|                                       |\n";
+            cout << "| Account :"<< setw(28) << ID2.ID[0] <<  " |\n";
+            cout << "| Total"<< setw(32) << ID2.money[0] << setw(3) <<  "|\n";
+            cout << "|                                       |\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "|               Skrt Bank <3            |\n";
+            cout << "|_______________________________________|\n";
+}
+void receipt_paybill(Dataformat ID1,float amount){
+            system("cls"); // clear the console
+            cout << " _______________________________________\n";
+            cout << "|                                       |\n";
+            cout << "|               + RECIRPT +             |\n";
+            cout << "|                 PAYBILL               |\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Pay Amount :  "<< setw(23) << setprecision(2) << amount  << setw(3) <<"|\n";
+            cout << "|                                       |\n";
+            cout << "| Total"<< setw(29) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| ===================================== |\n";
+            cout << "|                                       |\n";
+            cout << "|               Skrt Bank <3            |\n";
+            cout << "|_______________________________________|\n";
+}
+
 void higlight_new_account_Yes_or_No(int index, bool selected)
 {
     int l = 0;
@@ -52,10 +126,10 @@ int new_account()
 {
     system("cls");
     int UserPass1, UserPass2, UserID, money;
-    cout << "+-------------------------------------+\n";
+    cout << "+_____________________________________+\n";
     cout << "|         Create your account         |\n";
     cout << "|    Want to create a new account?    |\n";
-    cout << "+-------------------------------------+\n";
+    cout << "+_____________________________________+\n";
     cout << "Enter your ID: ";
     cin >> UserID;
     cout << "Enter your password: ";
@@ -114,9 +188,9 @@ int new_account()
         do
         {
             system("cls");
-            cout << "+-------------------------------------+\n";
+            cout << "+_____________________________________+\n";
             cout << "|        Passwords do not match       |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+_____________________________________+\n";
             cout << setw(28) << "Please try again.\n";
             cout << "+-------------------------------------+";
             // display the menu options
@@ -224,9 +298,9 @@ void deposit(Dataformat &ID1, string userfile_1)
     do
     {
         system("cls"); // clear the console
-        cout << "+-------------------------------------+\n";
+        cout << "+_____________________________________+\n";
         cout << "|               Deposit               |\n";
-        cout << "+-------------------------------------+\n";
+        cout << "+_____________________________________+\n";
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
@@ -234,7 +308,7 @@ void deposit(Dataformat &ID1, string userfile_1)
             higlight_deposit(i, i == choice);
         }
         // cout << "|                                     |\n";
-        cout << "+-------------------------------------+\n";
+        cout << "+_____________________________________+\n";
 
         ch = getch(); // wait for a key press
 
@@ -256,18 +330,18 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 1:
         // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] + 20;
-        cout << "Successfully deposited $20 to your account. Current balance is $" << ID1.money[0] << ".";
+        receipt_depos(ID1,20);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
+        Sleep(15000);
         main();
         break;
     case 2:
         // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] + 50;
-        cout << "Successfully deposited $50 to your account. Current balance is $" << ID1.money[0] << ".";
+        receipt_depos(ID1,50);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -278,7 +352,7 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 3:
         // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] + 100;
-        cout << "Successfully deposited $100 to your account. Current balance is $" << ID1.money[0] << ".";
+        receipt_depos(ID1,100);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -289,7 +363,7 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] + 200;
-        cout << "Successfully deposited $200 to your account. Current balance is $" << ID1.money[0] << ".";
+        receipt_depos(ID1,200);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -300,7 +374,7 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        cout << "Successfully deposited $500 to your account. Current balance is $" << ID1.money[0] << ".";
+        receipt_depos(ID1,500);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -315,7 +389,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] + amount;
-            cout << "Successfully deposited " << setprecision(2) << ID1.money[0] << "to your account. Current balance is $" << setprecision(2) << ID1.money[0] << "." << endl;
+            receipt_depos(ID1,amount);
             notfinished = false;
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
@@ -378,12 +452,12 @@ void higlight_Yes_or_No(int index, bool selected)
 int Login_failed()
 {
     system("cls");
-    cout << "+-------------------------------------+\n";
+    cout << "+_____________________________________+\n";
     cout << "|             Login failed.           |\n";
     cout << "|       Incorrect ID or password.     |\n";
-    cout << "+-------------------------------------+\n";
+    cout << "+_____________________________________+\n";
     cout << setw(28) << "Please try again.\n";
-    cout << "+-------------------------------------+\n";
+    cout << "+_____________________________________+\n";
 }
 
 void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
@@ -490,11 +564,7 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         {
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
-            cout << "You Tranfer Money From ID To ID \n"
-                 << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
-            Sleep(1500);
-            cout << "Now : ID : " << ID1.ID[0] << " Is "<< setprecision(2) << ID1.money[0] << endl;
-            cout << "Now : ID : " << ID2.ID[0] << " Is "<< setprecision(2) << ID2.money[0] << endl;
+            receipt_transf(ID1,ID2,amount);
             Sleep(2000);
         }
     }
@@ -695,7 +765,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 1:
         // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] - 20;
-        cout << "Successfully Withdraw $20 to your account. Current balance is $" << ID1.money[0] ;
+        receipt_wdraw(ID1,20);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -705,7 +775,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 2:
         // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] - 50;
-        cout << "Successfully Withdraw $50 to your account. Current balance is $" << ID1.money[0] ;
+        receipt_wdraw(ID1,50);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -715,7 +785,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 3:
         // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] - 100;
-        cout << "Successfully Withdraw $100 to your account. Current balance is $" << ID1.money[0] ;
+        receipt_wdraw(ID1,100);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -725,7 +795,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] - 200;
-        cout << "Successfully Withdraw $200 to your account. Current balance is $" << ID1.money[0] ;
+        receipt_wdraw(ID1,200);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -735,7 +805,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        cout << "Successfully Withdraw $500 to your account. Current balance is $" << ID1.money[0] ;
+        receipt_wdraw(ID1,500);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
@@ -746,13 +816,21 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         // cout << "6 - choose your own Withdraw amount" ;
         cout << "How manny do you want to Withdraw.";
         cin >> amount;
-        if (amount > 0)
+        if (ID1.money[0]-amount >= 0 && amount >= 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
-            cout << "Successfully Withdraw. " << setprecision(2) << ID1.money[0] << "to your account. Current balance is $" << setprecision(2) << ID1.money[0] << "." << endl ; 
+            receipt_wdraw(ID1,amount);
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
+            Sleep(1500);
+            main();
+            break;
+        }
+        else if(ID1.money[0]-amount < 0 && amount >= 0)
+        {
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't withdraw money\n";
             Sleep(1500);
             main();
             break;
@@ -763,6 +841,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
             Sleep(1500);
             main();
             break;
+
         }
 
     case 7:
@@ -794,6 +873,7 @@ void Withdraw(double amount, Dataformat &ID1)
         }
     }
 }
+
 
 int main()
 {
