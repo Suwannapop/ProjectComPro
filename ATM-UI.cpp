@@ -329,14 +329,60 @@ int new_account()
     {
         cout << "\nEnter your money: ";
         cin >> money;
-        string identification = to_string(UserID);
-        string filename = to_string(UserID) + ".txt";
-        ofstream outfile(filename);
-        if (outfile.is_open())
+        if(money >= 0){
+            string identification = to_string(UserID);
+            string filename = to_string(UserID) + ".txt";
+            ofstream outfile(filename);
+            if (outfile.is_open())
+            {
+                outfile << UserPass1 << "," << identification << "," << money;
+                outfile.close();
+                cout << "Created successfully" << identification << endl;
+            }
+        }else
         {
-            outfile << UserPass1 << "," << identification << "," << money;
-            outfile.close();
-            cout << "Created successfully" << identification << endl;
+            do
+            {
+                system("cls");
+                cout << "+_____________________________________+\n";
+                cout << "|            Invalid amount           |\n";
+                cout << "+_____________________________________+\n";
+                cout << setw(30) << "Please try again.\n";
+                cout << "+-------------------------------------+";
+                // display the menu options
+                for (int i = 1; i < 3; i++)
+                {
+                    cout << "\n| ";
+                    higlight_new_account_Yes_or_No(i, i == choice);
+                }
+                cout << "\n+-------------------------------------+\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 5)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Try again";
+                new_account();
+                break;
+            case 2:
+                cout << "Exit";
+                main();
+                break;
+            default:
+                break;
+            }
         }
     }
     else
