@@ -697,7 +697,6 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         {
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
-            Sleep(2000);
         }
     }
     else if (amount <= 0)
@@ -899,52 +898,42 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     case 1:
         // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] - 20;
-        receipt_wdraw(ID1,20);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
+        receipt_wdraw(ID1,20);
         break;
     case 2:
         // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] - 50;
-        receipt_wdraw(ID1,50);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
+        receipt_wdraw(ID1,50);
         break;
     case 3:
         // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] - 100;
-        receipt_wdraw(ID1,100);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
+        receipt_wdraw(ID1,100);
         break;
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] - 200;
-        receipt_wdraw(ID1,200);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
+        receipt_wdraw(ID1,200);
         break;
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        receipt_wdraw(ID1,500);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
+        receipt_wdraw(ID1,500);
         break;
     case 6:
         // cout << "6 - choose your own Withdraw amount" ;
@@ -953,12 +942,10 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         if (ID1.money[0]-amount >= 0 && amount >= 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
-            receipt_wdraw(ID1,amount);
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
-            Sleep(1500);
-            main();
+            receipt_wdraw(ID1,amount);
             break;
         }
         else if(ID1.money[0]-amount < 0 && amount >= 0)
