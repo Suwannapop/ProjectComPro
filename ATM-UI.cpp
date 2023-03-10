@@ -10,7 +10,7 @@ using namespace std;
 int id, password; // login
 char ch;          // login && ATM
 int choice = 1;   // ATM
-float balance;    // ลบออก
+//float balance;    // ลบออก
 
 int main();
 struct Dataformat
@@ -20,7 +20,7 @@ struct Dataformat
     vector<double> money;
 };
 
-// higlight_back_to_menu
+// higlight_back_to_menu use in receipt
 void higlight_back_to_menu(int index, bool selected)
 {
     //int l = 0;
@@ -93,6 +93,7 @@ void receipt_depos(Dataformat ID1,float amount){
             break;
         }
 }
+
 void receipt_wdraw(Dataformat ID1,float amount){
     do
         {
