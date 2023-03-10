@@ -436,7 +436,7 @@ void higlight_deposit(int index, bool selected)
         break;
     case 7:
         l = 18;
-        cout << "Cancal Deposition";
+        cout << "cancel Deposition";
         break;
     default:
         break;
@@ -487,33 +487,33 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 1:
         // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] + 20;
-        receipt_depos(ID1,20);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
+        receipt_depos(ID1,20);
         Sleep(1500);
         main();
         break;
     case 2:
         // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] + 50;
-        receipt_depos(ID1,50);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
+        receipt_depos(ID1,50);
         Sleep(1500);
         main();
         break;
     case 3:
         // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] + 100;
-        receipt_depos(ID1,100);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
+        receipt_depos(ID1,100);
         Sleep(1500);
         main();
         break;
@@ -531,26 +531,26 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
-        receipt_depos(ID1,500);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
+        receipt_depos(ID1,500);
         Sleep(1500);
         main();
         break;
     case 6:
         // cout << "6 - choose your own deposition amount" ;
-        cout << "How manny do you want to Deposit.";
+        cout << "How much do you want to Deposit.";
         cin >> amount;
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] + amount;
-            receipt_depos(ID1,amount);
             notfinished = false;
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
+            receipt_depos(ID1,amount);
             Sleep(1500);
             main();
             break;
@@ -564,7 +564,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         }
 
     case 7:
-        // cout << "7 - cancal deposition \n";
+        // cout << "7 - cancel deposition \n";
         cout << "Deposition canceled.";
         notfinished = false;
         Sleep(1500);
@@ -704,7 +704,7 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         if (amount > ID1.money[0])
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+            cout << "Now you have money : " << ID1.money[0] << " You can't tranfer money\n";
         }
         else
         {
@@ -858,7 +858,7 @@ void higlight_Withdraw(int index, bool selected)
         break;
     case 7:
         l = 20;
-        cout << "Cancal Withdraw";
+        cout << "cancel Withdraw";
         break;
     default:
         break;
@@ -960,7 +960,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         break;
     case 6:
         // cout << "6 - choose your own Withdraw amount" ;
-        cout << "How manny do you want to Withdraw.";
+        cout << "How much do you want to Withdraw.";
         cin >> amount;
         if (ID1.money[0]-amount >= 0 && amount >= 0)
         {
@@ -976,7 +976,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         else if(ID1.money[0]-amount < 0 && amount >= 0)
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have : " << ID1.money[0] << " You can't withdraw money\n";
+            cout << "Now you have money : " << ID1.money[0] << " You can't withdraw money\n";
             Sleep(1500);
             main();
             break;
@@ -991,7 +991,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         }
 
     case 7:
-        // cout << "7 - cancal deposition \n";
+        // cout << "7 - cancel deposition \n";
         cout << "Withdraw canceled.";
         Sleep(1500);
         main();
@@ -1011,7 +1011,7 @@ void Withdraw(double amount, Dataformat &ID1)
         if (amount > ID1.money[0])
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have : " << setprecision(2) << ID1.money[0] << " You can't withdraw money\n";
+            cout << "Now you have money : " << setprecision(2) << ID1.money[0] << " You can't withdraw money\n";
         }
         else
         {
