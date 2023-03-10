@@ -658,7 +658,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 cout << "|       Don't have ID in Databas      |\n";
                 cout << "+-------------------------------------+\n";
                 cout << "+-------------------------------------+\n";
-                cout << "|     If you don't have an accoun     |\n";
+                cout << "|    If you don't have an account     |\n";
                 cout << "|    Want to create a new account?    | ";
                 for (int i = 1; i < 3; i++)
                 {
