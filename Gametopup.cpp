@@ -35,8 +35,8 @@ int main()
     topup(amount, ID1, ID2);
     cout << "You top up money from ID To ID \n"
          << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
-    cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
-    cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
+    cout << "Now : ID : " << ID1.ID[0] << " is " << ID1.money[0] << endl;
+    cout << "Now : ID : " << ID2.ID[0] << " is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
     writefile_1 << ID1.ID[0] << "," << setprecision(10000)<< ID1.money[0] << endl;
