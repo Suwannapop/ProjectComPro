@@ -50,7 +50,7 @@ void receipt_depos(Dataformat ID1,float amount){
             system("cls");
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECIRPT +             |\n";
+            cout << "|               + RECEIPT +             |\n";
             cout << "|                 DEPOSIT               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -99,7 +99,7 @@ void receipt_wdraw(Dataformat ID1,float amount){
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECIRPT +             |\n";
+            cout << "|               + RECEIPT +             |\n";
             cout << "|                 WITHDRAW              |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -149,7 +149,7 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECIRPT +             |\n";
+            cout << "|               + RECEIPT +             |\n";
             cout << "|             TRANSFER MONEY            |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -205,7 +205,7 @@ void receipt_paybill(Dataformat ID1,float amount){
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECIRPT +             |\n";
+            cout << "|               + RECEIPT +             |\n";
             cout << "|                 PAYBILL               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
