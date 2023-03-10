@@ -492,8 +492,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
         receipt_depos(ID1,20);
-        Sleep(1500);
-        main();
         break;
     case 2:
         // cout << "2 - $50" ;
@@ -503,8 +501,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
         receipt_depos(ID1,50);
-        Sleep(1500);
-        main();
         break;
     case 3:
         // cout << "3 - $100" ;
@@ -514,8 +510,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
         receipt_depos(ID1,100);
-        Sleep(1500);
-        main();
         break;
     case 4:
         // cout << "4 - $200" ;
@@ -525,8 +519,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
-        Sleep(1500);
-        main();
         break;
     case 5:
         // cout << "5 - $500" ;
@@ -536,8 +528,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
         writefile_1.close();
         receipt_depos(ID1,500);
-        Sleep(1500);
-        main();
         break;
     case 6:
         // cout << "6 - choose your own deposition amount" ;
@@ -551,8 +541,6 @@ void deposit(Dataformat &ID1, string userfile_1)
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0];
             writefile_1.close();
             receipt_depos(ID1,amount);
-            Sleep(1500);
-            main();
             break;
         }
         else
