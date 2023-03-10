@@ -706,6 +706,7 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
     }
 }
 
+
 void mainTransferMoney(string id)
 {
     Dataformat ID1;
