@@ -198,7 +198,6 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
         }
 }
 
-
 void receipt_paybill(Dataformat ID1,float amount){
     do
         {
@@ -698,7 +697,6 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         {
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
-            receipt_transf(ID1,ID2,amount);
             Sleep(2000);
         }
     }
@@ -731,6 +729,8 @@ void mainTransferMoney(string id)
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << endl;
     writefile_1.close();
     writefile_2.close();
+
+    receipt_transf(ID1,ID2,amount);
 }
 
 // higlight atm menu
@@ -1095,8 +1095,6 @@ int main()
             cout << "|           Transfers money           |\n";
             cout << "+-------------------------------------+\n";
             mainTransferMoney(id);
-            Sleep(2000);
-            main();
             break;
 
         case 5:
