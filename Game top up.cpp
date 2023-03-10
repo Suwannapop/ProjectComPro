@@ -30,20 +30,21 @@ int main()
     string userfile_2 = IdTopup + ".txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID2, userfile_2);
-    cout << "How much money : ";
+    cout << "How much money do you want to top up: ";
     cin >> amount;
     topup(amount, ID1, ID2);
-    cout << "You Tranfer Money From ID To ID \n"
+    cout << "You top up money from ID To ID \n"
          << ID1.ID[0] << " -----> " << ID2.ID[0] << endl;
     cout << "Now : ID : " << ID1.ID[0] << " Is " << ID1.money[0] << endl;
     cout << "Now : ID : " << ID2.ID[0] << " Is " << ID2.money[0] << endl;
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
-    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000)<< ID1.money[0] << endl;
-    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000)<< ID2.money[0] << endl;
+    writefile_1 << ID1.ID[0] << "," << setprecision(10000)<< ID1.money[0] << endl;
+    writefile_2 << ID2.ID[0] << "," << setprecision(10000)<< ID2.money[0] << endl;
     writefile_1.close();
     writefile_2.close();
 }
+
 void ImportFile(Dataformat &ID, string fileindex)
 {
     ifstream data;
