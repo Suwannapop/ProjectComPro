@@ -18,6 +18,7 @@ struct Dataformat
     vector<int> Pass;
     vector<int> ID;
     vector<double> money;
+    string name;
 };
 
 // higlight_back_to_menu use in receipt
@@ -664,10 +665,11 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
     }
@@ -677,10 +679,11 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
         else
