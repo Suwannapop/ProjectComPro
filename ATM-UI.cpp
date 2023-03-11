@@ -10,7 +10,6 @@ using namespace std;
 int id, password; // login
 char ch;          // login && ATM
 int choice = 1;   // ATM
-//float balance;    // ลบออก
 
 int main();
 struct Dataformat
@@ -24,26 +23,27 @@ struct Dataformat
 // higlight_back_to_menu use in receipt
 void higlight_back_to_menu(int index, bool selected)
 {
-    //int l = 0;
+    int l = 0;
+    cout  << "\n|           "; 
     if (selected)
     {
+        //cout  << "\n|           "; 
         cout << "\033[1;7m"; // set background and foreground color to white and black
     }
     //cout << index << ". ";
 
-    // print the option label
+    // print the option label  cout << "|           Back To Login Menu          |\n";
     switch (index)
     {
     case 1:
-        //l = 12;
-        cout  << "\n|           Back To Login Menu          |"; 
+        l = 11;
+        cout  << "Back To Login Menu"; 
         break;
     default:
         break;
     }
-
-    cout << "\033[0m" << "Bug";//<< setw(l) << " |"; // window
-}
+    cout << "\033[0m" << setw(l) << " |"; //<< setw(l)
+} 
 
 void receipt_depos(Dataformat ID1,float amount){
      do
@@ -68,6 +68,7 @@ void receipt_depos(Dataformat ID1,float amount){
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
+            //cout << "|                                       |\n";
                 higlight_back_to_menu(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
@@ -88,6 +89,7 @@ void receipt_depos(Dataformat ID1,float amount){
         switch (choice)
         {
         case 1:
+            cout  << "\n|           "; 
             cout << "Back To Login Menu";
             main();
             break;
@@ -289,10 +291,13 @@ int new_account()
 {
     system("cls");
     int UserPass1, UserPass2, UserID, money;
+    string name ;
     cout << "+_____________________________________+\n";
     cout << "|         Create your account         |\n";
     cout << "|    Want to create a new account?    |\n";
     cout << "+_____________________________________+\n";
+    cout << "What is your name: " ;
+    getline(cin , name) ;
     cout << "Enter your ID: ";
     cin >> UserID;
     cout << "Enter your password: ";
@@ -342,7 +347,7 @@ int new_account()
             ofstream outfile(filename);
             if (outfile.is_open())
             {
-                outfile << UserPass1 << "," << identification << "," << money;
+                outfile << UserPass1 << "," << identification << "," << money << "," << name  ;
                 outfile.close();
                 cout << "Created successfully" << identification << endl;
             }
@@ -620,94 +625,50 @@ void deposit(Dataformat &ID1, string userfile_1)
 // higlight_yes_or_No
 void higlight_Yes_or_No(int index, bool selected)
 {
-    int l = 0;
+    //int l = 0;
     if (selected)
     {
         cout << "\033[1;7m"; // set background and foreground color to white and black
     }
-    cout << index << ". ";
+    //cout << index << ". ";
 
     // print the option label
     switch (index)
     {
     case 1:
-        l = 31;
+        //l = 5;
         cout << "Yes";
         break;
     case 2:
-        l = 32;
+        //l = 5;
         cout << "No";
         break;
     default:
         break;
     }
 
-    cout << "\033[0m" << setw(l) << " |"; // window
+    cout << "\033[0m" << " "; //<< setw(l)  // window
 }
 
 // Login failed
 int Login_failed()
 {
-    system("cls");
-    cout << "+_____________________________________+\n";
-    cout << "|             Login failed.           |\n";
-    cout << "|       Incorrect ID or password.     |\n";
-    cout << "+_____________________________________+\n";
-    cout << setw(30) << "Please try again.\n";
-    cout << "+_____________________________________+\n";
-}
-
-void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
-{
-    ifstream data;
-    data.open(fileindex);
-    string line;
-    int idnumber, pass;
-    double balnace;
-    char name[99];
-    if (check = false)
+    do
     {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-    }
-    else if (check = true)
-    {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-        else
-        {
-            do
-            {
-                system("cls");
-                cout << " _______________________________________ \n";
-                cout << "|                                       |\n";
-                cout << "|        Don't have ID in Databas       |\n";
-                cout << "|                                       |\n";
-                cout << "| ===================================== |";
-
+        system("cls");
+        cout << "+_______________________________________+\n";
+        cout << "|              Login failed.            |\n";
+        cout << "|        Incorrect ID or password.      |\n";
+        cout << "+_______________________________________+\n";
+        cout << setw(30) << "Please try again.\n";
+        cout << "+_______________________________________+\n";
+        cout << "|                                       |";
+                // display the menu options
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
                 }
-                cout << "\n|_______________________________________|";
+                cout << "\n|_______________________________________|\n";
 
                 ch = getch(); // wait for a key press
 
@@ -720,19 +681,107 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 { // down arrow key
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            break;
+        }
+}
+
+void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+{
+    ifstream data;
+    data.open(fileindex);
+    string line;
+    int idnumber, pass;
+    double balnace;
+    char name[99];
+
+    if (check = false)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
             {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                break;
-                }
+                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+            }
         }
     }
+    else if (check = true)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
+            {
+                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+            }
+        }
+        else
+        {
+            do
+                {
+                    system("cls");
+                    cout << " _______________________________________ \n";
+                    cout << "|                                       |\n";
+                    cout << "|        Don't have ID in Databas       |\n";
+                    cout << "|                                       |\n";
+                    cout << "| ===================================== |\n";
+                    cout << "|                                       |\n";
+                    cout << "|      If you don't have an accoun      |\n";
+                    cout << "|     Want to create a new account?     |\n";
+                    cout << "|                                       |\n";
+                    cout << "| ===================================== |\n";
+                    cout << "|                 ";
+
+                    for (int i = 1; i < 3; i++)
+                        {
+                            //cout << "| ";
+                            higlight_Yes_or_No(i, i == choice); 
+                        }
+                        cout << "               |\n";
+                        cout << "+_______________________________________+\n";
+
+                        ch = getch(); // wait for a key press
+
+                        // update the choice variable based on the arrow key input
+                        if (ch == 72 && choice > 1)
+                        { // up arrow key
+                            choice--;
+                        }
+                        else if (ch == 80 && choice < 3)
+                        { // down arrow key
+                            choice++;
+                        }
+                } while (ch != 13);
+                switch (choice)
+                {
+                case 1:
+                    new_account();
+                    Sleep(2000);
+                    main();
+                    break;
+                case 2:
+                    cout << "No";
+                    main();
+                    break;
+                default:
+                    break;
+                    }
+        }
+    }
+
 }
 
 void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
