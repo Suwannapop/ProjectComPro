@@ -691,6 +691,7 @@ void deposit(Dataformat &ID1, string userfile_1)
                     main();
                     break;
                 default:
+                    main();
                     break;
                 }
         break;
@@ -808,62 +809,52 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             }
         }
         else
-        {
+        {          
             do
                 {
-                    system("cls");
-                    cout << " _______________________________________ \n";
-                    cout << "|                                       |\n";
-                    cout << "|        Don't have ID in Databas       |\n";
-                    cout << "|                                       |\n";
-                    cout << "| ===================================== |\n";
-                    cout << "|                                       |\n";
-                    cout << "|      If you don't have an accoun      |\n";
-                    cout << "|     Want to create a new account?     |\n";
-                    cout << "|                                       |\n";
-                    cout << "| ===================================== |\n";
-                    cout << "|                 ";
+                system("cls");
+                cout << " _______________________________________ \n";
+                cout << "|                                       |\n";
+                cout << "|        Don't have ID in Databas       |\n";
+                cout << "|                                       |\n";
+                cout << "| ===================================== |\n";
+                cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
 
-                    for (int i = 1; i < 3; i++)
-                        {
-                            //cout << "| ";
-                            higlight_Yes_or_No(i, i == choice); 
-                        }
-                        cout << "               |\n";
-                        cout << "+_______________________________________+\n";
+                    ch = getch(); // wait for a key press
 
-                        ch = getch(); // wait for a key press
-
-                        // update the choice variable based on the arrow key input
-                        if (ch == 72 && choice > 1)
-                        { // up arrow key
-                            choice--;
-                        }
-                        else if (ch == 80 && choice < 3)
-                        { // down arrow key
-                            choice++;
-                        }
-                } while (ch != 13);
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
                 switch (choice)
                 {
                 case 1:
-                    new_account();
-                    Sleep(2000);
-                    main();
-                    break;
-                case 2:
-                    cout << "No";
+                    cout << "Back To Login Menu";
                     main();
                     break;
                 default:
+                    main();
                     break;
-                    }
+                }    
         }
     }
 
 }
 
-void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
+/*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
     if (amount > 0)
     {
@@ -871,11 +862,15 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         {
             cout << "You don't have enough money\n";
             cout << "Now you have money : " << ID1.money[0] << " You can't tranfer money\n";
+            Sleep(2000);
         }
         else
         {
+
             ID1.money[0] = ID1.money[0] - amount;
             ID2.money[0] = ID2.money[0] + amount;
+            
+            receipt_transf(ID1,ID2,amount);
         }
     }
     else if (amount <= 0)
@@ -883,7 +878,7 @@ void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเป
         cout << "You can't tranfer money less than 0 or = 0\n";
         Sleep(2000);
     }
-}
+}*/
 
 
 void mainTransferMoney(string id)
@@ -894,7 +889,7 @@ void mainTransferMoney(string id)
     float amount;
     system("cls"); // clear the console
     cout << "+_______________________________________+\n";
-    cout << "|             TrnasferMoney             |\n";
+    cout << "|             TransferMoney             |\n";
     cout << "|=======================================|\n";
     cout << "        What ID you want to tranfe       \n";
     cout << "             ID : "; cin >> IdTranfer;
@@ -906,6 +901,47 @@ void mainTransferMoney(string id)
     cout << "|=======================================|\n";
     cout << "             How much money  \n";
     cout << "             THB : "; cin >> amount;
+    if (amount > 0)
+    {
+        if (amount > ID1.money[0])
+        {
+            system("cls"); // clear the console
+            cout << "+_______________________________________+\n";
+            cout << "|             TransferMoney             |\n";
+            cout << "|=======================================|\n";
+            cout << "|       You don't have enough money     |\n";
+            cout << "| Now you have money : " << setw(12) << ID1.money[0] <<  " THB |\n";
+            cout << "|         You can't tranfer money       |\n";
+            cout << "|=======================================|\n";
+            //<< setw(12) << ID1.money[0] <<  " THB |\n";
+        }
+        else
+        {
+
+            ID1.money[0] = ID1.money[0] - amount;
+            ID2.money[0] = ID2.money[0] + amount;
+
+            writefile_1.open(userfile_1);
+            writefile_2.open(userfile_2);
+            writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name<< endl;
+            writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << "," << ID2.name<< endl;
+            writefile_1.close();
+            writefile_2.close();
+
+            receipt_transf(ID1,ID2,amount);
+        }
+    }
+    else if (amount <= 0)
+    {
+        cout << "You can't tranfer money less than 0 or = 0\n";
+        Sleep(2000);
+    }
+
+
+
+
+
+   /* 
     TransferMoney(amount, ID1, ID2);
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -913,8 +949,8 @@ void mainTransferMoney(string id)
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << "," << ID2.name<< endl;
     writefile_1.close();
     writefile_2.close();
+    */
 
-    receipt_transf(ID1,ID2,amount);
 }
 
 // higlight atm menu
