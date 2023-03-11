@@ -35,7 +35,7 @@ void higlight_back_to_menu(int index, bool selected)
     {
     case 1:
         //l = 12;
-        cout  << "\n|            Back To Login Menu         |"; 
+        cout  << "\n|           Back To Login Menu          |"; 
         break;
     default:
         break;
@@ -54,7 +54,7 @@ void receipt_depos(Dataformat ID1,float amount){
             cout << "|                 DEPOSIT               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Account :"<< setw(30) << ID1.ID[0] <<  " |\n";
             cout << "| Deposit Amount :  "<< setw(19) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) << "|\n";
@@ -104,7 +104,7 @@ void receipt_wdraw(Dataformat ID1,float amount){
             cout << "|                 WITHDRAW              |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Account :"<< setw(30) << ID1.ID[0] <<  " |\n";
             cout << "| Withdraw Amount : "<< setw(19) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<"|\n";
@@ -154,13 +154,13 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             cout << "|             TRANSFER MONEY            |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Account :"<< setw(30) << ID1.ID[0] <<  " |\n";
             cout << "| Transfer Amount : "<< setw(19) << amount <<  " |\n";
             cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ------------- transfer to ----------- |\n";
             cout << "|                                       |\n";
-            cout << "| Account :"<< setw(28) << ID2.ID[0] <<  " |\n";
+            cout << "| Account :"<< setw(30) << ID2.ID[0] <<  " |\n";
             cout << "| Total"<< setw(32) << ID2.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ===================================== |\n";
@@ -209,10 +209,10 @@ void receipt_paybill(Dataformat ID1,float amount){
             cout << "|                 PAYBILL               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  "<< setw(23) << setprecision(2) << amount  << setw(3) <<"|\n";
+            cout << "| Account :"<< setw(30) << ID1.ID[0] <<  " |\n";
+            cout << "| Pay Amount :  "<< setw(25) << setprecision(2) << amount  << setw(3) <<"|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(29) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| Total"<< setw(31) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -394,7 +394,7 @@ int new_account()
             cout << "+_____________________________________+\n";
             cout << "|        Passwords do not match       |\n";
             cout << "+_____________________________________+\n";
-            cout << setw(28) << "Please try again.\n";
+            cout << setw(30) << "Please try again.\n";
             cout << "+-------------------------------------+";
             // display the menu options
             for (int i = 1; i < 3; i++)
@@ -647,7 +647,7 @@ int Login_failed()
     cout << "|             Login failed.           |\n";
     cout << "|       Incorrect ID or password.     |\n";
     cout << "+_____________________________________+\n";
-    cout << setw(28) << "Please try again.\n";
+    cout << setw(30) << "Please try again.\n";
     cout << "+_____________________________________+\n";
 }
 
@@ -688,18 +688,17 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             do
             {
                 system("cls");
-                cout << "+-------------------------------------+\n";
-                cout << "|       Don't have ID in Databas      |\n";
-                cout << "+-------------------------------------+\n";
-                cout << "+-------------------------------------+\n";
-                cout << "|    If you don't have an account     |\n";
-                cout << "|    Want to create a new account?    | ";
-                for (int i = 1; i < 3; i++)
+                cout << " _______________________________________ \n";
+                cout << "|                                       |\n";
+                cout << "|        Don't have ID in Databas       |\n";
+                cout << "|                                       |\n";
+                cout << "| ===================================== |";
+
+                for (int i = 1; i < 2; i++)
                 {
-                    cout << "\n| ";
-                    higlight_Yes_or_No(i, i == choice);
+                    higlight_back_to_menu(i, i == choice);
                 }
-                cout << "\n+-------------------------------------+\n";
+                cout << "\n|_______________________________________|";
 
                 ch = getch(); // wait for a key press
 
@@ -708,25 +707,21 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 { // up arrow key
                     choice--;
                 }
-                else if (ch == 80 && choice < 3)
+                else if (ch == 80 && choice < 2)
                 { // down arrow key
                     choice++;
                 }
-            } while (ch != 13);
+            } while (ch != 13); // enter key
+            // display the selected option
             switch (choice)
             {
             case 1:
-                new_account();
-                Sleep(2000);
-                main();
-                break;
-            case 2:
-                cout << "No";
+                cout << "Back To Login Menu";
                 main();
                 break;
             default:
                 break;
-            }
+                }
         }
     }
 }
@@ -794,23 +789,23 @@ void highlight_ATM_MENU(int index, bool selected)
     switch (index)
     {
     case 1:
-        l = 21;
+        l = 23;
         cout << "Balance Inquiry"; // เช็ค
         break;
     case 2:
-        l = 29;
+        l = 31;
         cout << "Deposit"; // ฝาก
         break;
     case 3:
-        l = 28;
+        l = 30;
         cout << "Withdraw"; // ถอน
         break;
     case 4:
-        l = 21;
+        l = 23;
         cout << "Transfers money"; // โอน
         break;
     case 5:
-        l = 32;
+        l = 34;
         cout << "Exit"; // ออก
         break;
     default:
@@ -826,9 +821,9 @@ int login(string &id, int &password)
     char ch;
     // Display login window frame
     system("cls");
-    cout << "+-------------------------------------+\n";
-    cout << "|              Login ATM              |\n";
-    cout << "+-------------------------------------+\n";
+    cout << "+---------------------------------------+\n";
+    cout << "|               Login ATM               |\n";
+    cout << "+---------------------------------------+\n";
     // Display prompts for ID and password
     cout << "\nEnter your ID: ";
     cin >> id;
@@ -868,31 +863,31 @@ void higlight_Withdraw(int index, bool selected)
     switch (index)
     {
     case 1:
-        l = 29;
+        l = 31;
         cout << "20 THB";
         break;
     case 2:
-        l = 29;
+        l = 31;
         cout << "50 THB";
         break;
     case 3:
-        l = 28;
+        l = 30;
         cout << "100 THB";
         break;
     case 4:
-        l = 28;
+        l = 30;
         cout << "200 THB";
         break;
     case 5:
-        l = 28;
+        l = 30;
         cout << "500 THB";
         break;
     case 6:
-        l = 11;
+        l = 13;
         cout << "Choose your own Withdraw";
         break;
     case 7:
-        l = 20;
+        l = 22;
         cout << "cancel Withdraw";
         break;
     default:
@@ -914,9 +909,9 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     do
     {
         system("cls"); // clear the console
-        cout << "+-------------------------------------+\n";
-        cout << "|              Withdraw               |\n";
-        cout << "+-------------------------------------+\n";
+        cout << "+---------------------------------------+\n";
+        cout << "|               Withdraw                |\n";
+        cout << "+---------------------------------------+\n";
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
@@ -924,7 +919,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
             higlight_Withdraw(i, i == choice);
         }
         // cout << "|                                     |\n";
-        cout << "+-------------------------------------+\n";
+        cout << "+---------------------------------------+\n";
 
         ch = getch(); // wait for a key press
 
@@ -1046,6 +1041,15 @@ void Withdraw(double amount, Dataformat &ID1)
 
 int main()
 {
+    system("Color 9");
+/*  0 = Black       8 = Gray    
+    1 = Blue        9 = Light Blue
+    2 = Green       A = Light Green
+    3 = Aqua        B = Light Aqua
+    4 = Red         C = Light Red
+    5 = Purple      D = Light Purple
+    6 = Yellow      E = Light Yellow
+    7 = White       F = Bright White */
     int password;
     int pass_id;
     string id;
@@ -1060,25 +1064,25 @@ int main()
     if (ID1.Pass[0] == password)
     {
         system("cls");
-        cout << "+-------------------------------------+\n";
-        cout << "|          Login successful!          |\n";
-        cout << "+-------------------------------------+\n";
+        cout << "+---------------------------------------+\n";
+        cout << "|           Login successful!           |\n";
+        cout << "+---------------------------------------+\n";
         Sleep(1000); // Wait for 1000 milliseconds
         // ATM
         do
         {
             system("cls"); // clear the console
-            cout << "+-------------------------------------+\n";
-            cout << "|              ATM Menu               |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+---------------------------------------+\n";
+            cout << "|               ATM Menu                |\n";
+            cout << "+---------------------------------------+\n";
             // display the menu options
             for (int i = 1; i < 6; i++)
             {
                 cout << "| ";
                 highlight_ATM_MENU(i, i == choice);
             }
-            cout << "|                                     |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "|                                       |\n";
+            cout << "+---------------------------------------+\n";
 
             ch = getch(); // wait for a key press
 
@@ -1098,16 +1102,54 @@ int main()
         {
         case 1:
             // Balance Inquiry
+                    do
+                    {
+                        system("cls");
+                        cout << "+---------------------------------------+\n";
+                        cout << " _______________________________________ \n";
+                        cout << "|                                       |\n";
+                        cout << "|        Don't have ID in Databas       |\n";
+                        cout << "|                                       |\n";
+                        cout << "| ===================================== |";
+
+                        for (int i = 1; i < 2; i++)
+                        {
+                            higlight_back_to_menu(i, i == choice);
+                        }
+                        cout << "\n|_______________________________________|";
+
+                        ch = getch(); // wait for a key press
+
+                        // update the choice variable based on the arrow key input
+                        if (ch == 72 && choice > 1)
+                        { // up arrow key
+                            choice--;
+                        }
+                        else if (ch == 80 && choice < 2)
+                        { // down arrow key
+                            choice++;
+                        }
+                    } while (ch != 13); // enter key
+                    // display the selected option
+                    switch (choice)
+                    {
+                    case 1:
+                        cout << "Back To Login Menu";
+                        main();
+                        break;
+                    default:
+                        break;
+                        }
             system("cls");
-            cout << "+-------------------------------------+\n";
-            cout << "|           Balance Inquiry           |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+---------------------------------------+\n";
+            cout << "|            Balance Inquiry            |\n";
+            cout << "+---------------------------------------+\n";
             cout << "Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
             Sleep(2000);   // Wait for 1000 milliseconds
             system("cls"); // clear the console
-            cout << "+-------------------------------------+\n";
-            cout << "|           Balance Inquiry           |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+---------------------------------------+\n";
+            cout << "|            Balance Inquiry            |\n";
+            cout << "+---------------------------------------+\n";
             cout << "Thank you for using this ATM. Goodbye!\n";
             Sleep(2000); // Wait for 1000 milliseconds
             main();
@@ -1126,18 +1168,18 @@ int main()
         case 4:
             // Transfers money
             system("cls"); // clear the console
-            cout << "+-------------------------------------+\n";
-            cout << "|           Transfers money           |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+---------------------------------------+\n";
+            cout << "|            Transfers money            |\n";
+            cout << "+---------------------------------------+\n";
             mainTransferMoney(id);
             break;
 
         case 5:
             // Exit
             system("cls"); // clear the console
-            cout << "+-------------------------------------+\n";
-            cout << "|                 Exit                |\n";
-            cout << "+-------------------------------------+\n";
+            cout << "+---------------------------------------+\n";
+            cout << "|                  Exit                 |\n";
+            cout << "+---------------------------------------+\n";
             cout << "Thank you for using this ATM. Goodbye!\n";
             Sleep(2000); // Wait for 1000 milliseconds
             main();      // Return to login page
