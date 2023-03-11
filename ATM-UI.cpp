@@ -302,6 +302,7 @@ int new_account()
     cout << "+_____________________________________+\n";
     cout << "What is your name: " ;
     getline(cin , name) ;
+    cin >> name;
     cout << "Enter your ID: ";
     cin >> UserID;
     cout << "Enter your password: ";
@@ -353,7 +354,47 @@ int new_account()
             {
                 outfile << UserPass1 << "," << identification << "," << money << "," << name  ;
                 outfile.close();
-                cout << "Created successfully" << identification << endl;
+                 do
+                    {
+                        system("cls"); // clear the console
+                        cout << "+_______________________________________+\n";
+                        cout << "|          Created successfully         |\n";
+                        cout << "|=======================================|\n";
+                        cout << "| Created successfully " << setw(16)<< name << " |\n" ;
+                        cout << "| Now you have money : " << setw(12) << money <<  " THB |\n";
+                        cout << "|=======================================|\n";
+                        cout << "|                                       |";
+                        // display the menu options
+                        for (int i = 1; i < 2; i++)
+                        {
+                            higlight_back_to_menu(i, i == choice);
+                        }
+                        cout << "\n|_______________________________________|\n";
+
+                        ch = getch(); // wait for a key press
+
+                        // update the choice variable based on the arrow key input
+                        if (ch == 72 && choice > 1)
+                        { // up arrow key
+                            choice--;
+                        }
+                        else if (ch == 80 && choice < 2)
+                        { // down arrow key
+                            choice++;
+                        }
+                    } while (ch != 13); // enter key
+                    // display the selected option
+                    switch (choice)
+                    {
+                    case 1:
+                        cout << "Back To Login Menu";
+                        main();
+                        break;
+                    default:
+                        main();
+                        break;
+                    }
+
             }
         }else
         {
@@ -725,7 +766,7 @@ void higlight_Yes_or_No(int index, bool selected)
         break;
     }
 
-    cout << "\033[0m" << " "; //<< setw(l)  // window
+    cout << "\033[0m" << "  "; //<< setw(l)  // window
 }
 
 // Login failed
@@ -818,13 +859,17 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 cout << "|        Don't have ID in Databas       |\n";
                 cout << "|                                       |\n";
                 cout << "| ===================================== |\n";
-                cout << "|                                       |";
+                cout << "|     If you don't have an account      |\n";
+                cout << "|     Want to create a new account?     |\n";
+                cout << "|               ";
                     // display the menu options
-                    for (int i = 1; i < 2; i++)
+                    //higlight_Yes_or_No
+                    for (int i = 1; i < 3; i++)
                     {
-                        higlight_back_to_menu(i, i == choice);
+                        higlight_Yes_or_No(i, i == choice);
                     }
-                    cout << "\n|_______________________________________|\n";
+                    cout << "               |";
+                    cout << "\n+_______________________________________+\n";
 
                     ch = getch(); // wait for a key press
 
@@ -833,22 +878,25 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 3)
                     { // down arrow key
                         choice++;
                     }
-                } while (ch != 13); // enter key
-                // display the selected option
-                switch (choice)
-                {
-                case 1:
-                    cout << "Back To Login Menu";
-                    main();
-                    break;
-                default:
-                    main();
-                    break;
-                }    
+                    } while (ch != 13);
+                        switch (choice)
+                        {
+                        case 1:
+                            new_account();
+                            main();
+                            break;
+                        case 2:
+                            cout << "No";
+                            main();
+                            break;
+                        default:
+                            main();
+                            break;
+             }    
         }
     }
 
@@ -897,7 +945,7 @@ void mainTransferMoney(string id)
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1); // importfile
-    ImportFile(ID2, userfile_2 , true);
+    ImportFile(ID2, userfile_2); //Bug , true
     cout << "|=======================================|\n";
     cout << "             How much money  \n";
     cout << "             THB : "; cin >> amount;
