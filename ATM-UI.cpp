@@ -94,6 +94,7 @@ void receipt_depos(Dataformat ID1,float amount){
             main();
             break;
         default:
+            main();
             break;
         }
 }
@@ -145,6 +146,7 @@ void receipt_wdraw(Dataformat ID1,float amount){
             main();
             break;
         default:
+            main();
             break;
         }
 }
@@ -202,6 +204,7 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             main();
             break;
         default:
+            main();
             break;
         }
 }
@@ -253,6 +256,7 @@ void receipt_paybill(Dataformat ID1,float amount){
             main();
             break;
         default:
+            main();
             break;
         }
 }
@@ -393,6 +397,7 @@ int new_account()
                 main();
                 break;
             default:
+                main();
                 break;
             }
         }
@@ -439,6 +444,7 @@ int new_account()
             main();
             break;
         default:
+            main();
             break;
         }
     }
@@ -606,27 +612,89 @@ void deposit(Dataformat &ID1, string userfile_1)
         }
         else
         {
-            system("cls"); // clear the console
-            cout << "+_____________________________________+\n";
-            cout << "|               Deposit               |\n";
-            cout << "+_____________________________________+\n";
-        // display the menu options
-            cout << "Invalid! Please try again.";
-            Sleep(1500);
-            main();
+            do
+                {
+                    system("cls"); // clear the console
+                    cout << "+_______________________________________+\n";
+                    cout << "|                 Deposit               |\n";
+                    cout << "|       Invalid! Please try again.      |\n";
+                    cout << "|=======================================|\n";
+                    cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                }
             break;
         }
 
     case 7:
         // cout << "7 - cancel deposition \n";
-        cout << "Deposition canceled.";
         notfinished = false;
-        Sleep(1500);
-        main();
+        do
+                {
+                    system("cls"); // clear the console
+                    cout << "+_______________________________________+\n";
+                    cout << "|                 Deposit               |\n";
+                    cout << "|          Deposition canceled.         |\n";
+                    cout << "|=======================================|\n";
+                    cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    break;
+                }
         break;
     default:
-        cout << "Invalid! Please try again.";
-        Sleep(1500);
         main();
         break;
     }
@@ -824,15 +892,20 @@ void mainTransferMoney(string id)
     Dataformat ID2;
     string IdTranfer;
     float amount;
-    cout << "What ID you want to tranfer : ";
-    cin >> IdTranfer;
+    system("cls"); // clear the console
+    cout << "+_______________________________________+\n";
+    cout << "|             TrnasferMoney             |\n";
+    cout << "|=======================================|\n";
+    cout << "        What ID you want to tranfe       \n";
+    cout << "             ID : "; cin >> IdTranfer;
     string userfile_1 = id + ".txt";
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1); // importfile
     ImportFile(ID2, userfile_2 , true);
-    cout << "How much money : ";
-    cin >> amount;
+    cout << "|=======================================|\n";
+    cout << "             How much money  \n";
+    cout << "             THB : "; cin >> amount;
     TransferMoney(amount, ID1, ID2);
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -978,9 +1051,10 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
     do
     {
         system("cls"); // clear the console
-        cout << "+---------------------------------------+\n";
-        cout << "|               Withdraw                |\n";
-        cout << "+---------------------------------------+\n";
+        cout << "+_______________________________________+\n";
+        cout << "|                Withdraw               |\n";
+        cout << "|       You don't have enough money.    |\n";
+        cout << "|=======================================|\n";
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
@@ -988,7 +1062,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
             higlight_Withdraw(i, i == choice);
         }
         // cout << "|                                     |\n";
-        cout << "+---------------------------------------+\n";
+        cout << "|=======================================|\n";
 
         ch = getch(); // wait for a key press
 
@@ -1049,8 +1123,12 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         break;
     case 6:
         // cout << "6 - choose your own Withdraw amount" ;
-        cout << "How much do you want to Withdraw.";
-        cin >> amount;
+        system("cls"); // clear the console
+        cout << "+_____________________________________+\n";
+        cout << "|              Withdraw               |\n";
+        cout << "|          Enter your amout.          |\n";
+        cout << "|=====================================|\n";
+        cout << "          THB : " ; cin >> amount;
         if (ID1.money[0]-amount >= 0 && amount >= 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
@@ -1062,30 +1140,134 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         }
         else if(ID1.money[0]-amount < 0 && amount >= 0)
         {
-            cout << "You don't have enough money\n";
-            cout << "Now you have money : " << ID1.money[0] << " You can't withdraw money\n";
-            Sleep(1500);
-            main();
+            do
+                {
+                    system("cls"); // clear the console
+                    cout << "+_______________________________________+\n";
+                    cout << "|                Withdraw               |\n";
+                    cout << "|       You don't have enough money.    |\n";
+                    cout << "|=======================================|\n";
+                    cout << "| Now you have money : " << setw(12) << ID1.money[0] <<  " THB |\n";
+                    cout << "|=======================================|\n";
+                    cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                }
             break;
         }
         else
         {
-            cout << "Invalid! Please try again.";
-            Sleep(1500);
-            main();
+            do
+                {
+                    system("cls"); // clear the console
+                    cout << "+_______________________________________+\n";
+                    cout << "|                Withdraw               |\n";
+                    cout << "|       Invalid! Please try again.      |\n";
+                    cout << "|=======================================|\n";
+                    cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                }
             break;
 
         }
 
     case 7:
         // cout << "7 - cancel deposition \n";
-        cout << "Withdraw canceled.";
-        Sleep(1500);
-        main();
+            do
+                {
+                    system("cls"); // clear the console
+                    cout << "+_______________________________________+\n";
+                    cout << "|                Withdraw               |\n";
+                    cout << "|          Deposition canceled.         |\n";
+                    cout << "|=======================================|\n";
+                    cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                }
         break;
     default:
-        cout << "Invalid! Please try again.";
-        Sleep(1500);
         main();
         break;
     }
