@@ -18,7 +18,6 @@ struct Dataformat
     vector<int> Pass;
     vector<int> ID;
     vector<double> money;
-    string name;
 };
 
 // higlight_back_to_menu use in receipt
@@ -659,18 +658,16 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
     string line;
     int idnumber, pass;
     double balnace;
-    char name[99];
     if (check = false)
     {
         if (data.is_open())
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
-                ID.name = name;
             }
         }
     }
@@ -680,11 +677,10 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
-                ID.name = name;
             }
         }
         else
@@ -1115,12 +1111,13 @@ int main()
                         cout << "  =====================================  \n";
                         cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ;
                         cout << "  =====================================  \n";
-                        cout << " _______________________________________ ";
+                        cout << "+---------------------------------------+";
                         for (int i = 1; i < 2; i++)
                         {
                             higlight_back_to_menu(i, i == choice);
                         }
-                        cout << "\n|_______________________________________|";
+                        //cout << "\n|_______________________________________|";
+                        cout << "\n+---------------------------------------+";
 
                         ch = getch(); // wait for a key press
 
@@ -1150,19 +1147,6 @@ int main()
                     default:
                         break;
                         }
-            system("cls");
-            cout << "+---------------------------------------+\n";
-            cout << "|            Balance Inquiry            |\n";
-            cout << "+---------------------------------------+\n";
-            cout << "Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n";
-            Sleep(2000);   // Wait for 1000 milliseconds
-            system("cls"); // clear the console
-            cout << "+---------------------------------------+\n";
-            cout << "|            Balance Inquiry            |\n";
-            cout << "+---------------------------------------+\n";
-            cout << "Thank you for using this ATM. Goodbye!\n";
-            Sleep(2000); // Wait for 1000 milliseconds
-            main();
             break;
 
         case 2:
