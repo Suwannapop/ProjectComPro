@@ -80,7 +80,7 @@ void receipt_depos(Dataformat ID1,float amount){
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 2)
+            else if (ch == 80 && choice < 1)
             { // down arrow key
                 choice++;
             }
@@ -133,7 +133,7 @@ void receipt_wdraw(Dataformat ID1,float amount){
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 2)
+            else if (ch == 80 && choice < 1)
             { // down arrow key
                 choice++;
             }
@@ -191,7 +191,7 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 2)
+            else if (ch == 80 && choice < 1)
             { // down arrow key
                 choice++;
             }
@@ -243,7 +243,7 @@ void receipt_paybill(Dataformat ID1,float amount){
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 2)
+            else if (ch == 80 && choice < 1)
             { // down arrow key
                 choice++;
             }
@@ -578,7 +578,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         { // up arrow key
             choice--;
         }
-        else if (ch == 80 && choice < 8)
+        else if (ch == 80 && choice < 7)
         { // down arrow key
             choice++;
         }
@@ -675,7 +675,7 @@ void deposit(Dataformat &ID1, string userfile_1)
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 1)
                     { // down arrow key
                         choice++;
                     }
@@ -719,7 +719,7 @@ void deposit(Dataformat &ID1, string userfile_1)
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 1)
                     { // down arrow key
                         choice++;
                     }
@@ -796,7 +796,7 @@ int Login_failed()
                 { // up arrow key
                     choice--;
                 }
-                else if (ch == 80 && choice < 2)
+                else if (ch == 80 && choice < 1)
                 { // down arrow key
                     choice++;
                 }
@@ -965,7 +965,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
                 { // up arrow key
                     choice--;
                 }
-                else if (ch == 80 && choice < 2)
+                else if (ch == 80 && choice < 1)
                 { // down arrow key
                     choice++;
                 }
@@ -1062,7 +1062,7 @@ void mainTransferMoney(string id)
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 1)
                     { // down arrow key
                         choice++;
                     }
@@ -1121,7 +1121,7 @@ void mainTransferMoney(string id)
                 { // up arrow key
                     choice--;
                 }
-                else if (ch == 80 && choice < 2)
+                else if (ch == 80 && choice < 1)
                 { // down arrow key
                     choice++;
                 }
@@ -1309,7 +1309,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         { // up arrow key
             choice--;
         }
-        else if (ch == 80 && choice < 8)
+        else if (ch == 80 && choice < 7)
         { // down arrow key
             choice++;
         }
@@ -1402,7 +1402,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 1)
                     { // down arrow key
                         choice++;
                     }
@@ -1444,7 +1444,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 2)
+                    else if (ch == 80 && choice < 1)
                     { // down arrow key
                         choice++;
                     }
@@ -1643,7 +1643,7 @@ int main()
                         cout << "|            Balance Inquiry            |\n";
                         cout << "+---------------------------------------+\n";
                         cout << "  =====================================  \n";
-                        cout << "   Your current balance is: $" << fixed << setprecision(1000) << ID1.money[0] << "\n" ; //setprecision(1000)
+                        cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
                         cout << "  =====================================  \n";
                         cout << "+---------------------------------------+";
                         for (int i = 1; i < 2; i++)
@@ -1660,7 +1660,7 @@ int main()
                         { // up arrow key
                             choice--;
                         }
-                        else if (ch == 80 && choice < 2)
+                        else if (ch == 80 && choice < 1)
                         { // down arrow key
                             choice++;
                         }
@@ -1703,7 +1703,7 @@ int main()
             break;
         case 5:
             system("cls"); // clear the console
-            cout << "Bill Payment" ;
+            cout << "Payment" ;
             main_topup();
         case 6:
             // Exit
