@@ -659,6 +659,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
     string line;
     int idnumber, pass;
     double balnace;
+    char name[99];
     if (check = false)
     {
         if (data.is_open())
