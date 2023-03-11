@@ -792,7 +792,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
                 ID.name = name;
-            }
+            }  
         }
     }
     else if (check = true)
