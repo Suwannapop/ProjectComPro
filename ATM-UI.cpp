@@ -902,6 +902,90 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
 
 }
 
+
+//แก้บัคตอนโอนเงิน
+void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+{
+    ifstream data;
+    data.open(fileindex);
+    string line;
+    int idnumber, pass;
+    double balnace;
+    char name[99];
+
+    if (check = false)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
+            {
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+                ID.name = name;
+            }  
+        }
+    }
+    else if (check = true)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
+            {
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+                ID.name = name;
+            }
+        }
+        else
+        {          
+            do
+            {
+                system("cls");
+                cout << " _______________________________________ \n";
+                cout << "|                                       |\n";
+                cout << "|        Don't have ID in Databas       |\n";
+                cout << "|                                       |\n";
+                cout << "| ===================================== |\n";
+                cout << "|                                       |";
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << "\n|_______________________________________|\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 2)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }
+        }
+    }
+
+}
+
 /*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
 {
     if (amount > 0)
@@ -945,7 +1029,7 @@ void mainTransferMoney(string id)
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1); // importfile
-    ImportFile(ID2, userfile_2); //Bug , true
+    ImportFile_T(ID2, userfile_2 , true); //Bug , true
     cout << "|=======================================|\n";
     cout << "             How much money  \n";
     cout << "             THB : "; cin >> amount;
