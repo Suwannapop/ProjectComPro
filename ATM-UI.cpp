@@ -57,9 +57,9 @@ void receipt_depos(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Deposit Amount :  "<< setw(19) << amount << setw(3) << "|\n";
+            cout << "| Deposit Amount :  "<< setw(19) << setprecision(1000) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| Total"<< setw(32) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -111,9 +111,9 @@ void receipt_wdraw(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Withdraw Amount : "<< setw(19) << amount << setw(3) << "|\n";
+            cout << "| Withdraw Amount : "<< setw(19) << setprecision(1000) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<"|\n";
+            cout << "| Total"<< setw(32) << setprecision(1000) << ID1.money[0] << setw(3) <<"|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -163,14 +163,14 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Transfer Amount : "<< setw(19) << amount <<  " |\n";
-            cout << "| Total"<< setw(32) << ID1.money[0] << setw(3) <<  "|\n";
+            cout << "| Transfer Amount : "<< setw(19) << setprecision(1000) << amount <<  " |\n";
+            cout << "| Total"<< setw(32) << setprecision(1000) << ID1.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ------------- transfer to ----------- |\n";
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID2.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID2.ID[0] <<  " |\n";
-            cout << "| Total"<< setw(32) << ID2.money[0] << setw(3) <<  "|\n";
+            cout << "| Total"<< setw(32) << setprecision(1000) << ID2.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -221,9 +221,9 @@ void receipt_paybill(Dataformat ID1,float amount){
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  "<< setw(25) << setprecision(2) << amount  << setw(3) <<"|\n";
+            cout << "| Pay Amount :  "<< setw(25) << setprecision(1000) << amount  << setw(3) <<"|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(31) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| Total"<< setw(31) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -1181,6 +1181,10 @@ void highlight_ATM_MENU(int index, bool selected)
         cout << "Transfers money"; // โอน
         break;
     case 5:
+        l = 31 ;
+        cout << "Payment" ; // จ่ายบิลลลลลลลลล
+        break;
+    case 6:
         l = 34;
         cout << "Exit"; // ออก
         break;
@@ -1349,7 +1353,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         break;
     case 5:
         // cout << "5 - $500" ;
-        ID1.money[0] = ID1.money[0] + 500;
+        ID1.money[0] = ID1.money[0] - 500;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0]<< "," << ID1.name;
         writefile_1.close();
@@ -1514,7 +1518,7 @@ void Withdraw(double amount, Dataformat &ID1)
         if (amount > ID1.money[0])
         {
             cout << "You don't have enough money\n";
-            cout << "Now you have money : " << setprecision(2) << ID1.money[0] << " You can't withdraw money\n";
+            cout << "Now you have money : " << setprecision(1000) << ID1.money[0] << " You can't withdraw money\n";
         }
         else
         {
@@ -1523,6 +1527,51 @@ void Withdraw(double amount, Dataformat &ID1)
     }
 }
 
+void topup(double amount, Dataformat &ID1, Dataformat &ID2);
+int main_topup()
+{
+    Dataformat ID1;
+    Dataformat ID2;
+    string id, IdTopup;
+    double amount;
+    cout << "input your id : ";
+    cin >> id;
+    string userfile_1 = id + ".txt";
+    ImportFile(ID1, userfile_1);
+    cout << "What Game ID you want to top up: ";
+    cin >> IdTopup;
+    string userfile_2 = IdTopup + ".txt";
+    ofstream writefile_1, writefile_2; // importfile
+    ImportFile(ID2, userfile_2);
+    cout << "How much money do you want to top up: ";
+    cin >> amount;
+    topup(amount, ID1, ID2);
+    cout << "You top up money from ID to ID \n"
+         << ID1.name << " -----> " << ID2.name << endl;
+    cout << "Your current balance is " << ID1.money[0] << endl;
+    Sleep(2000);
+    
+    writefile_1.open(userfile_1);
+    writefile_2.open(userfile_2);
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(1000) << ID1.money[0] << ","<< ID1.name << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(1000) << ID2.money[0] << ","<< ID2.name << endl;
+    writefile_1.close();
+    writefile_2.close();
+}
+
+void topup(double amount, Dataformat &ID1, Dataformat &ID2) 
+{
+    if (amount > ID1.money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+    }
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
+}
 
 int main()
 {
@@ -1561,12 +1610,12 @@ int main()
             cout << "|               ATM Menu                |\n";
             cout << "+---------------------------------------+\n";
             // display the menu options
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i < 7; i++)
             {
                 cout << "| ";
                 highlight_ATM_MENU(i, i == choice);
             }
-            cout << "|                                       |\n";
+            cout << "|                 CPE102                |\n";
             cout << "+---------------------------------------+\n";
 
             ch = getch(); // wait for a key press
@@ -1576,7 +1625,7 @@ int main()
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 5)
+            else if (ch == 80 && choice < 6)
             { // down arrow key
                 choice++;
             }
@@ -1594,7 +1643,7 @@ int main()
                         cout << "|            Balance Inquiry            |\n";
                         cout << "+---------------------------------------+\n";
                         cout << "  =====================================  \n";
-                        cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ;
+                        cout << "   Your current balance is: $" << fixed << setprecision(1000) << ID1.money[0] << "\n" ; //setprecision(1000)
                         cout << "  =====================================  \n";
                         cout << "+---------------------------------------+";
                         for (int i = 1; i < 2; i++)
@@ -1652,8 +1701,11 @@ int main()
             cout << "+---------------------------------------+\n";
             mainTransferMoney(id);
             break;
-
         case 5:
+            system("cls"); // clear the console
+            cout << "Bill Payment" ;
+            main_topup();
+        case 6:
             // Exit
             system("cls"); // clear the console
             cout << "+---------------------------------------+\n";
