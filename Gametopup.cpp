@@ -79,14 +79,4 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
         ID1.money[0] = ID1.money[0] - amount;
         ID2.money[0] = ID2.money[0] + amount;
     }
-    if (amount > ID1.money[0])
-    {
-        cout << "You don't have enough money\n";
-        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
-    }
-    else
-    {
-        ID1.money[0] = ID1.money[0] - amount;
-        ID2.money[0] = ID2.money[0] + amount;
-    }
 }
