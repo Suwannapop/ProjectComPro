@@ -1041,7 +1041,7 @@ void Withdraw(double amount, Dataformat &ID1)
 
 int main()
 {
-    system("Color 9");
+    //system("Color 9");
 /*  0 = Black       8 = Gray    
     1 = Blue        9 = Light Blue
     2 = Green       A = Light Green
@@ -1106,12 +1106,12 @@ int main()
                     {
                         system("cls");
                         cout << "+---------------------------------------+\n";
-                        cout << " _______________________________________ \n";
-                        cout << "|                                       |\n";
-                        cout << "|        Don't have ID in Databas       |\n";
-                        cout << "|                                       |\n";
-                        cout << "| ===================================== |";
-
+                        cout << "|            Balance Inquiry            |\n";
+                        cout << "+---------------------------------------+\n";
+                        cout << "  =====================================  \n";
+                        cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ;
+                        cout << "  =====================================  \n";
+                        cout << " _______________________________________ ";
                         for (int i = 1; i < 2; i++)
                         {
                             higlight_back_to_menu(i, i == choice);
@@ -1135,6 +1135,12 @@ int main()
                     {
                     case 1:
                         cout << "Back To Login Menu";
+                        system("cls"); // clear the console
+                        cout << "+---------------------------------------+\n";
+                        cout << "|            Balance Inquiry            |\n";
+                        cout << "+---------------------------------------+\n";
+                        cout << "Thank you for using this ATM. Goodbye!\n";
+                        Sleep(2000); // Wait for 1000 milliseconds
                         main();
                         break;
                     default:
