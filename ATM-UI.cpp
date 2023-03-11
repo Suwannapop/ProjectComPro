@@ -588,8 +588,12 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 6:
         // cout << "6 - choose your own deposition amount" ;
-        cout << "How much do you want to Deposit.";
-        cin >> amount;
+        system("cls"); // clear the console
+        cout << "+_____________________________________+\n";
+        cout << "|               Deposit               |\n";
+        cout << "|          Enter your amout.          |\n";
+        cout << "|=====================================|\n";
+        cout << "          THB : " ; cin >> amount;
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] + amount;
@@ -602,6 +606,11 @@ void deposit(Dataformat &ID1, string userfile_1)
         }
         else
         {
+            system("cls"); // clear the console
+            cout << "+_____________________________________+\n";
+            cout << "|               Deposit               |\n";
+            cout << "+_____________________________________+\n";
+        // display the menu options
             cout << "Invalid! Please try again.";
             Sleep(1500);
             main();
@@ -709,10 +718,11 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
     }
@@ -722,10 +732,11 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
         {
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf", &pass, &idnumber, &balnace);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
                 ID.money.push_back(balnace);
+                ID.name = name;
             }
         }
         else
