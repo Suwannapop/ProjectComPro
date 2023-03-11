@@ -905,15 +905,48 @@ void mainTransferMoney(string id)
     {
         if (amount > ID1.money[0])
         {
-            system("cls"); // clear the console
-            cout << "+_______________________________________+\n";
-            cout << "|             TransferMoney             |\n";
-            cout << "|=======================================|\n";
-            cout << "|       You don't have enough money     |\n";
-            cout << "| Now you have money : " << setw(12) << ID1.money[0] <<  " THB |\n";
-            cout << "|         You can't tranfer money       |\n";
-            cout << "|=======================================|\n";
-            //<< setw(12) << ID1.money[0] <<  " THB |\n";
+            do
+                {
+                system("cls"); // clear the console
+                cout << "+_______________________________________+\n";
+                cout << "|             TransferMoney             |\n";
+                cout << "|=======================================|\n";
+                cout << "|       You don't have enough money     |\n";
+                cout << "| Now you have money : " << setw(12) << ID1.money[0] <<  " THB |\n";
+                cout << "|         You can't tranfer money       |\n";
+                cout << "|=======================================|\n";
+                cout << "|                                       |";
+                    // display the menu options
+                    for (int i = 1; i < 2; i++)
+                    {
+                        higlight_back_to_menu(i, i == choice);
+                    }
+                    cout << "\n|_______________________________________|\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 2)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Back To Login Menu";
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                }    
+
         }
         else
         {
@@ -933,13 +966,46 @@ void mainTransferMoney(string id)
     }
     else if (amount <= 0)
     {
-        cout << "You can't tranfer money less than 0 or = 0\n";
-        Sleep(2000);
+        do
+            {
+            system("cls"); // clear the console
+            cout << "+_______________________________________+\n";
+            cout << "|             TransferMoney             |\n";
+            cout << "|=======================================|\n";
+            cout << "|            invalid amount             |\n"; //ม่ายมีตังค่าาา แก้ให้ถูกด้วย
+            cout << "|=======================================|\n";
+            cout << "|                                       |";
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << "\n|_______________________________________|\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 2)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }    
     }
-
-
-
-
 
    /* 
     TransferMoney(amount, ID1, ID2);
