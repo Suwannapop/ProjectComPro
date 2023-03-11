@@ -53,15 +53,15 @@ void ImportFile(Dataformat &ID, string fileindex)
     data.open(fileindex);
     string line;
     int idnumber, pass;
-    double balnace;
+    double balance;
     char name[99];
      if (data.is_open()){
             while (getline(data, line)) // importfile
             {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balance, name);
                 ID.Pass.push_back(pass);
                 ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
+                ID.money.push_back(balance);
                 ID.name = name;
             }
         }
@@ -69,6 +69,16 @@ void ImportFile(Dataformat &ID, string fileindex)
 
 void topup(double amount, Dataformat &ID1, Dataformat &ID2) 
 {
+    if (amount > ID1.money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+    }
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
     if (amount > ID1.money[0])
     {
         cout << "You don't have enough money\n";
