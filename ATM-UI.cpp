@@ -1529,20 +1529,20 @@ void Withdraw(double amount, Dataformat &ID1)
 
 void payebill(double amount, Dataformat &ID1, Dataformat &ID2);
 
-int main_payebill()//ไฟฟ้า ไม่เขียนดีๆ ก๋อง ขก แก้ละตามนี้เลย555
+void main_payebill(string id)//ไฟฟ้า ไม่เขียนดีๆ ก๋อง ขก แก้ละตามนี้เลย555
 {
     Dataformat ID1;
     Dataformat ID2;
-    string id, Idbill;
-    double amount;
-    cout << "input your id : ";
-    cin >> id;
+    //string id, Idbill;
+    float amount;
+    //cout << "input your id : ";
+    //cin >> id;
     string userfile_1 = id + ".txt";
-    ImportFile(ID1, userfile_1);
-    cout << "What ID you want to pay bill : ";
-    cin >> Idbill;
-    string userfile_2 = Idbill + ".txt";
+    //cout << "What ID you want to pay bill : ";
+    //cin >> Idbill;
+    string userfile_2 = "777777777.txt";
     ofstream writefile_1, writefile_2; // importfile
+    ImportFile(ID1, userfile_1);
     ImportFile(ID2, userfile_2);
     cout << "How much money ";
     cin >> amount;
@@ -1618,21 +1618,21 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
 
 
 void topup(double amount, Dataformat &ID1, Dataformat &ID2);
-int main_topup()
+void main_topup(string id)
 {
     Dataformat ID1;
     Dataformat ID2;
-    string id, IdTopup;
-    double amount;
-    cout << "input your id : ";
-    cin >> id;
+    //string id, IdTopup;
+    float amount;
+    //cout << "input your id : ";
+    //cin >> id;
     string userfile_1 = id + ".txt";
-    ImportFile(ID1, userfile_1);
-    cout << "What Game ID you want to top up: ";
-    cin >> IdTopup;
-    string userfile_2 = IdTopup + ".txt";
+    //cout << "What Game ID you want to top up: ";
+    //cin >> IdTopup;
+    string userfile_2 = "999999999.txt";
     ofstream writefile_1, writefile_2; // importfile
-    ImportFile(ID2, userfile_2);
+    ImportFile(ID1, userfile_1);
+    ImportFile_T(ID2, userfile_2 , true);
     cout << "How much money do you want to top up: ";
     cin >> amount;
     topup(amount, ID1, ID2);
@@ -1664,6 +1664,52 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
 }
 
 
+void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2);
+void main_PhoneBill(string id)
+{
+    Dataformat ID1;
+    Dataformat ID2;
+    //string id, IdTopup;
+    float amount;
+    //cout << "input your id : ";
+    //cin >> id;
+    string userfile_1 = id + ".txt";
+    //cout << "What Game ID you want to top up: ";
+    //cin >> IdTopup;
+    string userfile_2 = "888888888.txt";
+    ofstream writefile_1, writefile_2; // importfile
+    ImportFile(ID1, userfile_1);
+    ImportFile_T(ID2, userfile_2 , true);
+    cout << "How much money do you want to top up: ";
+    cin >> amount;
+    PhoneBill(amount, ID1, ID2);
+    cout << "You top up money from ID to ID \n"
+         << ID1.name << " -----> " << ID2.name << endl;
+    cout << "Your current balance is " << ID1.money[0] << endl;
+    Sleep(2000);
+    
+    writefile_1.open(userfile_1);
+    writefile_2.open(userfile_2);
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(1000) << ID1.money[0] << ","<< ID1.name << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(1000) << ID2.money[0] << ","<< ID2.name << endl;
+    writefile_1.close();
+    writefile_2.close();
+}
+
+void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2) 
+{
+    if (amount > ID1.money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+    }
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
+}
+
 
 
 // higlight Payment menu
@@ -1681,17 +1727,21 @@ void highlight_Payment_MENU(int index, bool selected)
     {
     case 1:
         l = 22;
-        cout << "Electricity bill";
+        cout << "Electricity Bill";
         break;
     case 2:
         l = 28;
-        cout << "Water bill"; 
+        cout << "Water Bill"; 
         break;
     case 3:
+        l = 28 ;
+        cout << "Phone Bill";
+        break;
+    case 4:
         l = 29;
         cout << "Gametopup"; 
         break;
-    case 4:
+    case 5:
         l = 34;
         cout << "Exit"; // ออก
         break;
@@ -1839,7 +1889,7 @@ int main()
                    // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
                     //cout << "  =====================================  \n";
                     cout << "+---------------------------------------+\n";
-                    for (int i = 1; i < 5; i++)
+                    for (int i = 1; i < 6; i++)
                     {
                         cout << "| ";
                         highlight_Payment_MENU(i, i == choice);
@@ -1856,7 +1906,7 @@ int main()
                     { // up arrow key
                         choice--;
                     }
-                    else if (ch == 80 && choice < 4)
+                    else if (ch == 80 && choice < 5)
                     { // down arrow key
                         choice++;
                     }
@@ -1873,10 +1923,14 @@ int main()
                     main_paywaterbill(id); 
                     break;
                 case 3:
+                    cout << "PhoneBill"; 
+                    main_PhoneBill(id);
+                    break;
+                case 4:
                     cout << "Gametopup"; 
                     main_topup(id);
                     break;
-                case 4:
+                case 5:
                     cout << "Exit"; // ออก
                     main();
                     break;
