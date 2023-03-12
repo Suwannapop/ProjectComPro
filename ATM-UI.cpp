@@ -912,7 +912,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
     int idnumber, pass;
     double balnace;
     char name[99];
-
+    
     if (check = false)
     {
         if (data.is_open())
@@ -1030,6 +1030,49 @@ void mainTransferMoney(string id)
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1); // importfile
     ImportFile_T(ID2, userfile_2 , true); //Bug , true
+
+    if (userfile_1 == userfile_2)
+    {
+        do
+            {
+            system("cls"); // clear the console
+            cout << "+_______________________________________+\n";
+            cout << "|             TransferMoney             |\n";
+            cout << "|=======================================|\n";
+            cout << "|            I SUS I May Yes            |";
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << "\n|_______________________________________|\n";
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 1)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }  
+
+
+    }else{
     cout << "|=======================================|\n";
     cout << "             How much money  \n";
     cout << "             THB : "; cin >> amount;
@@ -1148,6 +1191,9 @@ void mainTransferMoney(string id)
     writefile_1.close();
     writefile_2.close();
     */
+
+
+    }
 
 }
 
@@ -1537,26 +1583,38 @@ void main_payebill(string id)//ไฟฟ้า ไม่เขียนดีๆ
     float amount;
     //cout << "input your id : ";
     //cin >> id;
-    string userfile_1 = id + ".txt";
     //cout << "What ID you want to pay bill : ";
     //cin >> Idbill;
+    system("cls"); // clear the console
+    cout << "+_______________________________________+\n";
+    cout << "|           Electricity Bill            |\n";
+    cout << "|=======================================|\n";
+    cout << "              How much money            \n";
+    cout << "              THB : "; cin >> amount;
+
+    string userfile_1 = id + ".txt";
     string userfile_2 = "777777777.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
     ImportFile(ID2, userfile_2);
-    cout << "How much money ";
-    cin >> amount;
     payebill(amount, ID1, ID2);
+
+    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You Pay Bill from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
-    
+    Sleep(2000);
+    //
+
+
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
     writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000) << ID1.money[0] << ","<< ID1.name << endl;
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000) << ID2.money[0] << ","<< ID2.name << endl;
     writefile_1.close();
     writefile_2.close();
+
+    //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
 }
 
 void payebill(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1582,17 +1640,26 @@ void main_paywaterbill(string id)
     float amount;
     //cout << "input your id : ";
     //cin >> id;
+    system("cls"); // clear the console
+    cout << "+_______________________________________+\n";
+    cout << "|               Water Bill              |\n";
+    cout << "|=======================================|\n";
+    cout << "              How much money            \n";
+    cout << "              THB : "; cin >> amount;
+
     string userfile_1 = id + ".txt";
     string userfile_2 = "666666666.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
     ImportFile_T(ID2, userfile_2 , true);
-    cout << "How much money ";
-    cin >> amount;
     paywaterbill(amount, ID1, ID2);
+
+    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You Pay Bill from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
+    Sleep(2000);
+    //
     
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1600,6 +1667,8 @@ void main_paywaterbill(string id)
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000) << ID2.money[0] << ","<< ID2.name << endl;
     writefile_1.close();
     writefile_2.close();
+
+    //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
 }
 
 void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1629,17 +1698,25 @@ void main_topup(string id)
     string userfile_1 = id + ".txt";
     //cout << "What Game ID you want to top up: ";
     //cin >> IdTopup;
+    system("cls"); // clear the console
+    cout << "+_______________________________________+\n";
+    cout << "|               Game Topup              |\n";
+    cout << "|=======================================|\n";
+    cout << "   How much money do you want to top up \n";
+    cout << "              THB : "; cin >> amount;
+
     string userfile_2 = "999999999.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
     ImportFile_T(ID2, userfile_2 , true);
-    cout << "How much money do you want to top up: ";
-    cin >> amount;
     topup(amount, ID1, ID2);
+
+    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You top up money from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
+    //
     
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1647,6 +1724,8 @@ void main_topup(string id)
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(1000) << ID2.money[0] << ","<< ID2.name << endl;
     writefile_1.close();
     writefile_2.close();
+
+    //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
 }
 
 void topup(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1673,20 +1752,27 @@ void main_PhoneBill(string id)
     float amount;
     //cout << "input your id : ";
     //cin >> id;
+    system("cls"); // clear the console
+    cout << "+_______________________________________+\n";
+    cout << "|               Phone Bill              |\n";
+    cout << "|=======================================|\n";
+    cout << "              How much money            \n";
+    cout << "              THB : "; cin >> amount;
+
     string userfile_1 = id + ".txt";
-    //cout << "What Game ID you want to top up: ";
-    //cin >> IdTopup;
     string userfile_2 = "888888888.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
     ImportFile_T(ID2, userfile_2 , true);
-    cout << "How much money do you want to top up: ";
-    cin >> amount;
     PhoneBill(amount, ID1, ID2);
+
+    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You top up money from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
+    //
+
     
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1694,6 +1780,8 @@ void main_PhoneBill(string id)
     writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(1000) << ID2.money[0] << ","<< ID2.name << endl;
     writefile_1.close();
     writefile_2.close();
+
+    //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
 }
 
 void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2) 
