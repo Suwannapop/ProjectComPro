@@ -986,7 +986,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
 
 }
 
-/*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ
+/*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ // Kong(ล่าสุดเอาไปยัดไว้ในฟังก์ชั่นหลักการโอนล่ะ)
 {
     if (amount > 0)
     {
@@ -1527,6 +1527,99 @@ void Withdraw(double amount, Dataformat &ID1)
     }
 }
 
+void payebill(double amount, Dataformat &ID1, Dataformat &ID2);
+
+int main_payebill()//ไฟฟ้า ไม่เขียนดีๆ ก๋อง ขก แก้ละตามนี้เลย555
+{
+    Dataformat ID1;
+    Dataformat ID2;
+    string id, Idbill;
+    double amount;
+    cout << "input your id : ";
+    cin >> id;
+    string userfile_1 = id + ".txt";
+    ImportFile(ID1, userfile_1);
+    cout << "What ID you want to pay bill : ";
+    cin >> Idbill;
+    string userfile_2 = Idbill + ".txt";
+    ofstream writefile_1, writefile_2; // importfile
+    ImportFile(ID2, userfile_2);
+    cout << "How much money ";
+    cin >> amount;
+    payebill(amount, ID1, ID2);
+    cout << "You Pay Bill from ID to ID \n"
+         << ID1.name << " -----> " << ID2.name << endl;
+    cout << "Your current balance is " << ID1.money[0] << endl;
+    
+    writefile_1.open(userfile_1);
+    writefile_2.open(userfile_2);
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000) << ID1.money[0] << ","<< ID1.name << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000) << ID2.money[0] << ","<< ID2.name << endl;
+    writefile_1.close();
+    writefile_2.close();
+}
+
+void payebill(double amount, Dataformat &ID1, Dataformat &ID2) 
+{
+    if (amount > ID1.money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
+    }
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
+}
+
+
+void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2);
+int main_paywaterbill()
+{
+    Dataformat ID1;
+    Dataformat ID2;
+    string id, IdWbill;
+    float amount;
+    //cout << "input your id : ";
+    //cin >> id;
+    string userfile_1 = id + ".txt";
+    ImportFile(ID1, userfile_1);
+    cout << "What ID you want to pay bill : ";
+    cin >> IdWbill;
+    string userfile_2 = IdWbill + ".txt";
+    ofstream writefile_1, writefile_2; // importfile
+    ImportFile_T(ID2, userfile_2 , true );
+    cout << "How much money ";
+    cin >> amount;
+    paywaterbill(amount, ID1, ID2);
+    cout << "You Pay Bill from ID to ID \n"
+         << ID1.name << " -----> " << ID2.name << endl;
+    cout << "Your current balance is " << ID1.money[0] << endl;
+    
+    writefile_1.open(userfile_1);
+    writefile_2.open(userfile_2);
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000) << ID1.money[0] << ","<< ID1.name << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000) << ID2.money[0] << ","<< ID2.name << endl;
+    writefile_1.close();
+    writefile_2.close();
+}
+
+void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2) 
+{
+    if (amount > ID1.money[0])
+    {
+        cout << "You don't have enough money\n";
+        cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
+    }
+    else
+    {
+        ID1.money[0] = ID1.money[0] - amount;
+        ID2.money[0] = ID2.money[0] + amount;
+    }
+}
+
+
 void topup(double amount, Dataformat &ID1, Dataformat &ID2);
 int main_topup()
 {
@@ -1776,9 +1869,11 @@ int main()
                 {
                 case 1:
                     cout << "Electricity bill";
+                    main_payebill();
                     break;
                 case 2:
-                    cout << "Water bill"; 
+                    cout << "Water bill";
+                    main_paywaterbill(); 
                     break;
                 case 3:
                     cout << "Gametopup"; 
