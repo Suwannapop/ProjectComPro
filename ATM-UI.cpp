@@ -220,10 +220,10 @@ void receipt_paybill(Dataformat ID1,float amount){
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
-            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  "<< setw(25) << setprecision(1000) << amount  << setw(3) <<"|\n";
+//            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
+            cout << "| Pay Amount :  "<< setw(23) << setprecision(1000) << amount  << setw(3) <<"|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(31) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| Total"<< setw(32) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -1599,12 +1599,12 @@ void main_payebill(string id)//ไฟฟ้า ไม่เขียนดีๆ
     ImportFile(ID2, userfile_2);
     payebill(amount, ID1, ID2);
 
-    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
+    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You Pay Bill from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
-    //
+    */
 
 
     writefile_1.open(userfile_1);
@@ -1615,6 +1615,8 @@ void main_payebill(string id)//ไฟฟ้า ไม่เขียนดีๆ
     writefile_2.close();
 
     //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
+    receipt_paybill(ID1,amount);
+
 }
 
 void payebill(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1654,12 +1656,12 @@ void main_paywaterbill(string id)
     ImportFile_T(ID2, userfile_2 , true);
     paywaterbill(amount, ID1, ID2);
 
-    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
+    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You Pay Bill from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
-    //
+    */
     
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1669,6 +1671,7 @@ void main_paywaterbill(string id)
     writefile_2.close();
 
     //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
+    receipt_paybill(ID1,amount);
 }
 
 void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1711,12 +1714,12 @@ void main_topup(string id)
     ImportFile_T(ID2, userfile_2 , true);
     topup(amount, ID1, ID2);
 
-    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
+    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You top up money from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
-    //
+    */
     
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1726,6 +1729,7 @@ void main_topup(string id)
     writefile_2.close();
 
     //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
+    receipt_paybill(ID1,amount);
 }
 
 void topup(double amount, Dataformat &ID1, Dataformat &ID2) 
@@ -1766,12 +1770,12 @@ void main_PhoneBill(string id)
     ImportFile_T(ID2, userfile_2 , true);
     PhoneBill(amount, ID1, ID2);
 
-    //ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
+    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
     cout << "You top up money from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
-    //
+    */
 
     
     writefile_1.open(userfile_1);
@@ -1782,6 +1786,7 @@ void main_PhoneBill(string id)
     writefile_2.close();
 
     //เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
+    receipt_paybill(ID1,amount);
 }
 
 void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2) 
