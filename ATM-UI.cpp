@@ -1575,21 +1575,18 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
 
 
 void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2);
-int main_paywaterbill()
+void main_paywaterbill(string id)
 {
     Dataformat ID1;
     Dataformat ID2;
-    string id, IdWbill;
     float amount;
     //cout << "input your id : ";
     //cin >> id;
     string userfile_1 = id + ".txt";
-    ImportFile(ID1, userfile_1);
-    cout << "What ID you want to pay bill : ";
-    cin >> IdWbill;
-    string userfile_2 = IdWbill + ".txt";
+    string userfile_2 = "666666666.txt";
     ofstream writefile_1, writefile_2; // importfile
-    ImportFile_T(ID2, userfile_2 , true );
+    ImportFile(ID1, userfile_1);
+    ImportFile_T(ID2, userfile_2 , true);
     cout << "How much money ";
     cin >> amount;
     paywaterbill(amount, ID1, ID2);
@@ -1869,15 +1866,15 @@ int main()
                 {
                 case 1:
                     cout << "Electricity bill";
-                    main_payebill();
+                    main_payebill(id);
                     break;
                 case 2:
                     cout << "Water bill";
-                    main_paywaterbill(); 
+                    main_paywaterbill(id); 
                     break;
                 case 3:
                     cout << "Gametopup"; 
-                    main_topup();
+                    main_topup(id);
                     break;
                 case 4:
                     cout << "Exit"; // ออก
