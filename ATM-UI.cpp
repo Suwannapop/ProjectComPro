@@ -903,7 +903,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
 }
 
 
-//แก้บัคตอนโอนเงิน
+//ใช้สำหรับแก้บัคตอนโอนเงิน
 void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 {
     ifstream data;
@@ -1573,6 +1573,44 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
     }
 }
 
+
+// higlight Payment menu
+void highlight_Payment_MENU(int index, bool selected)
+{
+    int l = 0;
+    if (selected)
+    {
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    cout << index << ". ";
+
+    // print the option label
+    switch (index)
+    {
+    case 1:
+        l = 22;
+        cout << "Electricity bill";
+        break;
+    case 2:
+        l = 28;
+        cout << "Water bill"; 
+        break;
+    case 3:
+        l = 29;
+        cout << "Gametopup"; 
+        break;
+    case 6:
+        l = 34;
+        cout << "Exit"; // ออก
+        break;
+    default:
+        break;
+    }
+
+    cout << "\033[0m" << setw(l) << " | \n"; // window
+}
+
+
 int main()
 {
     //system("Color 9");
@@ -1695,10 +1733,6 @@ int main()
 
         case 4:
             // Transfers money
-            system("cls"); // clear the console
-            cout << "+---------------------------------------+\n";
-            cout << "|            Transfers money            |\n";
-            cout << "+---------------------------------------+\n";
             mainTransferMoney(id);
             break;
         case 5:
@@ -1722,7 +1756,5 @@ int main()
     else
     {
         Login_failed();
-        Sleep(2000);
-        main();
     }
 }
