@@ -1574,6 +1574,8 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
 }
 
 
+
+
 // higlight Payment menu
 void highlight_Payment_MENU(int index, bool selected)
 {
@@ -1599,7 +1601,7 @@ void highlight_Payment_MENU(int index, bool selected)
         l = 29;
         cout << "Gametopup"; 
         break;
-    case 6:
+    case 4:
         l = 34;
         cout << "Exit"; // ออก
         break;
@@ -1736,9 +1738,60 @@ int main()
             mainTransferMoney(id);
             break;
         case 5:
-            system("cls"); // clear the console
-            cout << "Payment" ;
-            main_topup();
+            //payment
+            do
+                {
+                    system("cls");
+                    cout << "+---------------------------------------+\n";
+                    cout << "|              Payment MENU             |\n";
+                    //cout << "+---------------------------------------+\n";
+                    //cout << "  =====================================  \n";
+                   // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
+                    //cout << "  =====================================  \n";
+                    cout << "+---------------------------------------+\n";
+                    for (int i = 1; i < 5; i++)
+                    {
+                        cout << "| ";
+                        highlight_Payment_MENU(i, i == choice);
+                    }
+                    //cout << "|_______________________________________|";
+                    //cout << "\n+---------------------------------------+";
+                    cout << "|                 CPE102                |\n";
+                    cout << "+---------------------------------------+\n";
+
+                    ch = getch(); // wait for a key press
+
+                    // update the choice variable based on the arrow key input
+                    if (ch == 72 && choice > 1)
+                    { // up arrow key
+                        choice--;
+                    }
+                    else if (ch == 80 && choice < 4)
+                    { // down arrow key
+                        choice++;
+                    }
+                } while (ch != 13); // enter key
+                // display the selected option
+                switch (choice)
+                {
+                case 1:
+                    cout << "Electricity bill";
+                    break;
+                case 2:
+                    cout << "Water bill"; 
+                    break;
+                case 3:
+                    cout << "Gametopup"; 
+                    main_topup();
+                    break;
+                case 4:
+                    cout << "Exit"; // ออก
+                    main();
+                    break;
+                default:
+                    main();
+                    break;
+                    }
         case 6:
             // Exit
             system("cls"); // clear the console
