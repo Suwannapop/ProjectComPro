@@ -257,7 +257,7 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
         cout << "|                                       |\n";
         cout << "| Name :" << setw(31) << ID2.name << " |\n";
         cout << "|                                       |\n";
-        cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) << "|\n";
+//        cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) << "|\n";
         cout << "|                                       |\n";
         cout << "|               Skrt Bank <3            |\n";
         cout << "|_______________________________________|\n";
@@ -1084,7 +1084,10 @@ void mainTransferMoney(string id)
             cout << char(201) << "=======================================" << char(187) << endl;
             cout << char(186) << "             TransferMoney             " << char(186) << endl;
             cout << char(204) << "=======================================" << char(185) << endl;
-            cout << char(186) << "            I SUS I May Yes            " << char(186) << endl;
+            cout << char(186) << "            This is your ID            " << char(186) << endl;
+            cout << char(186) << "         can't transfer money          " << char(186) << endl;
+            cout << char(186) << "                                       " << char(186) << endl;
+            cout << char(204) << "=======================================" << char(185) << endl;
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
@@ -2038,30 +2041,30 @@ void highlight_Payment_MENU(int index, bool selected)
     switch (index)
     {
     case 1:
-        l = 22;
+        l = 20;
         cout << "Electricity Bill";
         break;
     case 2:
-        l = 28;
+        l = 26;
         cout << "Water Bill";
         break;
     case 3:
-        l = 28;
+        l = 26;
         cout << "Phone Bill";
         break;
     case 4:
-        l = 29;
+        l = 27;
         cout << "Gametopup";
         break;
     case 5:
-        l = 34;
+        l = 32;
         cout << "Exit"; // ออก
         break;
     default:
         break;
     }
 
-    cout << "\033[0m" << setw(l) << " | \n"; // window
+    cout << "\033[0m" << setw(l)  << char(186) << endl ; // window
 }
 
 int main()
@@ -2202,7 +2205,7 @@ int main()
                 cout << char(204) << "=======================================" << char(185) << endl;
                 for (int i = 1; i < 6; i++)
                 {
-                    cout << "| ";
+                    cout << char(186)<< " ";
                     highlight_Payment_MENU(i, i == choice);
                 }
                 // cout << "|_______________________________________|";
