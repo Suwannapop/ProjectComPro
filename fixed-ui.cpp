@@ -132,15 +132,16 @@ void receipt_depos(Dataformat ID1, float amount)
             system("cls"); // clear the console
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
-            cout << "|       Invalid! Please try again.      |\n";
+            cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
-            cout << "|                                       |";
+            cout << "|                                       |\n";
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                cout << "|";
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
-            cout << "\n|_______________________________________|\n";
+            cout << "|_______________________________________|\n";
 
             ch = getch(); // wait for a key press
 
@@ -230,15 +231,16 @@ void receipt_wdraw(Dataformat ID1, float amount)
             system("cls"); // clear the console
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
-            cout << "|       Invalid! Please try again.      |\n";
+            cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
-            cout << "|                                       |";
+            cout << "|                                       |\n";
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                cout << "|";
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
-            cout << "\n|_______________________________________|\n";
+            cout << "|_______________________________________|\n";
 
             ch = getch(); // wait for a key press
 
@@ -334,15 +336,16 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             system("cls"); // clear the console
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
-            cout << "|       Invalid! Please try again.      |\n";
+            cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
-            cout << "|                                       |";
+            cout << "|                                       |\n";
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                cout << "|";
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
-            cout << "\n|_______________________________________|\n";
+            cout << "|_______________________________________|\n";
 
             ch = getch(); // wait for a key press
 
@@ -433,15 +436,16 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             system("cls"); // clear the console
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
-            cout << "|       Invalid! Please try again.      |\n";
+            cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
-            cout << "|                                       |";
+            cout << "|                                       |\n";
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                cout << "|";
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
-            cout << "\n|_______________________________________|\n";
+            cout << "|_______________________________________|\n";
 
             ch = getch(); // wait for a key press
 
