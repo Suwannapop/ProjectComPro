@@ -1799,8 +1799,49 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         if (amount > ID1.money[0])
         {
-            cout << "You don't have enough money\n";
-            cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
+            do
+            {
+                system("cls"); // clear the console
+                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
+                cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
+                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(199) << "---------------------------------------" << char(182) << endl;
+                cout << char(186) << " Now you have money : " << fixed << setw(12) << setprecision(2) << ID1.money[0] << " THB " << char(186) << endl;
+                cout << char(199) << "---------------------------------------" << char(182) << endl;
+                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << endl
+                     << char(200) << "=======================================" << char(188) << endl;
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 1)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }
         }
         else
         {
