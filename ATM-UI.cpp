@@ -51,16 +51,16 @@ void receipt_depos(Dataformat ID1, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls");
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + RECEIPT +             |\n";
-            cout << "|                 PAYBILL               |\n";
+            cout << "|                 DEPOSIT               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "| Name :" << setw(31) << ID1.name << " |\n";
-            //            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  " << setw(23) << setprecision(1000) << amount << setw(3) << "|\n";
+            cout << "| Account :" << setw(28) << ID1.ID[0] << " |\n";
+            cout << "| Deposit Amount :  " << setw(19) << setprecision(1000) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "| Total" << setw(32) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
@@ -71,6 +71,7 @@ void receipt_depos(Dataformat ID1, float amount)
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
+                // cout << "|                                       |\n";
                 higlight_back_to_menu(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
@@ -91,6 +92,7 @@ void receipt_depos(Dataformat ID1, float amount)
         switch (choice)
         {
         case 1:
+            cout << "\n|           ";
             cout << "Back To Login Menu";
             main();
             break;
@@ -152,12 +154,12 @@ void receipt_wdraw(Dataformat ID1, float amount)
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + RECEIPT +             |\n";
-            cout << "|                 PAYBILL               |\n";
+            cout << "|                 WITHDRAW              |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "| Name :" << setw(31) << ID1.name << " |\n";
-            //            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  " << setw(23) << setprecision(1000) << amount << setw(3) << "|\n";
+            cout << "| Account :" << setw(28) << ID1.ID[0] << " |\n";
+            cout << "| Withdraw Amount : " << setw(19) << setprecision(1000) << amount << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "| Total" << setw(32) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
@@ -249,14 +251,20 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + RECEIPT +             |\n";
-            cout << "|                 PAYBILL               |\n";
+            cout << "|             TRANSFER MONEY            |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "| Name :" << setw(31) << ID1.name << " |\n";
-            //            cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
-            cout << "| Pay Amount :  " << setw(23) << setprecision(1000) << amount << setw(3) << "|\n";
-            cout << "|                                       |\n";
+            cout << "| Account :" << setw(28) << ID1.ID[0] << " |\n";
+            cout << "| Transfer Amount : " << setw(19) << setprecision(1000) << amount << " |\n";
             cout << "| Total" << setw(32) << setprecision(1000) << ID1.money[0] << setw(3) << "|\n";
+            cout << "|                                       |\n";
+            cout << "| ------------- transfer to ----------- |\n";
+            cout << "|                                       |\n";
+            cout << "| Name :" << setw(31) << ID2.name << " |\n";
+            cout << "| Account :" << setw(28) << ID2.ID[0] << " |\n";
+            cout << "| Total" << setw(32) << setprecision(1000) << ID2.money[0] << setw(3) << "|\n";
+            cout << "|                                       |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
@@ -1791,44 +1799,8 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         if (amount > ID1.money[0])
         {
-            do
-            {
-                system("cls"); // clear the console
-                cout << "+_______________________________________+\n";
-                cout << "|                 Deposit               |\n";
-                cout << "|       Invalid! Please try again.      |\n";
-                cout << "|=======================================|\n";
-                cout << "|                                       |";
-                // display the menu options
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                cout << "\n|_______________________________________|\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
         }
         else
         {
@@ -1885,44 +1857,8 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         if (amount > ID1.money[0])
         {
-            do
-            {
-                system("cls"); // clear the console
-                cout << "+_______________________________________+\n";
-                cout << "|                 Deposit               |\n";
-                cout << "|       Invalid! Please try again.      |\n";
-                cout << "|=======================================|\n";
-                cout << "|                                       |";
-                // display the menu options
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                cout << "\n|_______________________________________|\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
         }
         else
         {
@@ -1982,44 +1918,8 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         if (amount > ID1.money[0])
         {
-            do
-            {
-                system("cls"); // clear the console
-                cout << "+_______________________________________+\n";
-                cout << "|                 Deposit               |\n";
-                cout << "|       Invalid! Please try again.      |\n";
-                cout << "|=======================================|\n";
-                cout << "|                                       |";
-                // display the menu options
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                cout << "\n|_______________________________________|\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
         }
         else
         {
@@ -2077,44 +1977,8 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         if (amount > ID1.money[0])
         {
-            do
-            {
-                system("cls"); // clear the console
-                cout << "+_______________________________________+\n";
-                cout << "|                 Deposit               |\n";
-                cout << "|       Invalid! Please try again.      |\n";
-                cout << "|=======================================|\n";
-                cout << "|                                       |";
-                // display the menu options
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                cout << "\n|_______________________________________|\n";
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
+            cout << "You don't have enough money\n";
+            cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
         }
         else
         {
