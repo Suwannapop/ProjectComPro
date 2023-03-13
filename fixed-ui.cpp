@@ -189,13 +189,13 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID1.ID[0] <<  " |\n";
             cout << "| Transfer Amount : "<< fixed << setw(19) << setprecision(2) << amount <<  " |\n";
-            cout << "| Total : " << fixed << setw(32) << setprecision(2) << ID1.money[0] << setw(3) <<  "|\n";
+            cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID1.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ------------- transfer to ----------- |\n";
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID2.name <<  " |\n";
             cout << "| Account :"<< setw(28) << ID2.ID[0] <<  " |\n";
-            cout << "| Total" << fixed << setw(32) << setprecision(2) << ID2.money[0] << setw(3) <<  "|\n";
+            cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -251,7 +251,7 @@ void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
             cout << "| Total"<< setw(32) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ------------- transfer to ----------- |\n";
             cout << "|                                       |\n";
-            cout << "| Name :"<< setw(31) << ID2.name <<  " |\n";
+            cout << "| Name :"<< setw(31) << ID2.name <<   " |\n";
             cout << "|                                       |\n";
             cout << "| Total"<< setw(32) << setprecision(2) << ID2.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
@@ -1054,7 +1054,7 @@ void mainTransferMoney(string id)
     system("cls"); // clear the console
     cout << char(201) <<"=======================================" << char(187) << endl;
     cout << char(186) <<"             TransferMoney             " << char(186) << endl;
-    cout << char(204) <<"=======================================" << char(185) << endl;
+    cout << char(200) <<"=======================================" << char(188) << endl;
     cout << "        What ID you want to tranfer      \n";
     cout << "             ID : "; cin >> IdTranfer;
     string userfile_1 = id + ".txt";
@@ -1105,7 +1105,7 @@ void mainTransferMoney(string id)
 
 
     }else{
-    cout << char(204) <<"=======================================" << char(185) << endl;
+    cout  <<"========================================="  << endl;
     cout << "             How much money  \n";
     cout << "             THB : "; cin >> amount;
     if (amount > 0)
@@ -1118,9 +1118,10 @@ void mainTransferMoney(string id)
                 cout << char(201) <<"=======================================" << char(187) << endl;
                 cout << char(186) <<"             TransferMoney             " << char(186) << endl;
                 cout << char(204) <<"=======================================" << char(185) << endl;
+                cout << char(199) <<"---------------------------------------"<< char(182) << endl;
                 cout << char(186) <<"       You don't have enough money     " << char(186) << endl;
                 cout << char(186) <<" Now you have money : " << setw(12) << ID1.money[0] <<  " THB " << char(186) << endl;
-                cout << char(186) <<"         You can't tranfer money       " << char(186) << endl;
+                cout << char(199) <<"---------------------------------------"<< char(182) << endl;
                 cout << char(204) <<"=======================================" << char(185) << endl;
                 cout << char(186) <<"                                       " << char(186) << endl;
                     // display the menu options
@@ -1128,7 +1129,7 @@ void mainTransferMoney(string id)
                     {
                         higlight_back_to_menu(i, i == choice);
                     }
-                    cout << char(204) <<"=======================================" << char(185) << endl;
+                    cout  << endl << char(200) <<"=======================================" << char(188) << endl;
 
                     ch = getch(); // wait for a key press
 
@@ -1374,7 +1375,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
-            cout << "| ";
+            cout  << char(186) << " ";
             higlight_Withdraw(i, i == choice);
         }
         // cout << "|                                     |\n";
@@ -1559,7 +1560,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
                     {
                         higlight_back_to_menu(i, i == choice);
                     }
-                    cout << char(200) <<"=======================================" << char(188) << endl;
+                    cout  << endl << char(200) <<"=======================================" << char(188) << endl;
 
                     ch = getch(); // wait for a key press
 
