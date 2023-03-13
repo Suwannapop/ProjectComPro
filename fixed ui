@@ -19,6 +19,30 @@ struct Dataformat
     vector<double> money;
     string name;
 };
+// higlight_back_to_menu_for_bill use in receipt
+void higlight_back_to_menu_for_bill(int index, bool selected)
+{
+    int l = 0;
+    cout  << char(186) << "           "; 
+    if (selected)
+    {
+        //cout  << "\n|           "; 
+        cout << "\033[1;7m"; // set background and foreground color to white and black
+    }
+    //cout << index << ". ";
+
+    // print the option label  cout << "|           Back To Login Menu          |\n";
+    switch (index)
+    {
+    case 1:
+        l = 11;
+        cout  << "Back To Login Menu"; 
+        break;
+    default:
+        break;
+    }
+    cout << "\033[0m" << setw(l) << " |\n"; //<< setw(l)
+} 
 
 // higlight_back_to_menu use in receipt
 void higlight_back_to_menu(int index, bool selected)
@@ -69,7 +93,7 @@ void receipt_depos(Dataformat ID1,float amount){
             for (int i = 1; i < 2; i++)
             {
             //cout << "|                                       |\n";
-                higlight_back_to_menu(i, i == choice);
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
 
@@ -122,7 +146,7 @@ void receipt_wdraw(Dataformat ID1,float amount){
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
 
@@ -180,7 +204,7 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
 
@@ -235,7 +259,7 @@ void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
-                higlight_back_to_menu(i, i == choice);
+                higlight_back_to_menu_for_bill(i, i == choice);
             }
             cout << "\n|_______________________________________|\n";
 
