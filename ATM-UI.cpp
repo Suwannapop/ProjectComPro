@@ -291,7 +291,7 @@ void higlight_new_account_Yes_or_No(int index, bool selected)
 }
 
 // new_account
-int new_account()
+void new_account()
 {
     system("cls");
     int UserPass1, UserPass2, UserID, money;
@@ -495,7 +495,7 @@ int new_account()
 void deposit(Dataformat &ID1, string userfile_1);
 void ImportFile(Dataformat &ID, string fileindex, bool check = false);
 
-int main_deposit(Dataformat ID1, string userfile_1)
+void main_deposit(Dataformat ID1, string userfile_1)
 {
     ImportFile(ID1, userfile_1);
     deposit(ID1, userfile_1);
@@ -770,7 +770,7 @@ void higlight_Yes_or_No(int index, bool selected)
 }
 
 // Login failed
-int Login_failed()
+void Login_failed()
 {
     do
     {
@@ -822,7 +822,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
     double balnace;
     char name[99];
 
-    if (check = false)
+    if (check == false)
     {
         if (data.is_open())
         {
@@ -836,7 +836,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             }  
         }
     }
-    else if (check = true)
+    else if (check == true)
     {
         if (data.is_open())
         {
@@ -913,7 +913,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
     double balnace;
     char name[99];
     
-    if (check = false)
+    if (check == false)
     {
         if (data.is_open())
         {
@@ -927,7 +927,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
             }  
         }
     }
-    else if (check = true)
+    else if (check == true)
     {
         if (data.is_open())
         {
@@ -1242,7 +1242,7 @@ void highlight_ATM_MENU(int index, bool selected)
 }
 
 // Login ATM
-int login(string &id, int &password)
+void login(string &id, int &password)
 {
     char ch;
     // Display login window frame
@@ -1325,7 +1325,7 @@ void higlight_Withdraw(int index, bool selected)
 
 
 void Withdraw(double, Dataformat&);
-int mainWithdraw(Dataformat ID1 , string userfile_1)
+void mainWithdraw(Dataformat ID1 , string userfile_1)
 {
     float amount;
     ofstream writefile_1;
