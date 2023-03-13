@@ -236,6 +236,7 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
 }
 
 void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
+    if(ID1.money[0] - amount > 0 ){
     do
         {
             system("cls"); // clear the console
@@ -246,14 +247,14 @@ void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID1.name <<  " |\n";
-            cout << "| Pay Amount :  "<< setw(23) << setprecision(2) << amount  << setw(3) <<"|\n";
+            cout << "| Pay Amount :  "<< fixed << setw(23) << setprecision(2) << amount  << setw(3) <<"|\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(32) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
+            cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ------------- transfer to ----------- |\n";
             cout << "|                                       |\n";
             cout << "| Name :"<< setw(31) << ID2.name <<   " |\n";
             cout << "|                                       |\n";
-            cout << "| Total"<< setw(32) << setprecision(2) << ID2.money[0] << setw(3) <<  "|\n";
+            cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) <<  "|\n";
             cout << "|                                       |\n";
             cout << "|               Skrt Bank <3            |\n";
             cout << "|_______________________________________|\n";
@@ -289,6 +290,49 @@ void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
             main();
             break;
         }
+
+    }else
+    {
+        do
+        {
+            system("cls"); // clear the console
+            cout << char(201) <<"=======================================" << char(187) << endl;
+            cout << char(186) <<"                 Deposit               " << char(186) << endl;
+            cout << char(186) <<"       Invalid! Please try again.      " << char(186) << endl;
+            cout << char(204) <<"=======================================" << char(185) << endl;
+            cout << char(186) <<"                                       " << char(186) << endl;
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << endl << char(200) <<"=======================================" << char(188) << endl;
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 1)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            main();
+            break;
+        }
+        
+    }
 }
 
 
@@ -1120,7 +1164,7 @@ void mainTransferMoney(string id)
                 cout << char(204) <<"=======================================" << char(185) << endl;
                 cout << char(199) <<"---------------------------------------"<< char(182) << endl;
                 cout << char(186) <<"       You don't have enough money     " << char(186) << endl;
-                cout << char(186) <<" Now you have money : " << setw(12) << ID1.money[0] <<  " THB " << char(186) << endl;
+                cout << char(186) <<" Now you have money : "<< fixed << setw(12) << ID1.money[0] <<  " THB " << char(186) << endl;
                 cout << char(199) <<"---------------------------------------"<< char(182) << endl;
                 cout << char(204) <<"=======================================" << char(185) << endl;
                 cout << char(186) <<"                                       " << char(186) << endl;
@@ -1465,7 +1509,7 @@ int mainWithdraw(Dataformat ID1 , string userfile_1)
                     cout << char(186) <<"       You don't have enough money.    " << char(186) << endl;
                     cout << char(204) <<"=======================================" << char(185) << endl;
                     cout << char(199) <<"---------------------------------------"<< char(182) << endl;
-                    cout << char(186) <<" Now you have money : " << fixed<< setw(12) << ID1.money[0] <<  " THB " << char(186) << endl;
+                    cout << char(186) <<" Now you have money : " << fixed << setw(12) << ID1.money[0] <<  " THB " << char(186) << endl;
                     cout << char(199) <<"---------------------------------------"<< char(182) << endl;
                     cout << char(204) <<"=======================================" << char(185) << endl;
                     cout << char(186) <<"                                       " << char(186) << endl;
