@@ -236,7 +236,6 @@ void receipt_transf(Dataformat ID1,Dataformat ID2,float amount){
 }
 
 void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
-    if(ID1.money[0] - amount > 0 ){
     do
         {
             system("cls"); // clear the console
@@ -290,49 +289,6 @@ void receipt_paybill(Dataformat ID1,Dataformat ID2,float amount){
             main();
             break;
         }
-
-    }else
-    {
-        do
-        {
-            system("cls"); // clear the console
-            cout << char(201) <<"=======================================" << char(187) << endl;
-            cout << char(186) <<"                 Deposit               " << char(186) << endl;
-            cout << char(186) <<"       Invalid! Please try again.      " << char(186) << endl;
-            cout << char(204) <<"=======================================" << char(185) << endl;
-            cout << char(186) <<"                                       " << char(186) << endl;
-            // display the menu options
-            for (int i = 1; i < 2; i++)
-            {
-                higlight_back_to_menu(i, i == choice);
-            }
-            cout << endl << char(200) <<"=======================================" << char(188) << endl;
-
-            ch = getch(); // wait for a key press
-
-            // update the choice variable based on the arrow key input
-            if (ch == 72 && choice > 1)
-            { // up arrow key
-                choice--;
-            }
-            else if (ch == 80 && choice < 1)
-            { // down arrow key
-                choice++;
-            }
-        } while (ch != 13); // enter key
-        // display the selected option
-        switch (choice)
-        {
-        case 1:
-            cout << "Back To Login Menu";
-            main();
-            break;
-        default:
-            main();
-            break;
-        }
-        
-    }
 }
 
 
