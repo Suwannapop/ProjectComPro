@@ -509,7 +509,7 @@ int new_account()
     string name;
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "           Create your account         " << char(186) << endl;
-    cout << char(186) << "      Want to create a new account?    " << char(186) << endl;
+    cout << char(186) << "     Do Want to create a new account?  " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
     cout << " What is your name: ";
     getline(cin, name);
@@ -857,7 +857,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         system("cls"); // clear the console
         cout << char(201) << "=======================================" << char(187) << endl;
         cout << char(186) << "                Deposit                " << char(186) << endl;
-        cout << char(186) << "           Enter your amout.           " << char(186) << endl;
+        cout << char(186) << "           Enter your amount.          " << char(186) << endl;
         cout << char(200) << "=======================================" << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
@@ -1080,11 +1080,11 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 system("cls");
                 cout << char(201) << "=======================================" << char(187) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(186) << "        Don't have ID in Databas       " << char(186) << endl;
+                cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(204) << "=======================================" << char(185) << endl;
                 cout << char(186) << "     If you don't have an account      " << char(186) << endl;
-                cout << char(186) << "     Want to create a new account?     " << char(186) << endl;
+                cout << char(186) << "   Do Want to create a new account?    " << char(186) << endl;
                 cout << char(186) << "               ";
                 // display the menu options
                 // higlight_Yes_or_No
@@ -1170,7 +1170,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
                 system("cls");
                 cout << char(201) << "=======================================" << char(187) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(186) << "        Don't have ID in Databas       " << char(186) << endl;
+                cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(204) << "=======================================" << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
@@ -1245,7 +1245,7 @@ void mainTransferMoney(string id)
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "             TransferMoney             " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "        What ID you want to tranfer      \n";
+    cout << "      Do What ID you want to tranfer   \n";
     cout << "             ID : ";
     cin >> IdTranfer;
     string userfile_1 = id + ".txt";
@@ -1635,7 +1635,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
         system("cls"); // clear the console
         cout << char(201) << "=======================================" << char(187) << endl;
         cout << char(186) << "               Withdraw                " << char(186) << endl;
-        cout << char(186) << "           Enter your amout.           " << char(186) << endl;
+        cout << char(186) << "           Enter your amount.          " << char(186) << endl;
         cout << char(200) << "=======================================" << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
