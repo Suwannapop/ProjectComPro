@@ -3,7 +3,8 @@
     "iostream": "cpp",
     "fstream": "cpp",
     "iosfwd": "cpp",
-    "fixed ui": "cpp"
+    "fixed ui": "cpp",
+    "ostream": "cpp"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "clang",
