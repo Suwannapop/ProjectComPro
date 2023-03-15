@@ -12,6 +12,7 @@ struct Dataformat
     vector<int> ID;
     vector<double> money;
     string name;
+    
 };
 
 void topup(double amount, Dataformat &ID1, Dataformat &ID2);
@@ -74,7 +75,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
         cout << "You don't have enough money\n";
         cout << "Now you have money : " << ID1.money[0] << " You can't tranfer money\n";
     }
-    
+
     else
     {
         ID1.money[0] = ID1.money[0] - amount;
