@@ -768,10 +768,14 @@ void higlight_deposit(int index, bool selected)
         cout << "500 THB";
         break;
     case 6:
+        l = 28;
+        cout << "1000 THB";
+        break;
+    case 7:
         l = 10;
         cout << "Choose your own Deposition";
         break;
-    case 7:
+    case 8:
         l = 19;
         cout << "cancel Deposition";
         break;
@@ -796,7 +800,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         cout << char(186) << "                Deposit                " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 9; i++)
         {
             cout << char(186) << " ";
             higlight_deposit(i, i == choice);
@@ -811,7 +815,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         { // up arrow key
             choice--;
         }
-        else if (ch == 80 && choice < 7)
+        else if (ch == 80 && choice < 8)
         { // down arrow key
             choice++;
         }
@@ -867,6 +871,15 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 500);
         break;
     case 6:
+        // cout << "5 - $500" ;
+        ID1.money[0] = ID1.money[0] + 1000;
+        notfinished = false;
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
+        writefile_1.close();
+        receipt_depos(ID1, 1000);
+        break;
+    case 7:
         // cout << "6 - choose your own deposition amount" ;
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
@@ -929,7 +942,7 @@ void deposit(Dataformat &ID1, string userfile_1)
             break;
         }
 
-    case 7:
+    case 8:
         // cout << "7 - cancel deposition \n";
         notfinished = false;
         do
@@ -1551,10 +1564,14 @@ void higlight_Withdraw(int index, bool selected)
         cout << "500 THB";
         break;
     case 6:
+        l = 28;
+        cout << "1000 THB";
+        break;
+    case 7:
         l = 12;
         cout << "Choose your own Withdraw";
         break;
-    case 7:
+    case 8:
         l = 21;
         cout << "cancel Withdraw";
         break;
@@ -1566,7 +1583,7 @@ void higlight_Withdraw(int index, bool selected)
 }
 
 void Withdraw(double, Dataformat &);
-int mainWithdraw(Dataformat ID1, string userfile_1)
+void mainWithdraw(Dataformat ID1, string userfile_1)
 {
     float amount;
     ofstream writefile_1;
@@ -1581,7 +1598,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
         // cout << char(186) <<"       You don't have enough money.    " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 9; i++)
         {
             cout << char(186) << " ";
             higlight_Withdraw(i, i == choice);
@@ -1596,7 +1613,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
         { // up arrow key
             choice--;
         }
-        else if (ch == 80 && choice < 7)
+        else if (ch == 80 && choice < 8)
         { // down arrow key
             choice++;
         }
@@ -1647,6 +1664,14 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 500);
         break;
     case 6:
+        // cout << "5 - $500" ;
+        ID1.money[0] = ID1.money[0] - 1000;
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
+        writefile_1.close();
+        receipt_wdraw(ID1, 100);
+        break;
+    case 7:
         // cout << "6 - choose your own Withdraw amount" ;
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
@@ -1755,7 +1780,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
             break;
         }
 
-    case 7:
+    case 8:
         // cout << "7 - cancel deposition \n";
         do
         {
