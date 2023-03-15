@@ -305,7 +305,6 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             cout << "|                                       |\n";
             cout << "| Name :" << setw(31) << ID2.name << " |\n";
             cout << "| Account :" << setw(28) << ID2.ID[0] << " |\n";
-            cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
