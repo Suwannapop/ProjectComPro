@@ -38,7 +38,7 @@ int straight_line(){
 void higlight_back_to_menu_for_bill(int index, bool selected)
 {
     int l = 0;
-    cout << "            ";
+    cout << "              ";
     if (selected)
     {
         // cout  << "\n|           ";
@@ -50,8 +50,8 @@ void higlight_back_to_menu_for_bill(int index, bool selected)
     switch (index)
     {
     case 1:
-        l = 11;
-        cout << "Back To Login Menu";
+        l = 14;
+        cout << "Back To Login";
         break;
     default:
         break;
@@ -63,7 +63,7 @@ void higlight_back_to_menu_for_bill(int index, bool selected)
 void higlight_back_to_menu(int index, bool selected)
 {
     int l = 0;
-    cout << char(186) << "           ";
+    cout << char(186) << "             ";
     if (selected)
     {
         // cout  << "\n|           ";
@@ -75,8 +75,8 @@ void higlight_back_to_menu(int index, bool selected)
     switch (index)
     {
     case 1:
-        l = 11;
-        cout << "Back To Login Menu";
+        l = 14;
+        cout << "Back To Login";
         break;
     default:
         break;
@@ -273,7 +273,7 @@ void receipt_wdraw(Dataformat ID1, float amount)
         switch (choice)
         {
         case 1:
-            cout << "Back To Login Menu";
+            cout << "Back To Login ";
             main();
             break;
         default:
@@ -2264,13 +2264,12 @@ void highlight_Payment_MENU(int index, bool selected)
 
 int main()
 {
-
     int password , pass_id;
     string id;
     Dataformat ID1;
     // login
     login(id, password);
-    string fileindex = id + ".txt";
+    string fileindex = id + ".txt"; // id.txt
     ImportFile(ID1, fileindex);
     ifstream myfile;
     myfile.open(id + ".txt");
