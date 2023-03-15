@@ -1923,6 +1923,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
 }
 
 void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2);
+
 void main_paywaterbill(string id)
 {
     Dataformat ID1;
@@ -1931,6 +1932,8 @@ void main_paywaterbill(string id)
     // cout << "input your id : ";
     // cin >> id;
     string userfile_1 = id + ".txt";
+    // cout << "What Game ID you want to top up: ";
+    // cin >> IdTopup;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Water Bill              " << char(186) << endl;
@@ -1946,7 +1949,7 @@ void main_paywaterbill(string id)
     paywaterbill(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
-    cout << "You Pay Bill from ID to ID \n"
+    cout << "You top up money from ID to ID \n"
          << ID1.name << " -----> " << ID2.name << endl;
     cout << "Your current balance is " << ID1.money[0] << endl;
     Sleep(2000);
@@ -1968,6 +1971,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
     if (amount > 0)
     {
         if (amount > ID1.money[0])
+        {
             do
             {
                 system("cls"); // clear the console
@@ -2016,6 +2020,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
     {
         ID1.money[0] = ID1.money[0] - amount;
         ID2.money[0] = ID2.money[0] + amount;
+         }
     }
 }
 
