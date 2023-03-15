@@ -851,11 +851,11 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] + 200;
-        receipt_depos(ID1, 200);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
+        receipt_depos(ID1, 200);
         break;
     case 5:
         // cout << "5 - $500" ;
@@ -1843,7 +1843,7 @@ void main_payebill(string id) // ไฟฟ้า ไม่เขียนดี�
     string userfile_2 = "777777777.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
-    ImportFile(ID2, userfile_2);
+    ImportFile_T(ID2, userfile_2, true);
     payebill(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
@@ -1930,6 +1930,7 @@ void main_paywaterbill(string id)
     float amount;
     // cout << "input your id : ";
     // cin >> id;
+    string userfile_1 = id + ".txt";
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Water Bill              " << char(186) << endl;
@@ -1938,7 +1939,6 @@ void main_paywaterbill(string id)
     cout << "              THB : ";
     cin >> amount;
 
-    string userfile_1 = id + ".txt";
     string userfile_2 = "666666666.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
@@ -2024,7 +2024,6 @@ void main_topup(string id)
 {
     Dataformat ID1;
     Dataformat ID2;
-    // string id, IdTopup;
     float amount;
     // cout << "input your id : ";
     // cin >> id;
@@ -2054,8 +2053,8 @@ void main_topup(string id)
 
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
-    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(2) << ID1.money[0] << "," << ID1.name << endl;
-    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(2) << ID2.money[0] << "," << ID2.name << endl;
+    writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << setprecision(10000) << ID1.money[0] << "," << ID1.name << endl;
+    writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << setprecision(10000) << ID2.money[0] << "," << ID2.name << endl;
     writefile_1.close();
     writefile_2.close();
 
