@@ -80,3 +80,5 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
         ID2.money[0] = ID2.money[0] + amount;
     }
 }
+
+
