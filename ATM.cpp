@@ -1479,7 +1479,7 @@ int login(string &id, int &password)
     // Display prompts for ID and password
     cout << "\n Enter your ID: ";
     cin >> id;
-    cout << " Enter your password: ";
+    cout << " Enter your Password: ";
 
     // Read in password character by character without displaying on screen
     password = 0;
@@ -1819,7 +1819,7 @@ void main_payebill(string id) // ไฟฟ้า ไม่เขียนดี�
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "           Electricity Bill            " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -1918,7 +1918,7 @@ void main_paywaterbill(string id)
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "               Water Bill              " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -2019,7 +2019,7 @@ void main_topup(string id)
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "               Game Topup              " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "   How much money do you want to top up \n";
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -2118,7 +2118,7 @@ void main_PhoneBill(string id)
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "               Phone Bill              " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -2231,8 +2231,8 @@ void highlight_Payment_MENU(int index, bool selected)
         cout << "Phone Bill";
         break;
     case 4:
-        l = 27;
-        cout << "Gametopup";
+        l = 25;
+        cout << "Game Top Up";
         break;
     case 5:
         l = 32;
@@ -2247,21 +2247,8 @@ void highlight_Payment_MENU(int index, bool selected)
 
 int main()
 {
-    // system("Color 9");
-    /*  0 = Black       8 = Gray
-        1 = Blue        9 = Light Blue
-        2 = Green       A = Light Green
-        3 = Aqua        B = Light Aqua
-        4 = Red         C = Light Red
-        5 = Purple      D = Light Purple
-        6 = Yellow      E = Light Yellow
-        7 = White       F = Bright White 
-    */
 
-
-
-    int password;
-    int pass_id;
+    int password , pass_id;
     string id;
     Dataformat ID1;
     // login
@@ -2422,7 +2409,7 @@ int main()
                 main_PhoneBill(id);
                 break;
             case 4:
-                cout << "Gametopup";
+                cout << "Game Top Up";
                 main_topup(id);
                 break;
             case 5:
