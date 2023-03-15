@@ -1,1 +1,1 @@
-7777,777777777,100,ElectricityBill
+7777,777777777,0,ElectricityBill
