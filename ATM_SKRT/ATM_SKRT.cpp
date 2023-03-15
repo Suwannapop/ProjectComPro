@@ -19,6 +19,21 @@ struct Dataformat
     vector<double> money;
     string name;
 };
+
+int windows(){
+    for (int i = 0; i < 39 ; i++)
+    {
+        cout << char(205);
+    }
+}
+
+int straight_line(){
+    for (int i = 0; i < 39 ; i++)
+    {
+        cout << char(196);
+    }
+}
+
 // higlight_back_to_menu_for_bill use in receipt
 void higlight_back_to_menu_for_bill(int index, bool selected)
 {
@@ -507,10 +522,10 @@ int new_account()
     system("cls");
     int UserPass1, UserPass2, UserID, money;
     string name;
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "           Create your account         " << char(186) << endl;
-    cout << char(186) << "     Do Want to create a new account?  " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
+    cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
+    cout << char(200) ; windows(); cout << char(188) << endl;
     cout << " What is your name: ";
     getline(cin, name);
     cin >> name;
@@ -569,9 +584,9 @@ int new_account()
                 do
                 {
                     system("cls"); // clear the console
-                    cout << char(201) << "=======================================" << char(187) << endl;
+                    cout << char(201) ; windows(); cout << char(187) << endl;
                     cout << char(186) << "          Created successfully         " << char(186) << endl;
-                    cout << char(204) << "=======================================" << char(185) << endl;
+                    cout << char(204) ; windows(); cout << char(185) << endl;
                     cout << char(186) << "                                       " << char(186) << endl;
                     cout << char(186) << " Created successfully " << setw(16) << name << " " << char(186) << endl;
                     cout << char(186) << " Now you have money : " << setw(12) << money << " THB " << char(186) << endl;
@@ -583,7 +598,7 @@ int new_account()
                         higlight_back_to_menu(i, i == choice);
                     }
                     cout << endl
-                         << char(200) << "=======================================" << char(188) << endl;
+                         << char(200) ; windows(); cout << char(188) << endl;
 
                     ch = getch(); // wait for a key press
 
@@ -615,9 +630,9 @@ int new_account()
             do
             {
                 system("cls");
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "              Invalid amount           " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << setw(30) << "Please try again." << setw(10) << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
 
@@ -629,7 +644,7 @@ int new_account()
                     higlight_new_account_Yes_or_No(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -665,9 +680,9 @@ int new_account()
         do
         {
             system("cls");
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "          Passwords do not match       " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << setw(30) << "Please try again." << setw(10) << char(186) << endl;
             cout << char(199) << "---------------------------------------" << char(182);
             // display the menu options
@@ -678,7 +693,7 @@ int new_account()
                 higlight_new_account_Yes_or_No(i, i == choice);
             }
             cout << endl
-                 << char(200) << "=======================================" << char(188) << endl;
+                 << char(200) ; windows(); cout << char(188) << endl;
 
             ch = getch(); // wait for a key press
 
@@ -778,9 +793,9 @@ void deposit(Dataformat &ID1, string userfile_1)
     do
     {
         system("cls"); // clear the console
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                Deposit                " << char(186) << endl;
-        cout << char(204) << "=======================================" << char(185) << endl;
+        cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
@@ -788,7 +803,7 @@ void deposit(Dataformat &ID1, string userfile_1)
             higlight_deposit(i, i == choice);
         }
         // cout << "|                                     |\n";
-        cout << char(200) << "=======================================" << char(188) << endl;
+        cout << char(200) ; windows(); cout << char(188) << endl;
 
         ch = getch(); // wait for a key press
 
@@ -855,10 +870,10 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 6:
         // cout << "6 - choose your own deposition amount" ;
         system("cls"); // clear the console
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                Deposit                " << char(186) << endl;
         cout << char(186) << "           Enter your amount.          " << char(186) << endl;
-        cout << char(200) << "=======================================" << char(188) << endl;
+        cout << char(200) ; windows(); cout << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
         if (amount > 0)
@@ -876,10 +891,10 @@ void deposit(Dataformat &ID1, string userfile_1)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                Deposit                " << char(186) << endl;
                 cout << char(186) << "       Invalid! Please try again.      " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -887,7 +902,7 @@ void deposit(Dataformat &ID1, string userfile_1)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -921,10 +936,10 @@ void deposit(Dataformat &ID1, string userfile_1)
         do
         {
             system("cls"); // clear the console
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "                Deposit                " << char(186) << endl;
             cout << char(186) << "          Deposition canceled.         " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
             // display the menu options
             for (int i = 1; i < 2; i++)
@@ -932,7 +947,7 @@ void deposit(Dataformat &ID1, string userfile_1)
                 higlight_back_to_menu(i, i == choice);
             }
             cout << endl
-                 << char(200) << "=======================================" << char(188) << endl;
+                 << char(200) ; windows(); cout << char(188) << endl;
 
             ch = getch(); // wait for a key press
 
@@ -998,10 +1013,10 @@ int Login_failed()
     do
     {
         system("cls");
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "              Login failed.            " << char(186) << endl;
         cout << char(186) << "        Incorrect ID or password.      " << char(186) << endl;
-        cout << char(204) << "=======================================" << char(185) << endl;
+        cout << char(204) ; windows(); cout << char(185) << endl;
         cout << char(186) << setw(29) << "Please try again." << setw(11) << char(186) << endl;
         cout << char(199) << "---------------------------------------" << char(182) << endl;
         cout << char(186) << "                                       " << char(186) << endl;
@@ -1011,7 +1026,7 @@ int Login_failed()
             higlight_back_to_menu(i, i == choice);
         }
         cout << endl
-             << char(200) << "=======================================" << char(188) << endl;
+             << char(200) ; windows(); cout << char(188) << endl;
 
         ch = getch(); // wait for a key press
 
@@ -1078,13 +1093,13 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             do
             {
                 system("cls");
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "     If you don't have an account      " << char(186) << endl;
-                cout << char(186) << "   Do Want to create a new account?    " << char(186) << endl;
+                cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
                 cout << char(186) << "               ";
                 // display the menu options
                 // higlight_Yes_or_No
@@ -1094,7 +1109,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 }
                 cout << "               " << char(186);
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1168,11 +1183,11 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
             do
             {
                 system("cls");
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -1180,7 +1195,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1242,10 +1257,11 @@ void mainTransferMoney(string id)
     string IdTranfer;
     float amount;
     system("cls"); // clear the console
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "             TransferMoney             " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "      Do What ID you want to tranfer   \n";
+    cout << char(200) ; windows(); cout << char(188) << endl;
+    cout << "           Destination Account         \n";   
+//    cout << "      Do What ID you want to tranfer   \n";
     cout << "             ID : ";
     cin >> IdTranfer;
     string userfile_1 = id + ".txt";
@@ -1259,20 +1275,20 @@ void mainTransferMoney(string id)
         do
         {
             system("cls"); // clear the console
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "             TransferMoney             " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "            This is your ID            " << char(186) << endl;
             cout << char(186) << "         can't transfer money          " << char(186) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             // display the menu options
             for (int i = 1; i < 2; i++)
             {
                 higlight_back_to_menu(i, i == choice);
             }
             cout << endl
-                 << char(200) << "=======================================" << char(188) << endl;
+                 << char(200) ; windows(); cout << char(188) << endl;
 
             ch = getch(); // wait for a key press
 
@@ -1300,7 +1316,8 @@ void mainTransferMoney(string id)
     }
     else
     {
-        cout << "=========================================" << endl;
+        straight_line(); cout << char(196) << char(196)  << endl;
+        //cout << "=========================================" << endl;
         cout << "             How much money  \n";
         cout << "             THB : ";
         cin >> amount;
@@ -1311,14 +1328,14 @@ void mainTransferMoney(string id)
                 do
                 {
                     system("cls"); // clear the console
-                    cout << char(201) << "=======================================" << char(187) << endl;
+                    cout << char(201) ; windows(); cout << char(187) << endl;
                     cout << char(186) << "             TransferMoney             " << char(186) << endl;
-                    cout << char(204) << "=======================================" << char(185) << endl;
+                    cout << char(204) ; windows(); cout << char(185) << endl;
                     cout << char(199) << "---------------------------------------" << char(182) << endl;
                     cout << char(186) << "       You don't have enough money     " << char(186) << endl;
                     cout << char(186) << " Now you have money : " << fixed << setw(12) << ID1.money[0] << " THB " << char(186) << endl;
                     cout << char(199) << "---------------------------------------" << char(182) << endl;
-                    cout << char(204) << "=======================================" << char(185) << endl;
+                    cout << char(204) ; windows(); cout << char(185) << endl;
                     cout << char(186) << "                                       " << char(186) << endl;
                     // display the menu options
                     for (int i = 1; i < 2; i++)
@@ -1326,7 +1343,7 @@ void mainTransferMoney(string id)
                         higlight_back_to_menu(i, i == choice);
                     }
                     cout << endl
-                         << char(200) << "=======================================" << char(188) << endl;
+                         << char(200) ; windows(); cout << char(188) << endl;
 
                     ch = getch(); // wait for a key press
 
@@ -1373,18 +1390,18 @@ void mainTransferMoney(string id)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             TransferMoney             " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "            invalid amount             " << char(186) << endl; // ม่ายมีตังค่าาา แก้ให้ถูกด้วย
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
                 }
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1473,13 +1490,13 @@ int login(string &id, int &password)
     char ch;
     // Display login window frame
     system("cls");
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Login ATM               " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
+    cout << char(200) ; windows(); cout << char(188) << endl;
     // Display prompts for ID and password
     cout << "\n Enter your ID: ";
     cin >> id;
-    cout << " Enter your password: ";
+    cout << " Enter your Password: ";
 
     // Read in password character by character without displaying on screen
     password = 0;
@@ -1560,10 +1577,10 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
     do
     {
         system("cls"); // clear the console
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                Withdraw               " << char(186) << endl;
         // cout << char(186) <<"       You don't have enough money.    " << char(186) << endl;
-        cout << char(204) << "=======================================" << char(185) << endl;
+        cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
         for (int i = 1; i < 8; i++)
         {
@@ -1571,7 +1588,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
             higlight_Withdraw(i, i == choice);
         }
         // cout << "|                                     |\n";
-        cout << char(200) << "=======================================" << char(188) << endl;
+        cout << char(200) ; windows(); cout << char(188) << endl;
 
         ch = getch(); // wait for a key press
 
@@ -1633,10 +1650,10 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
     case 6:
         // cout << "6 - choose your own Withdraw amount" ;
         system("cls"); // clear the console
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "               Withdraw                " << char(186) << endl;
         cout << char(186) << "           Enter your amount.          " << char(186) << endl;
-        cout << char(200) << "=======================================" << char(188) << endl;
+        cout << char(200) ; windows(); cout << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
         if (ID1.money[0] - amount >= 0 && amount >= 0)
@@ -1653,14 +1670,14 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                Withdraw               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << ID1.money[0] << " THB " << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -1668,7 +1685,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1700,10 +1717,10 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                Withdraw               " << char(186) << endl;
                 cout << char(186) << "       Invalid! Please try again.      " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -1711,7 +1728,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1744,10 +1761,10 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
         do
         {
             system("cls"); // clear the console
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "                Withdraw               " << char(186) << endl;
             cout << char(186) << "          Deposition canceled.         " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
             // display the menu options
             for (int i = 1; i < 2; i++)
@@ -1755,7 +1772,7 @@ int mainWithdraw(Dataformat ID1, string userfile_1)
                 higlight_back_to_menu(i, i == choice);
             }
             cout << endl
-                 << char(200) << "=======================================" << char(188) << endl;
+                 << char(200) ; windows(); cout << char(188) << endl;
 
             ch = getch(); // wait for a key press
 
@@ -1816,10 +1833,10 @@ void main_payebill(string id) // ไฟฟ้า ไม่เขียนดี�
     // cout << "What ID you want to pay bill : ";
     // cin >> Idbill;
     system("cls"); // clear the console
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "           Electricity Bill            " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << char(200) ; windows(); cout << char(188) << endl;
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -1857,14 +1874,14 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << setprecision(2) << ID1.money[0] << " THB " << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -1872,7 +1889,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1915,10 +1932,10 @@ void main_paywaterbill(string id)
     // cout << "input your id : ";
     // cin >> id;
     system("cls"); // clear the console
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Water Bill              " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << char(200) ; windows(); cout << char(188) << endl;
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -1955,14 +1972,14 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << setprecision(2) << ID1.money[0] << " THB " << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -1970,7 +1987,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -2016,10 +2033,10 @@ void main_topup(string id)
     // cout << "What Game ID you want to top up: ";
     // cin >> IdTopup;
     system("cls"); // clear the console
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Game Topup              " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "   How much money do you want to top up \n";
+    cout << char(200) ; windows(); cout << char(188) << endl;
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -2056,14 +2073,14 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << setprecision(2) << ID1.money[0] << " THB " << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -2071,7 +2088,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -2115,10 +2132,10 @@ void main_PhoneBill(string id)
     // cout << "input your id : ";
     // cin >> id;
     system("cls"); // clear the console
-    cout << char(201) << "=======================================" << char(187) << endl;
+    cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               Phone Bill              " << char(186) << endl;
-    cout << char(200) << "=======================================" << char(188) << endl;
-    cout << "              How much money            \n";
+    cout << char(200) ; windows(); cout << char(188) << endl;
+    cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
     cin >> amount;
 
@@ -2156,14 +2173,14 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
             do
             {
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << setprecision(2) << ID1.money[0] << " THB " << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
                 for (int i = 1; i < 2; i++)
@@ -2171,7 +2188,7 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -2231,8 +2248,8 @@ void highlight_Payment_MENU(int index, bool selected)
         cout << "Phone Bill";
         break;
     case 4:
-        l = 27;
-        cout << "Gametopup";
+        l = 25;
+        cout << "Game Top Up";
         break;
     case 5:
         l = 32;
@@ -2247,21 +2264,8 @@ void highlight_Payment_MENU(int index, bool selected)
 
 int main()
 {
-    // system("Color 9");
-    /*  0 = Black       8 = Gray
-        1 = Blue        9 = Light Blue
-        2 = Green       A = Light Green
-        3 = Aqua        B = Light Aqua
-        4 = Red         C = Light Red
-        5 = Purple      D = Light Purple
-        6 = Yellow      E = Light Yellow
-        7 = White       F = Bright White 
-    */
 
-
-
-    int password;
-    int pass_id;
+    int password , pass_id;
     string id;
     Dataformat ID1;
     // login
@@ -2274,17 +2278,17 @@ int main()
     if (ID1.Pass[0] == password)
     {
         system("cls");
-        cout << char(201) << "=======================================" << char(187) << endl;
+        cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "           Login successful!           " << char(186) << endl;
-        cout << char(200) << "=======================================" << char(188) << endl;
+        cout << char(200) ; windows(); cout << char(188) << endl;
         Sleep(1000); // Wait for 1000 milliseconds
         // ATM
         do
         {
             system("cls"); // clear the console
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "               ATM Menu                " << char(186) << endl;
-            cout << char(204) << "=======================================" << char(185) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             // display the menu options
             for (int i = 1; i < 7; i++)
             {
@@ -2292,7 +2296,7 @@ int main()
                 highlight_ATM_MENU(i, i == choice);
             }
             cout << char(186) << "                 CPE102                " << char(186) << endl;
-            cout << char(200) << "=======================================" << char(188) << endl;
+            cout << char(200) ; windows(); cout << char(188) << endl;
             ch = getch(); // wait for a key press
 
             // update the choice variable based on the arrow key input
@@ -2314,20 +2318,20 @@ int main()
             do
             {
                 system("cls");
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
-                cout << char(199) << "---------------------------------------" << char(182) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
+                cout << char(199) ; straight_line() ; cout << char(182) << endl;
                 cout << char(186) << "   Current balance : " << fixed << setw(13) << setprecision(2) << ID1.money[0] << " THB " << char(186) << "\n"; // setprecision(1000)
-                cout << char(199) << "---------------------------------------" << char(182) << endl;
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(199) ; straight_line() ; cout << char(182) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
                 }
                 // cout << "\n|_______________________________________|";
                 cout << endl
-                     << char(200) << "=======================================" << char(188) << endl;
+                     << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -2347,9 +2351,9 @@ int main()
             case 1:
                 cout << "Back To Login Menu";
                 system("cls"); // clear the console
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
-                cout << char(200) << "=======================================" << char(188) << endl;
+                cout << char(200) ; windows(); cout << char(188) << endl;
                 cout << " Thank you for using this ATM. Goodbye!\n";
                 Sleep(2000); // Wait for 1000 milliseconds
                 main();
@@ -2378,13 +2382,13 @@ int main()
             do
             {
                 system("cls");
-                cout << char(201) << "=======================================" << char(187) << endl;
+                cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "              Payment MENU             " << char(186) << endl;
                 // cout << "+---------------------------------------+\n";
                 // cout << "  =====================================  \n";
                 // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
                 // cout << "  =====================================  \n";
-                cout << char(204) << "=======================================" << char(185) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 for (int i = 1; i < 6; i++)
                 {
                     cout << char(186) << " ";
@@ -2393,7 +2397,7 @@ int main()
                 // cout << "|_______________________________________|";
                 // cout << "\n+---------------------------------------+";
                 cout << char(186) << "                 CPE102                " << char(186) << endl;
-                cout << char(200) << "=======================================" << char(188) << endl;
+                cout << char(200) ; windows(); cout << char(188) << endl;
                 ch = getch(); // wait for a key press
 
                 // update the choice variable based on the arrow key input
@@ -2422,7 +2426,7 @@ int main()
                 main_PhoneBill(id);
                 break;
             case 4:
-                cout << "Gametopup";
+                cout << "Game Top Up";
                 main_topup(id);
                 break;
             case 5:
@@ -2436,9 +2440,9 @@ int main()
         case 6:
             // Exit
             system("cls"); // clear the console
-            cout << char(201) << "=======================================" << char(187) << endl;
+            cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "                  Exit                 " << char(186) << endl;
-            cout << char(200) << "=======================================" << char(188) << endl;
+            cout << char(200) ; windows(); cout << char(188) << endl;
             cout << "Thank you for using this ATM. Goodbye!\n";
             Sleep(2000); // Wait for 1000 milliseconds
             main();      // Return to login page
