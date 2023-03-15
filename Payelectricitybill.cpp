@@ -56,7 +56,7 @@ void ImportFile(Dataformat &ID, string fileindex)
     double balance;
     char name[99];
      if (data.is_open()){
-            while (getline(data, line)) // importfile
+            while (getline(data, line)) 
             {
                 sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balance, name);
                 ID.Pass.push_back(pass);
@@ -72,7 +72,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
     if (amount > ID1.money[0])
     {
         cout << "You don't have enough money\n";
-        cout << "Now you have : " << ID1.money[0] << " You can't pay this bill\n";
+        cout << "Now you have money : " << ID1.money[0] << " You can't pay this bill\n";
     }
     else
     {
