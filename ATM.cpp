@@ -852,11 +852,11 @@ void deposit(Dataformat &ID1, string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] + 200;
-        receipt_depos(ID1, 200);
         notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
+        receipt_depos(ID1, 200);
         break;
     case 5:
         // cout << "5 - $500" ;
