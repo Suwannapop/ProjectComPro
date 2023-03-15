@@ -72,7 +72,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
     if (amount > ID1.money[0])
     {
         cout << "You don't have enough money\n";
-        cout << "Now you have : " << ID1.money[0] << " You can't tranfer money\n";
+        cout << "Now you have money : " << ID1.money[0] << " You can't tranfer money\n";
     }
     else
     {
