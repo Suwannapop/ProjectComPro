@@ -509,7 +509,7 @@ int new_account()
     string name;
     cout << char(201) << "=======================================" << char(187) << endl;
     cout << char(186) << "           Create your account         " << char(186) << endl;
-    cout << char(186) << "     Do Want to create a new account?  " << char(186) << endl;
+    cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
     cout << char(200) << "=======================================" << char(188) << endl;
     cout << " What is your name: ";
     getline(cin, name);
@@ -1084,7 +1084,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(204) << "=======================================" << char(185) << endl;
                 cout << char(186) << "     If you don't have an account      " << char(186) << endl;
-                cout << char(186) << "   Do Want to create a new account?    " << char(186) << endl;
+                cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
                 cout << char(186) << "               ";
                 // display the menu options
                 // higlight_Yes_or_No
