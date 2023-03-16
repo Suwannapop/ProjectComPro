@@ -727,7 +727,7 @@ int new_account()
 
 // deposit
 void deposit(Dataformat &ID1, string userfile_1);
-void ImportFile(Dataformat &ID, string fileindex, bool check = false);
+void ImportFile(Dataformat &ID, string fileindex);
 
 int main_deposit(Dataformat ID1, string userfile_1)
 {
@@ -1065,7 +1065,7 @@ int Login_failed()
     }
 }
 
-void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+void ImportFile(Dataformat &ID, string fileindex) // ใช้ฝากถอนโอน
 {
     ifstream data;
     data.open(fileindex);
@@ -1074,8 +1074,6 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
     double balnace;
     char name[99];
 
-    if (check = false)
-    {
         if (data.is_open())
         {
             while (getline(data, line)) // importfile
@@ -1086,23 +1084,8 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 ID.money.push_back(balnace);
                 ID.name = name;
             }
-        }
-    }
-    else if (check = true)
+        }else 
     {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-        else
-        {
             do
             {
                 system("cls");
@@ -1152,7 +1135,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             }
         }
     }
-}
+
 
 // ใช้สำหรับแก้บัคตอนโอนเงิน
 void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
