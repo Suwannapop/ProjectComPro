@@ -798,7 +798,7 @@ void deposit(Dataformat &ID1, string userfile_1)
     {
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
-        cout << char(186) << "                Deposit                " << char(186) << endl;
+        cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
         for (int i = 1; i < 9; i++)
@@ -884,8 +884,8 @@ void deposit(Dataformat &ID1, string userfile_1)
         // cout << "6 - choose your own deposition amount" ;
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
-        cout << char(186) << "                Deposit                " << char(186) << endl;
-        cout << char(186) << "           Enter your amount.          " << char(186) << endl;
+        cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
+        cout << char(186) << "           "<<"\033[1;1m"<<"Enter your amount."<<"\033[0m"<<"          " << char(186) << endl;
         cout << char(200) ; windows(); cout << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
@@ -905,8 +905,8 @@ void deposit(Dataformat &ID1, string userfile_1)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "                Deposit                " << char(186) << endl;
-                cout << char(186) << "       Invalid! Please try again.      " << char(186) << endl;
+                cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
+                cout << char(186) << "       "<<"\033[1;1m"<<"Invalid! Please try again."<<"\033[0m"<<"      " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 // display the menu options
@@ -950,8 +950,8 @@ void deposit(Dataformat &ID1, string userfile_1)
         {
             system("cls"); // clear the console
             cout << char(201) ; windows(); cout << char(187) << endl;
-            cout << char(186) << "                Deposit                " << char(186) << endl;
-            cout << char(186) << "          Deposition canceled.         " << char(186) << endl;
+            cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
+            cout << char(186) << "          "<<"\033[1;1m"<<"Deposition canceled."<<"\033[0m"<<"         " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
             // display the menu options
@@ -1017,7 +1017,7 @@ void higlight_Yes_or_No(int index, bool selected)
     }
 
     cout << "\033[0m"
-         << "  "; //<< setw(l)  // window
+         << "    "; //<< setw(l)  // window
 }
 
 // Login failed
@@ -1067,28 +1067,13 @@ int Login_failed()
 
 void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 {
-    ifstream data;
+   ifstream data;
     data.open(fileindex);
     string line;
     int idnumber, pass;
     double balnace;
     char name[99];
-
-    if (check = false)
-    {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-    }
-    else if (check = true)
+    if (check == false)
     {
         if (data.is_open())
         {
@@ -1106,13 +1091,18 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
             do
             {
                 system("cls");
-                cout << char(201) ; windows(); cout << char(187) << endl;
+                cout << char(201);
+                windows();
+                cout << char(187) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
+                cout << char(186) << "       "<<"\033[1;1m"<<"Don't have ID in Database"<<"\033[0m"<<"       " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(204) ; windows(); cout << char(185) << endl;
+                cout << char(204);
+                windows();
+                cout << char(185) << endl;
                 cout << char(186) << "     If you don't have an account      " << char(186) << endl;
                 cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(186) << "               ";
                 // display the menu options
                 // higlight_Yes_or_No
@@ -1120,18 +1110,20 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 {
                     higlight_Yes_or_No(i, i == choice);
                 }
-                cout << "               " << char(186);
+                cout << "           " << char(186);
                 cout << endl
-                     << char(200) ; windows(); cout << char(188) << endl;
+                     << char(200);
+                windows();
+                cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
                 // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
+                if (ch == 75 && choice > 1)
                 { // up arrow key
                     choice--;
                 }
-                else if (ch == 80 && choice < 3)
+                else if (ch == 77 && choice < 2)
                 { // down arrow key
                     choice++;
                 }
@@ -1151,11 +1143,73 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 break;
             }
         }
-    }
+    }else if (check = true)
+    {
+        if (data.is_open())
+        {
+            while (getline(data, line)) // importfile
+            {
+                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
+                ID.Pass.push_back(pass);
+                ID.ID.push_back(idnumber);
+                ID.money.push_back(balnace);
+                ID.name = name;
+            }
+        }
+        else
+        {
+            do
+            {
+                system("cls");
+                cout << char(201);
+                windows();
+                cout << char(187) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                cout << char(186) << "       "<<"\033[1;1m"<<"Don't have ID in Database"<<"\033[0m"<<"       " << char(186) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                cout << char(204);
+                windows();
+                cout << char(185) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << endl
+                     << char(200);
+                windows();
+                cout << char(188) << endl;
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 1)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }
+        }
+    }  
 }
 
 // ใช้สำหรับแก้บัคตอนโอนเงิน
-void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+/*void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 {
     ifstream data;
     data.open(fileindex);
@@ -1236,6 +1290,7 @@ void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝ�
         }
     }
 }
+*/
 
 /*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ // Kong(ล่าสุดเอาไปยัดไว้ในฟังก์ชั่นหลักการโอนล่ะ)
 {
@@ -1271,7 +1326,7 @@ void mainTransferMoney(string id)
     float amount;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "             TransferMoney             " << char(186) << endl;
+    cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "           Destination Account         \n";   
 //    cout << "      Do What ID you want to tranfer   \n";
@@ -1281,7 +1336,7 @@ void mainTransferMoney(string id)
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1);         // importfile
-    ImportFile_T(ID2, userfile_2, true); // Bug , true
+    ImportFile(ID2, userfile_2, true); // Bug , true
 
     if (userfile_1 == userfile_2)
     {
@@ -1289,7 +1344,7 @@ void mainTransferMoney(string id)
         {
             system("cls"); // clear the console
             cout << char(201) ; windows(); cout << char(187) << endl;
-            cout << char(186) << "             TransferMoney             " << char(186) << endl;
+            cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "            This is your ID            " << char(186) << endl;
             cout << char(186) << "         can't transfer money          " << char(186) << endl;
@@ -1342,7 +1397,7 @@ void mainTransferMoney(string id)
                 {
                     system("cls"); // clear the console
                     cout << char(201) ; windows(); cout << char(187) << endl;
-                    cout << char(186) << "             TransferMoney             " << char(186) << endl;
+                    cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
                     cout << char(204) ; windows(); cout << char(185) << endl;
                     cout << char(199) << "---------------------------------------" << char(182) << endl;
                     cout << char(186) << "       You don't have enough money     " << char(186) << endl;
@@ -1404,7 +1459,7 @@ void mainTransferMoney(string id)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "             TransferMoney             " << char(186) << endl;
+                cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "            invalid amount             " << char(186) << endl; // ม่ายมีตังค่าาา แก้ให้ถูกด้วย
                 cout << char(204) ; windows(); cout << char(185) << endl;
@@ -1599,7 +1654,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     {
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
-        cout << char(186) << "                Withdraw               " << char(186) << endl;
+        cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
         // cout << char(186) <<"       You don't have enough money.    " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
         // display the menu options
@@ -1680,8 +1735,8 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         // cout << "6 - choose your own Withdraw amount" ;
         system("cls"); // clear the console
         cout << char(201) ; windows(); cout << char(187) << endl;
-        cout << char(186) << "               Withdraw                " << char(186) << endl;
-        cout << char(186) << "           Enter your amount.          " << char(186) << endl;
+        cout << char(186) << "               "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"                " << char(186) << endl;
+        cout << char(186) << "           "<<"\033[1;1m"<<"Enter your amount."<<"\033[0m"<<"          " << char(186) << endl;
         cout << char(200) ; windows(); cout << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
@@ -1700,8 +1755,8 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "                Withdraw               " << char(186) << endl;
-                cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
+                cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
+                cout << char(186) << "       "<<"\033[1;1m"<<"You don't have enough money."<<"\033[1;1m"<<"    " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(186) << " Now you have money : " << fixed << setw(12) << ID1.money[0] << " THB " << char(186) << endl;
@@ -1747,7 +1802,8 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "                Withdraw               " << char(186) << endl;
+                cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
+                cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "       Invalid! Please try again.      " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
@@ -1791,7 +1847,8 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         {
             system("cls"); // clear the console
             cout << char(201) ; windows(); cout << char(187) << endl;
-            cout << char(186) << "                Withdraw               " << char(186) << endl;
+            cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
+            cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "          Deposition canceled.         " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
@@ -1863,7 +1920,7 @@ void main_payebill(string id) // ไฟฟ้า ไม่เขียนดี�
     // cin >> Idbill;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "           Electricity Bill            " << char(186) << endl;
+    cout << char(186) << "           "<<"\033[1;1m"<<"Electricity Bill"<<"\033[0m"<<"            " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
@@ -1873,7 +1930,7 @@ void main_payebill(string id) // ไฟฟ้า ไม่เขียนดี�
     string userfile_2 = "777777777.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
-    ImportFile_T(ID2, userfile_2, true);
+    ImportFile(ID2, userfile_2, true);
     payebill(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
@@ -1904,7 +1961,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
+                cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
@@ -1966,7 +2023,7 @@ void main_paywaterbill(string id)
     // cin >> IdTopup;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "               Water Bill              " << char(186) << endl;
+    cout << char(186) << "               "<<"\033[1;1m"<<"Water Bill"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
@@ -1975,7 +2032,7 @@ void main_paywaterbill(string id)
     string userfile_2 = "666666666.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
-    ImportFile_T(ID2, userfile_2, true);
+    ImportFile(ID2, userfile_2, true);
     paywaterbill(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
@@ -2006,7 +2063,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
+                cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
@@ -2067,7 +2124,7 @@ void main_topup(string id)
     // cin >> IdTopup;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "               Game Topup              " << char(186) << endl;
+    cout << char(186) << "               "<<"\033[1;1m"<<"Game Topup"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
@@ -2076,7 +2133,7 @@ void main_topup(string id)
     string userfile_2 = "999999999.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
-    ImportFile_T(ID2, userfile_2, true);
+    ImportFile(ID2, userfile_2, true);
     topup(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
@@ -2107,7 +2164,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
+                cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
@@ -2166,7 +2223,7 @@ void main_PhoneBill(string id)
     // cin >> id;
     system("cls"); // clear the console
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "               Phone Bill              " << char(186) << endl;
+    cout << char(186) << "               "<<"\033[1;1m"<<"Phone Bill"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "       How much do you want to pay?  \n";
     cout << "              THB : ";
@@ -2176,7 +2233,7 @@ void main_PhoneBill(string id)
     string userfile_2 = "888888888.txt";
     ofstream writefile_1, writefile_2; // importfile
     ImportFile(ID1, userfile_1);
-    ImportFile_T(ID2, userfile_2, true);
+    ImportFile(ID2, userfile_2, true);
     PhoneBill(amount, ID1, ID2);
 
     /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
@@ -2207,7 +2264,7 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
             {
                 system("cls"); // clear the console
                 cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "             + RECEIPT +               " << char(186) << endl;
+                cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
@@ -2451,7 +2508,7 @@ int main()
                                     //cout << "Back To Login Menu";
                                     system("cls"); // clear the console
                                     cout << char(201) ; windows(); cout << char(187) << endl;
-                                    cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
+                                    cout << char(186) << "            "<<"\033[1;1m"<<"Balance Inquiry"<<"\033[0m"<<"            " << char(186) << endl;
                                     cout << char(200) ; windows(); cout << char(188) << endl;
                                     cout << " Thank you for using this ATM. Goodbye!\n";
                                     Sleep(2000); // Wait for 1000 milliseconds
@@ -2482,7 +2539,7 @@ int main()
                                 {
                                     system("cls");
                                     cout << char(201) ; windows(); cout << char(187) << endl;
-                                    cout << char(186) << "              Payment MENU             " << char(186) << endl;
+                                    cout << char(186) << "              "<<"\033[1;1m"<<"Payment MENU"<<"\033[0m"<<"             " << char(186) << endl;
                                     // cout << "+---------------------------------------+\n";
                                     // cout << "  =====================================  \n";
                                     // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
@@ -2540,7 +2597,7 @@ int main()
                                 // Exit
                                 system("cls"); // clear the console
                                 cout << char(201) ; windows(); cout << char(187) << endl;
-                                cout << char(186) << "                  Exit                 " << char(186) << endl;
+                                cout << char(186) << "                 "<<"\033[1;1m"<<"Exit"<<"\033[0m"<<"                  " << char(186) << endl;
                                 cout << char(200) ; windows(); cout << char(188) << endl;
                                 cout << "Thank you for using this ATM. Goodbye!\n";
                                 Sleep(2000); // Wait for 1000 milliseconds
