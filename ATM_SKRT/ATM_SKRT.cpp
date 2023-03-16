@@ -10,7 +10,7 @@
 using namespace std;
 int id, password; // login
 char ch;          // login && ATM
-int choice = 1;   // ATM
+int choice = 1;   
 
 int main();
 struct Dataformat
