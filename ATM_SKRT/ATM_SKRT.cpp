@@ -1572,7 +1572,7 @@ int login(string &id, int &password)
     { // Stop reading when user presses Enter key
         if (ch == '\b')
         { // Handle backspace character
-            if (password >= 0)
+            if (password > 0)
             {
                 password /= 10;
                 cout << "\b \b"; // Move cursor back and overwrite character with space
