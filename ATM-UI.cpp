@@ -1263,7 +1263,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
 }
 
 // ใช้สำหรับแก้บัคตอนโอนเงิน
-//void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+// void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 //{
 //    ifstream data;
 //    data.open(fileindex);
@@ -1740,8 +1740,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     float amount;
     ofstream writefile_1;
     ImportFile(ID1, userfile_1);
-    //Withdraw(amount, ID1);
-    
+    // Withdraw(amount, ID1);
 
     do
     {
@@ -1778,15 +1777,13 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         }
         // cout << "How much money do you want to deposit? :" << endl;
         // cout << "choose a deposit option (1-7)" << endl;
-    }
-    while (ch != 13)
-        ;
+    } while (ch != 13);
     switch (choice)
     {
     case 1:
         // cout << "1 - $20" ;
         amount = 20;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1795,7 +1792,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     case 2:
         // cout << "2 - $50" ;
         amount = 50;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1804,7 +1801,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     case 3:
         // cout << "3 - $100" ;
         amount = 100;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1813,7 +1810,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     case 4:
         // cout << "4 - $200" ;
         amount = 200;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1822,7 +1819,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     case 5:
         // cout << "5 - $500" ;
         amount = 500;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1831,7 +1828,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
     case 6:
         // cout << "5 - $500" ;
         amount = 1000;
-        Withdraw(amount,ID1);
+        Withdraw(amount, ID1);
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -1850,7 +1847,13 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         cout << char(188) << endl;
         cout << "          THB : ";
         cin >> amount;
-        if (ID1.money[0] - amount >= 0 && amount >= 0)
+        Withdraw(amount, ID1);
+        writefile_1.open(userfile_1);
+        writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
+        writefile_1.close();
+        receipt_wdraw(ID1, amount);
+        break;
+        /*if (ID1.money[0] - amount >= 0 && amount >= 0)
         {
             ID1.money[0] = ID1.money[0] - amount;
             writefile_1.open(userfile_1);
@@ -1962,7 +1965,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
                 break;
             }
             break;
-        }
+        }*/
 
     case 8:
         // cout << "7 - cancel deposition \n";
@@ -2079,6 +2082,54 @@ void Withdraw(double amount, Dataformat &ID1)
         else
         {
             ID1.money[0] = ID1.money[0] - amount;
+        }
+    }
+    else if (amount < 0)
+    {
+        do
+        {
+            system("cls"); // clear the console
+            cout << char(201);
+            windows();
+            cout << char(187) << endl;
+            cout << char(186) << "                Withdraw               " << char(186) << endl;
+            cout << char(186) << "       Invalid! Please try again.      " << char(186) << endl;
+            cout << char(204);
+            windows();
+            cout << char(185) << endl;
+            cout << char(186) << "                                       " << char(186) << endl;
+            // display the menu options
+            for (int i = 1; i < 2; i++)
+            {
+                higlight_back_to_menu(i, i == choice);
+            }
+            cout << endl
+                 << char(200);
+            windows();
+            cout << char(188) << endl;
+
+            ch = getch(); // wait for a key press
+
+            // update the choice variable based on the arrow key input
+            if (ch == 72 && choice > 1)
+            { // up arrow key
+                choice--;
+            }
+            else if (ch == 80 && choice < 1)
+            { // down arrow key
+                choice++;
+            }
+        } while (ch != 13); // enter key
+        // display the selected option
+        switch (choice)
+        {
+        case 1:
+            cout << "Back To Login Menu";
+            main();
+            break;
+        default:
+            main();
+            break;
         }
     }
 }
