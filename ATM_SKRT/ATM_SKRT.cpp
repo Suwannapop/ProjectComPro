@@ -545,6 +545,62 @@ int new_account()
     cin >> name;
     cout << " Enter your ID: ";
     cin >> UserID;
+    
+    string str = to_string(UserID);
+
+    string ID_Fuck = str + ".txt" ;
+    cout << ID_Fuck ;
+    ifstream data ;
+    data.open(ID_Fuck) ;
+    if (data.is_open())
+    {
+        do
+            {
+                system("cls");
+                cout << char(201);
+                windows();
+                cout << char(187) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                cout << char(186) << "      "<<"\033[1;1m"<<"This account already exists."<<"\033[0m"<<"     " << char(186) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                cout << char(204);
+                windows();
+                cout << char(185) << endl;
+                cout << char(186) << "                                       " << char(186) << endl;
+                // display the menu options
+                for (int i = 1; i < 2; i++)
+                {
+                    higlight_back_to_menu(i, i == choice);
+                }
+                cout << endl
+                     << char(200);
+                windows();
+                cout << char(188) << endl;
+
+                ch = getch(); // wait for a key press
+
+                // update the choice variable based on the arrow key input
+                if (ch == 72 && choice > 1)
+                { // up arrow key
+                    choice--;
+                }
+                else if (ch == 80 && choice < 1)
+                { // down arrow key
+                    choice++;
+                }
+            } while (ch != 13); // enter key
+            // display the selected option
+            switch (choice)
+            {
+            case 1:
+                cout << "Back To Login Menu";
+                main();
+                break;
+            default:
+                main();
+                break;
+            }        
+    }else{
     cout << " Enter your password: ";
     UserPass1 = 0;
     while ((ch = _getch()) != '\r')
@@ -737,6 +793,9 @@ int new_account()
             break;
         }
     }
+
+    }
+    
 }
 
 // deposit
@@ -1081,7 +1140,7 @@ int Login_failed()
 
 void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 {
-   ifstream data;
+    ifstream data;
     data.open(fileindex);
     string line;
     int idnumber, pass;
