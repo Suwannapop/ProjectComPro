@@ -1263,7 +1263,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
 }
 
 // ใช้สำหรับแก้บัคตอนโอนเงิน
-// void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+//void ImportFile_T(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
 //{
 //    ifstream data;
 //    data.open(fileindex);
