@@ -94,7 +94,7 @@ void receipt_depos(Dataformat ID1, float amount)
             system("cls");
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECEIPT +             |\n";
+            cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
             cout << "|                 DEPOSIT               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -105,7 +105,7 @@ void receipt_depos(Dataformat ID1, float amount)
             cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "|               Skrt Bank <3            |\n";
+            cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
             // display the menu options
@@ -194,7 +194,7 @@ void receipt_wdraw(Dataformat ID1, float amount)
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECEIPT +             |\n";
+            cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
             cout << "|                 WITHDRAW              |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -205,7 +205,7 @@ void receipt_wdraw(Dataformat ID1, float amount)
             cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID1.money[0] << setw(3) << "|\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "|               Skrt Bank <3            |\n";
+            cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
             // display the menu options
@@ -293,7 +293,7 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECEIPT +             |\n";
+            cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
             cout << "|             TRANSFER MONEY            |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -309,7 +309,7 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             cout << "|                                       |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
-            cout << "|               Skrt Bank <3            |\n";
+            cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
             // display the menu options
@@ -397,7 +397,7 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             system("cls"); // clear the console
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
-            cout << "|               + RECEIPT +             |\n";
+            cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
             cout << "|                 PAYBILL               |\n";
             cout << "| ===================================== |\n";
             cout << "|                                       |\n";
@@ -411,7 +411,7 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             cout << "|                                       |\n";
             //        cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) << "|\n";
             cout << "|                                       |\n";
-            cout << "|               Skrt Bank <3            |\n";
+            cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
             // display the menu options
@@ -1414,7 +1414,7 @@ void mainTransferMoney(string id)
                 {
                     higlight_back_to_menu(i, i == choice);
                 }
-                cout << char(204) ; windows(); cout << char(185) << endl;
+                cout << endl << char(200) ; windows(); cout << char(188) << endl;
 
                 ch = getch(); // wait for a key press
 
@@ -1504,7 +1504,7 @@ int login(string &id, int &password)
     // Display login window frame
     system("cls");
     cout << char(201) ; windows(); cout << char(187) << endl;
-    cout << char(186) << "               Login ATM               " << char(186) << endl;
+    cout << char(186) << "               " << "\033[1;1m""Login ATM" << "\033[0m""               " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     // Display prompts for ID and password
     cout << "\n Enter your ID: ";
@@ -2295,39 +2295,53 @@ void highlight_Payment_MENU(int index, bool selected)
     cout << "\033[0m" << setw(l) << char(186) << endl; // window
 }
 
+//hghlight_Login_Sing_in
+void highlight_Login_Sing_in(int index, bool selected)
+{
+    int l = 0;
+        cout << "               ";
+    if (selected)
+    {
+        cout << "\033[1;4m"; // set background and foreground color to white and black
+    }
+    //cout << "--> ";
+
+    // print the option label
+    switch (index)
+    {
+    case 1:
+        l = 17;
+        cout <<"Sign in" ;
+        break;
+    case 2:
+        l = 17;
+        cout << " Login ";
+        break;
+    default:
+        break;
+    }
+
+    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+}
+
+
 int main()
 {
-    int password , pass_id;
-    string id;
-    Dataformat ID1;
-    // login
-    login(id, password);
-    string fileindex = id + ".txt"; // id.txt
-    ImportFile(ID1, fileindex);
-    ifstream myfile;
-    myfile.open(id + ".txt");
-
-    if (ID1.Pass[0] == password)
-    {
-        system("cls");
-        cout << char(201) ; windows(); cout << char(187) << endl;
-        cout << char(186) << "           Login successful!           " << char(186) << endl;
-        cout << char(200) ; windows(); cout << char(188) << endl;
-        Sleep(1000); // Wait for 1000 milliseconds
-        // ATM
-        do
+    do
         {
             system("cls"); // clear the console
             cout << char(201) ; windows(); cout << char(187) << endl;
-            cout << char(186) << "               ATM Menu                " << char(186) << endl;
+            cout << char(186) << "               "<< "\033[1;1m" << "ATM SKRT" << "\033[0m" << "                " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
+            cout << char(186) << "                                       " << char(186) << endl;
             // display the menu options
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 3; i++)
             {
                 cout << char(186) << " ";
-                highlight_ATM_MENU(i, i == choice);
+                highlight_Login_Sing_in(i, i == choice);
             }
-            cout << char(186) << "                 CPE102                " << char(186) << endl;
+            cout << char(186) << "                                       " << char(186) << endl;
+            cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
             cout << char(200) ; windows(); cout << char(188) << endl;
             ch = getch(); // wait for a key press
 
@@ -2336,7 +2350,7 @@ int main()
             { // up arrow key
                 choice--;
             }
-            else if (ch == 80 && choice < 6)
+            else if (ch == 80 && choice < 2)
             { // down arrow key
                 choice++;
             }
@@ -2346,145 +2360,202 @@ int main()
         switch (choice)
         {
         case 1:
-            // Balance Inquiry
-            do
-            {
-                system("cls");
-                cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
-                cout << char(204) ; windows(); cout << char(185) << endl;
-                cout << char(199) ; straight_line() ; cout << char(182) << endl;
-                cout << char(186) << "   Current balance : " << fixed << setw(13) << setprecision(2) << ID1.money[0] << " THB " << char(186) << "\n"; // setprecision(1000)
-                cout << char(199) ; straight_line() ; cout << char(182) << endl;
-                cout << char(204) ; windows(); cout << char(185) << endl;
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                // cout << "\n|_______________________________________|";
-                cout << endl
-                     << char(200) ; windows(); cout << char(188) << endl;
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                system("cls"); // clear the console
-                cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
-                cout << char(200) ; windows(); cout << char(188) << endl;
-                cout << " Thank you for using this ATM. Goodbye!\n";
-                Sleep(2000); // Wait for 1000 milliseconds
-                main();
-                break;
-            default:
-                break;
-            }
+            new_account();
             break;
 
         case 2:
-            // Deposit
-            main_deposit(ID1, fileindex);
-            break;
+                    int password , pass_id;
+                        string id;
+                        Dataformat ID1;
+                        // login
+                        login(id, password);
+                        string fileindex = id + ".txt"; // id.txt
+                        ImportFile(ID1, fileindex);
+                        ifstream myfile;
+                        myfile.open(id + ".txt");
 
-        case 3:
-            // Withdraw
-            mainWithdraw(ID1, fileindex);
-            break;
+                        if (ID1.Pass[0] == password)
+                        {
+                            system("cls");
+                            cout << char(201) ; windows(); cout << char(187) << endl;
+                            cout << char(186) << "           "<< "\033[1;1m" <<"Login successful!"<< "\033[0m" <<"           " << char(186) << endl;
+                            cout << char(200) ; windows(); cout << char(188) << endl;
+                            Sleep(1000); // Wait for 1000 milliseconds
+                            // ATM
+                            do
+                            {
+                                system("cls"); // clear the console
+                                cout << char(201) ; windows(); cout << char(187) << endl;
+                                cout << char(186) << "               "<< "\033[1;1m" << "ATM Menu" << "\033[0m" << "                " << char(186) << endl;
+                                cout << char(204) ; windows(); cout << char(185) << endl;
+                                // display the menu options
+                                for (int i = 1; i < 7; i++)
+                                {
+                                    cout << char(186) << " ";
+                                    highlight_ATM_MENU(i, i == choice);
+                                }
+                                cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
+                                cout << char(200) ; windows(); cout << char(188) << endl;
+                                ch = getch(); // wait for a key press
 
-        case 4:
-            // Transfers money
-            mainTransferMoney(id);
-            break;
-        case 5:
-            // payment
-            do
-            {
-                system("cls");
-                cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "              Payment MENU             " << char(186) << endl;
-                // cout << "+---------------------------------------+\n";
-                // cout << "  =====================================  \n";
-                // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
-                // cout << "  =====================================  \n";
-                cout << char(204) ; windows(); cout << char(185) << endl;
-                for (int i = 1; i < 6; i++)
-                {
-                    cout << char(186) << " ";
-                    highlight_Payment_MENU(i, i == choice);
-                }
-                // cout << "|_______________________________________|";
-                // cout << "\n+---------------------------------------+";
-                cout << char(186) << "                 CPE102                " << char(186) << endl;
-                cout << char(200) ; windows(); cout << char(188) << endl;
-                ch = getch(); // wait for a key press
+                                // update the choice variable based on the arrow key input
+                                if (ch == 72 && choice > 1)
+                                { // up arrow key
+                                    choice--;
+                                }
+                                else if (ch == 80 && choice < 6)
+                                { // down arrow key
+                                    choice++;
+                                }
+                            } while (ch != 13); // enter key
 
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 5)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Electricity bill";
-                main_payebill(id);
-                break;
-            case 2:
-                cout << "Water bill";
-                main_paywaterbill(id);
-                break;
-            case 3:
-                cout << "PhoneBill";
-                main_PhoneBill(id);
-                break;
-            case 4:
-                cout << "Game Top Up";
-                main_topup(id);
-                break;
-            case 5:
-                cout << "Exit"; // ออก
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
-        case 6:
-            // Exit
-            system("cls"); // clear the console
-            cout << char(201) ; windows(); cout << char(187) << endl;
-            cout << char(186) << "                  Exit                 " << char(186) << endl;
-            cout << char(200) ; windows(); cout << char(188) << endl;
-            cout << "Thank you for using this ATM. Goodbye!\n";
-            Sleep(2000); // Wait for 1000 milliseconds
-            main();      // Return to login page
+                            // display the selected option
+                            switch (choice)
+                            {
+                            case 1:
+                                // Balance Inquiry
+                                do
+                                {
+                                    system("cls");
+                                    cout << char(201) ; windows(); cout << char(187) << endl;
+                                    cout << char(186) << "            "<< "\033[1;1m"<<"Balance Inquiry"<< "\033[0m"<<"            " << char(186) << endl;
+                                    cout << char(204) ; windows(); cout << char(185) << endl;
+                                    cout << char(199) ; straight_line() ; cout << char(182) << endl;
+                                    cout << char(186) << "   Current balance : " << fixed << setw(13) << setprecision(2) << ID1.money[0] << " THB " << char(186) << "\n"; // setprecision(1000)
+                                    cout << char(199) ; straight_line() ; cout << char(182) << endl;
+                                    cout << char(204) ; windows(); cout << char(185) << endl;
+                                    for (int i = 1; i < 2; i++)
+                                    {
+                                        higlight_back_to_menu(i, i == choice);
+                                    }
+                                    // cout << "\n|_______________________________________|";
+                                    cout << endl
+                                        << char(200) ; windows(); cout << char(188) << endl;
+
+                                    ch = getch(); // wait for a key press
+
+                                    // update the choice variable based on the arrow key input
+                                    if (ch == 72 && choice > 1)
+                                    { // up arrow key
+                                        choice--;
+                                    }
+                                    else if (ch == 80 && choice < 1)
+                                    { // down arrow key
+                                        choice++;
+                                    }
+                                } while (ch != 13); // enter key
+                                // display the selected option
+                                switch (choice)
+                                {
+                                case 1:
+                                    //cout << "Back To Login Menu";
+                                    system("cls"); // clear the console
+                                    cout << char(201) ; windows(); cout << char(187) << endl;
+                                    cout << char(186) << "            Balance Inquiry            " << char(186) << endl;
+                                    cout << char(200) ; windows(); cout << char(188) << endl;
+                                    cout << " Thank you for using this ATM. Goodbye!\n";
+                                    Sleep(2000); // Wait for 1000 milliseconds
+                                    main();
+                                    break;
+                                default:
+                                    break;
+                                }
+                                break;
+
+                            case 2:
+                                // Deposit
+                                main_deposit(ID1, fileindex);
+                                break;
+
+                            case 3:
+                                // Withdraw
+                                mainWithdraw(ID1, fileindex);
+                                break;
+
+                            case 4:
+                                // Transfers money
+                                mainTransferMoney(id);
+                                break;
+                            case 5:
+                                // payment
+                                do
+                                {
+                                    system("cls");
+                                    cout << char(201) ; windows(); cout << char(187) << endl;
+                                    cout << char(186) << "              Payment MENU             " << char(186) << endl;
+                                    // cout << "+---------------------------------------+\n";
+                                    // cout << "  =====================================  \n";
+                                    // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
+                                    // cout << "  =====================================  \n";
+                                    cout << char(204) ; windows(); cout << char(185) << endl;
+                                    for (int i = 1; i < 6; i++)
+                                    {
+                                        cout << char(186) << " ";
+                                        highlight_Payment_MENU(i, i == choice);
+                                    }
+                                    // cout << "|_______________________________________|";
+                                    // cout << "\n+---------------------------------------+";
+                                    cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
+                                    cout << char(200) ; windows(); cout << char(188) << endl;
+                                    ch = getch(); // wait for a key press
+
+                                    // update the choice variable based on the arrow key input
+                                    if (ch == 72 && choice > 1)
+                                    { // up arrow key
+                                        choice--;
+                                    }
+                                    else if (ch == 80 && choice < 5)
+                                    { // down arrow key
+                                        choice++;
+                                    }
+                                } while (ch != 13); // enter key
+                                // display the selected option
+                                switch (choice)
+                                {
+                                case 1:
+                                    cout << "Electricity bill";
+                                    main_payebill(id);
+                                    break;
+                                case 2:
+                                    cout << "Water bill";
+                                    main_paywaterbill(id);
+                                    break;
+                                case 3:
+                                    cout << "PhoneBill";
+                                    main_PhoneBill(id);
+                                    break;
+                                case 4:
+                                    cout << "Game Top Up";
+                                    main_topup(id);
+                                    break;
+                                case 5:
+                                    cout << "Exit"; // ออก
+                                    main();
+                                    break;
+                                default:
+                                    main();
+                                    break;
+                                }
+                            case 6:
+                                // Exit
+                                system("cls"); // clear the console
+                                cout << char(201) ; windows(); cout << char(187) << endl;
+                                cout << char(186) << "                  Exit                 " << char(186) << endl;
+                                cout << char(200) ; windows(); cout << char(188) << endl;
+                                cout << "Thank you for using this ATM. Goodbye!\n";
+                                Sleep(2000); // Wait for 1000 milliseconds
+                                main();      // Return to login page
+                                break;
+                            }
+
+                            return 0;
+                        }
+                        else
+                        {
+                            Login_failed();
+                        }
+
             break;
         }
 
-        return 0;
     }
-    else
-    {
-        Login_failed();
-    }
-}
