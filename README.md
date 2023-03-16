@@ -23,4 +23,14 @@ ANSI_escape_code <br>
 Cr.<br>
 https://en.wikipedia.org/wiki/ANSI_escape_code <br>
 --------------------------------------------------------------------------------------------------------------------------------------------<br>
+I got stuck with this question and was not able to find a good solution, so decided to have some tinkering with the Mingw compiler I have.  <br>
+I used C++ and getch() function in <conio.h> header file and pressed the arrow keys to find what value was assigned to these keys. <br>
+As it turns out, they are assigned values as 22472, 22477, 22480, 22475 for up, right, down and left keys respectively. <br>
+But wait, it does not work as you would expect. <br>
+You have to ditch the 224 part and write only the last two digits for the software to recognize the correct key; <br>
+and as you guessed, 72, 77, 80 and 75 are all preoccupied by other characters, <br>
+but this works for me and I hope it works for you as well. If you want to run the C++ code for yourself and find out the values for yourself, <br>
+run this code and press enter to get out of the loop: <br>
+https://stackoverflow.com/questions/2876275/what-are-the-ascii-values-of-up-down-left-right <br>
+--------------------------------------------------------------------------------------------------------------------------------------------<br>
 
