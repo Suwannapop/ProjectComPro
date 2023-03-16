@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h> // for getch() function
+#include <ctype.h>
 #include <iomanip>
 #include <windows.h> //sleep higlight
 #include <fstream>
@@ -1516,15 +1517,19 @@ int login(string &id, int &password)
     { // Stop reading when user presses Enter key
         if (ch == '\b')
         { // Handle backspace character
-            if (password > 0)
+            if (password >= 0)
             {
                 password /= 10;
                 cout << "\b \b"; // Move cursor back and overwrite character with space
             }
         }
         else if (isdigit(ch))
-        { // Handle numeric characters
+        { // Handle numeric characters 
+            //password = password * 10 ;
+            //cout << password <<  endl ; 
+            // 1  10  + 2-0
             password = password * 10 + (ch - '0');
+            //cout << password <<  endl ;
             cout << "*";
         }
     }
