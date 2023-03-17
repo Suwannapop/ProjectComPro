@@ -827,7 +827,6 @@ void deposit(Dataformat &ID1, string userfile_1)
 {
     ofstream writefile_1;
     float amount;
-    bool notfinished = true;
 
     do
     {
@@ -861,7 +860,6 @@ void deposit(Dataformat &ID1, string userfile_1)
     {
     case 1:
         ID1.money[0] = ID1.money[0] + 20;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -869,7 +867,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 2:
         ID1.money[0] = ID1.money[0] + 50;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -877,7 +874,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 3:
         ID1.money[0] = ID1.money[0] + 100;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -885,7 +881,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 4:
         ID1.money[0] = ID1.money[0] + 200;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -893,7 +888,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 5:
         ID1.money[0] = ID1.money[0] + 500;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -901,7 +895,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         break;
     case 6:
         ID1.money[0] = ID1.money[0] + 1000;
-        notfinished = false;
         writefile_1.open(userfile_1);
         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
         writefile_1.close();
@@ -918,7 +911,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         if (amount > 0)
         {
             ID1.money[0] = ID1.money[0] + amount;
-            notfinished = false;
+        
             writefile_1.open(userfile_1);
             writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name;
             writefile_1.close();
@@ -970,7 +963,7 @@ void deposit(Dataformat &ID1, string userfile_1)
 
     case 8:
         
-        notfinished = false;
+    
         do
         {
             system("cls"); 
