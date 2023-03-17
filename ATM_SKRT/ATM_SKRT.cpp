@@ -1524,7 +1524,7 @@ void higlight_Withdraw(int index, bool selected)
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+    cout << "\033[0m" << setw(l) << char(186) << endl; 
 }
 
 void Withdraw(double, Dataformat &);
@@ -1536,39 +1536,34 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
 
     do
     {
-        system("cls"); // clear the console
+        system("cls"); 
         cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
-        // cout << char(186) <<"       You don't have enough money.    " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
-        // display the menu options
+        
         for (int i = 1; i < 9; i++)
         {
             cout << char(186) << " ";
             higlight_Withdraw(i, i == choice);
         }
-        // cout << "|                                     |\n";
+        
         cout << char(200) ; windows(); cout << char(188) << endl;
 
-        ch = getch(); // wait for a key press
+        ch = getch(); 
 
-        // update the choice variable based on the arrow key input
         if (ch == 72 && choice > 1)
-        { // up arrow key
+        { 
             choice--;
         }
         else if (ch == 80 && choice < 8)
-        { // down arrow key
+        { 
             choice++;
         }
-        // cout << "How much money do you want to deposit? :" << endl;
-        // cout << "choose a deposit option (1-7)" << endl;
 
     } while (ch != 13);
     switch (choice)
     {
     case 1:
-        // cout << "1 - $20" ;
         amount = 20;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1577,7 +1572,6 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 20);
         break;
     case 2:
-        // cout << "2 - $50" ;
         amount = 50;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1586,7 +1580,6 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 50);
         break;
     case 3:
-        // cout << "3 - $100" ;
         amount = 100;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1595,7 +1588,6 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 100);
         break;
     case 4:
-        // cout << "4 - $200" ;
         amount = 200;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1604,7 +1596,6 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 200);
         break;
     case 5:
-        // cout << "5 - $500" ;
         amount = 500;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1613,7 +1604,6 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 500);
         break;
     case 6:
-        // cout << "5 - $500" ;
         amount = 1000;
         Withdraw(amount,ID1);
         writefile_1.open(userfile_1);
@@ -1622,8 +1612,7 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, 1000);
         break;
     case 7:
-        // cout << "6 - choose your own Withdraw amount" ;
-        system("cls"); // clear the console
+        system("cls");
         cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "               "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"                " << char(186) << endl;
         cout << char(186) << "           "<<"\033[1;1m"<<"Enter your amount."<<"\033[0m"<<"          " << char(186) << endl;
@@ -1637,17 +1626,15 @@ void mainWithdraw(Dataformat ID1, string userfile_1)
         receipt_wdraw(ID1, amount);
         break;
     case 8:
-        // cout << "7 - cancel deposition \n";
         do
         {
-            system("cls"); // clear the console
+            system("cls");
             cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "                "<<"\033[1;1m"<<"Withdraw"<<"\033[0m"<<"               " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "          Deposition canceled.         " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
-            // display the menu options
             for (int i = 1; i < 2; i++)
             {
                 higlight_back_to_menu(i, i == choice);
