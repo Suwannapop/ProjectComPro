@@ -518,7 +518,6 @@ int new_account()
     string str = to_string(UserID);
 
     string ID_Fuck = str + ".txt" ;
-    cout << ID_Fuck ;
     ifstream data ;
     data.open(ID_Fuck) ;
     if (data.is_open())
