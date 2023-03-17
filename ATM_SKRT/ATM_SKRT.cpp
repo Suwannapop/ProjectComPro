@@ -616,7 +616,7 @@ int new_account()
             ofstream outfile(filename);
             if (outfile.is_open())
             {
-                outfile << UserPass1 << "," << identification << "," << money << "," << name;
+                outfile << UserPass1 << "," << identification << "," << money << "," << name;  //แก้ฟอร์ตแมสไฟล์
                 outfile.close();
                 do
                 {
@@ -670,7 +670,7 @@ int new_account()
                 cout << char(186) << "              Invalid amount           " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << setw(30) << "Please try again." << setw(10) << char(186) << endl;
-                cout << char(199) << "---------------------------------------" << char(182) << endl;
+                cout << char(199) << "---------------------------------------" << char(182) ;
 
                 for (int i = 1; i < 3; i++)
                 {
@@ -1153,7 +1153,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
                 break;
             }
         }
-    }else if (check = true)
+    }else if (check == true)
     {
         if (data.is_open())
         {
