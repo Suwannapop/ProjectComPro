@@ -826,7 +826,6 @@ void higlight_deposit(int index, bool selected)
 void deposit(Dataformat &ID1, string userfile_1)
 {
     ofstream writefile_1;
-    int option = 0;
     float amount;
     bool notfinished = true;
 
