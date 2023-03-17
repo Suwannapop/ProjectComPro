@@ -1823,7 +1823,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls"); 
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
@@ -1833,7 +1833,7 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -1841,19 +1841,18 @@ void payebill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                {
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13);
+            
             switch (choice)
             {
             case 1:
@@ -1880,12 +1879,8 @@ void main_paywaterbill(string id)
     Dataformat ID1;
     Dataformat ID2;
     float amount;
-    // cout << "input your id : ";
-    // cin >> id;
     string userfile_1 = id + ".txt";
-    // cout << "What Game ID you want to top up: ";
-    // cin >> IdTopup;
-    system("cls"); // clear the console
+    system("cls"); 
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               "<<"\033[1;1m"<<"Water Bill"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
@@ -1894,17 +1889,10 @@ void main_paywaterbill(string id)
     cin >> amount;
 
     string userfile_2 = "666666666.txt";
-    ofstream writefile_1, writefile_2; // importfile
+    ofstream writefile_1, writefile_2; 
     ImportFile(ID1, userfile_1);
     ImportFile(ID2, userfile_2, true);
     paywaterbill(amount, ID1, ID2);
-
-    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
-    cout << "You top up money from ID to ID \n"
-         << ID1.name << " -----> " << ID2.name << endl;
-    cout << "Your current balance is " << ID1.money[0] << endl;
-    Sleep(2000);
-    */
 
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -1913,7 +1901,6 @@ void main_paywaterbill(string id)
     writefile_1.close();
     writefile_2.close();
 
-    // เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
     receipt_paybill(ID1, ID2, amount);
 }
 
@@ -1925,7 +1912,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls");
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
@@ -1935,7 +1922,7 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -1943,19 +1930,18 @@ void paywaterbill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch();
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-        // display the selected option
+            } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -1981,12 +1967,8 @@ void main_topup(string id)
     Dataformat ID1;
     Dataformat ID2;
     float amount;
-    // cout << "input your id : ";
-    // cin >> id;
     string userfile_1 = id + ".txt";
-    // cout << "What Game ID you want to top up: ";
-    // cin >> IdTopup;
-    system("cls"); // clear the console
+    system("cls");
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               "<<"\033[1;1m"<<"Game Topup"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
@@ -1995,17 +1977,10 @@ void main_topup(string id)
     cin >> amount;
 
     string userfile_2 = "999999999.txt";
-    ofstream writefile_1, writefile_2; // importfile
+    ofstream writefile_1, writefile_2;
     ImportFile(ID1, userfile_1);
     ImportFile(ID2, userfile_2, true);
     topup(amount, ID1, ID2);
-
-    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
-    cout << "You top up money from ID to ID \n"
-         << ID1.name << " -----> " << ID2.name << endl;
-    cout << "Your current balance is " << ID1.money[0] << endl;
-    Sleep(2000);
-    */
 
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -2014,7 +1989,6 @@ void main_topup(string id)
     writefile_1.close();
     writefile_2.close();
 
-    // เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
     receipt_paybill(ID1, ID2, amount);
 }
 
@@ -2026,7 +2000,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls"); 
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
@@ -2036,7 +2010,7 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -2044,19 +2018,18 @@ void topup(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13); 
+            
             switch (choice)
             {
             case 1:
@@ -2081,11 +2054,8 @@ void main_PhoneBill(string id)
 {
     Dataformat ID1;
     Dataformat ID2;
-    // string id, IdTopup;
     float amount;
-    // cout << "input your id : ";
-    // cin >> id;
-    system("cls"); // clear the console
+    system("cls"); 
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               "<<"\033[1;1m"<<"Phone Bill"<<"\033[0m"<<"              " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
@@ -2095,17 +2065,10 @@ void main_PhoneBill(string id)
 
     string userfile_1 = id + ".txt";
     string userfile_2 = "888888888.txt";
-    ofstream writefile_1, writefile_2; // importfile
+    ofstream writefile_1, writefile_2; 
     ImportFile(ID1, userfile_1);
     ImportFile(ID2, userfile_2, true);
     PhoneBill(amount, ID1, ID2);
-
-    /*ถ้าใส่ฟังก์ชั่นสลีปละลบอันนี้ด้วย
-    cout << "You top up money from ID to ID \n"
-         << ID1.name << " -----> " << ID2.name << endl;
-    cout << "Your current balance is " << ID1.money[0] << endl;
-    Sleep(2000);
-    */
 
     writefile_1.open(userfile_1);
     writefile_2.open(userfile_2);
@@ -2114,7 +2077,6 @@ void main_PhoneBill(string id)
     writefile_1.close();
     writefile_2.close();
 
-    // เรียกฟังก์ชั่นสลีปใบเสร็จตรงนี้นะ
     receipt_paybill(ID1, ID2, amount);
 }
 
@@ -2126,7 +2088,7 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls"); 
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             + "<<"\033[1;1m"<<"RECEIPT"<<"\033[0m"<<" +               " << char(186) << endl;
                 cout << char(186) << "       You don't have enough money.    " << char(186) << endl;
@@ -2136,7 +2098,7 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -2144,19 +2106,18 @@ void PhoneBill(double amount, Dataformat &ID1, Dataformat &ID2)
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
+                ch = getch();
+                
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                {
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13);
+            
             switch (choice)
             {
             case 1:
@@ -2186,7 +2147,6 @@ void highlight_Payment_MENU(int index, bool selected)
     }
     cout << index << ". ";
 
-    // print the option label
     switch (index)
     {
     case 1:
@@ -2207,13 +2167,13 @@ void highlight_Payment_MENU(int index, bool selected)
         break;
     case 5:
         l = 32;
-        cout << "Exit"; // ออก
+        cout << "Exit"; 
         break;
     default:
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+    cout << "\033[0m" << setw(l) << char(186) << endl; 
 }
 
 //hghlight_Login_Sing_in
@@ -2225,9 +2185,7 @@ void highlight_Login_Sing_in(int index, bool selected)
     {
         cout << "\033[1;4m"; 
     }
-    //cout << "--> ";
 
-    // print the option label
     switch (index)
     {
     case 1:
@@ -2242,7 +2200,7 @@ void highlight_Login_Sing_in(int index, bool selected)
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+    cout << "\033[0m" << setw(l) << char(186) << endl; 
 }
 
 
@@ -2250,12 +2208,12 @@ int main()
 {
     do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "               "<< "\033[1;1m" << "ATM SKRT" << "\033[0m" << "                " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
-            // display the menu options
+            
             for (int i = 1; i < 3; i++)
             {
                 cout << char(186) << " ";
@@ -2264,20 +2222,18 @@ int main()
             cout << char(186) << "                                       " << char(186) << endl;
             cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
             cout << char(200) ; windows(); cout << char(188) << endl;
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 2)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
+        } while (ch != 13); 
 
-        // display the selected option
         switch (choice)
         {
         case 1:
@@ -2288,9 +2244,8 @@ int main()
                     int password , pass_id;
                         string id;
                         Dataformat ID1;
-                        // login
                         login(id, password);
-                        string fileindex = id + ".txt"; // id.txt
+                        string fileindex = id + ".txt"; 
                         ImportFile(ID1, fileindex);
                         ifstream myfile;
                         myfile.open(id + ".txt");
@@ -2301,15 +2256,15 @@ int main()
                             cout << char(201) ; windows(); cout << char(187) << endl;
                             cout << char(186) << "           "<< "\033[1;1m" <<"Login successful!"<< "\033[0m" <<"           " << char(186) << endl;
                             cout << char(200) ; windows(); cout << char(188) << endl;
-                            Sleep(1000); // Wait for 1000 milliseconds
-                            // ATM
+                            Sleep(1000); 
+                            // ATM Main
                             do
                             {
-                                system("cls"); // clear the console
+                                system("cls"); 
                                 cout << char(201) ; windows(); cout << char(187) << endl;
                                 cout << char(186) << "               "<< "\033[1;1m" << "ATM Menu" << "\033[0m" << "                " << char(186) << endl;
                                 cout << char(204) ; windows(); cout << char(185) << endl;
-                                // display the menu options
+                                
                                 for (int i = 1; i < 7; i++)
                                 {
                                     cout << char(186) << " ";
@@ -2317,20 +2272,18 @@ int main()
                                 }
                                 cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
                                 cout << char(200) ; windows(); cout << char(188) << endl;
-                                ch = getch(); // wait for a key press
+                                ch = getch(); 
 
-                                // update the choice variable based on the arrow key input
                                 if (ch == 72 && choice > 1)
-                                { // up arrow key
+                                { 
                                     choice--;
                                 }
                                 else if (ch == 80 && choice < 6)
-                                { // down arrow key
+                                { 
                                     choice++;
                                 }
-                            } while (ch != 13); // enter key
+                            } while (ch != 13);
 
-                            // display the selected option
                             switch (choice)
                             {
                             case 1:
@@ -2342,40 +2295,37 @@ int main()
                                     cout << char(186) << "            "<< "\033[1;1m"<<"Balance Inquiry"<< "\033[0m"<<"            " << char(186) << endl;
                                     cout << char(204) ; windows(); cout << char(185) << endl;
                                     cout << char(199) ; straight_line() ; cout << char(182) << endl;
-                                    cout << char(186) << "   Current balance : " << fixed << setw(13) << setprecision(2) << ID1.money[0] << " THB " << char(186) << "\n"; // setprecision(1000)
+                                    cout << char(186) << "   Current balance : " << fixed << setw(13) << setprecision(2) << ID1.money[0] << " THB " << char(186) << "\n";
                                     cout << char(199) ; straight_line() ; cout << char(182) << endl;
                                     cout << char(204) ; windows(); cout << char(185) << endl;
                                     for (int i = 1; i < 2; i++)
                                     {
                                         higlight_back_to_menu(i, i == choice);
                                     }
-                                    // cout << "\n|_______________________________________|";
-                                    cout << endl
-                                        << char(200) ; windows(); cout << char(188) << endl;
+                                    cout << endl << char(200) ; windows(); cout << char(188) << endl;
 
-                                    ch = getch(); // wait for a key press
+                                    ch = getch();
 
-                                    // update the choice variable based on the arrow key input
                                     if (ch == 72 && choice > 1)
-                                    { // up arrow key
+                                    { 
                                         choice--;
                                     }
                                     else if (ch == 80 && choice < 1)
-                                    { // down arrow key
+                                    { 
                                         choice++;
                                     }
-                                } while (ch != 13); // enter key
-                                // display the selected option
+                                } while (ch != 13);
+
                                 switch (choice)
                                 {
                                 case 1:
-                                    //cout << "Back To Login Menu";
-                                    system("cls"); // clear the console
+
+                                    system("cls");
                                     cout << char(201) ; windows(); cout << char(187) << endl;
                                     cout << char(186) << "            "<<"\033[1;1m"<<"Balance Inquiry"<<"\033[0m"<<"            " << char(186) << endl;
                                     cout << char(200) ; windows(); cout << char(188) << endl;
                                     cout << " Thank you for using this ATM. Goodbye!\n";
-                                    Sleep(2000); // Wait for 1000 milliseconds
+                                    Sleep(2000); 
                                     main();
                                     break;
                                 default:
