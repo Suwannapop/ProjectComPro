@@ -1,6 +1,6 @@
 #include <iostream>
 #include <conio.h> // for getch() function
-#include <ctype.h>
+#include <ctype.h> // isdigit(ch)
 #include <iomanip>
 #include <windows.h> //sleep higlight
 #include <fstream>
@@ -21,20 +21,6 @@ struct Dataformat
     string name;
 };
 
-int home() {
-  int key = 0;
-
-  while (true) {
-    if (_kbhit()) {  // Check if a key has been pressed
-      key = _getch();  // Get the ASCII code of the pressed key
-      if (key == '/' || key == '?') {  // Check if the key is 'H' or 'h'
-        main();  // Call the function
-      }
-    }
-  }
-  return 0;
-}
-
 int windows(){
     for (int i = 0; i < 39 ; i++)
     {
@@ -49,6 +35,7 @@ int straight_line(){
     }
 }
 
+
 // higlight_back_to_menu_for_bill use in receipt
 void higlight_back_to_menu_for_bill(int index, bool selected)
 {
@@ -56,12 +43,8 @@ void higlight_back_to_menu_for_bill(int index, bool selected)
     cout << "              ";
     if (selected)
     {
-        // cout  << "\n|           ";
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
-    // cout << index << ". ";
-
-    // print the option label  cout << "|           Back To Login Menu          |\n";
     switch (index)
     {
     case 1:
@@ -71,22 +54,18 @@ void higlight_back_to_menu_for_bill(int index, bool selected)
     default:
         break;
     }
-    cout << "\033[0m" << setw(l) << " |\n"; //<< setw(l)
+    cout << "\033[0m" << setw(l) << " |\n"; 
 }
 
-// higlight_back_to_menu use in receipt
+// higlight_back_to_menu
 void higlight_back_to_menu(int index, bool selected)
 {
     int l = 0;
     cout << char(186) << "             ";
     if (selected)
     {
-        // cout  << "\n|           ";
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
-    // cout << index << ". ";
-
-    // print the option label  cout << "|           Back To Login Menu          |\n";
     switch (index)
     {
     case 1:
@@ -96,7 +75,7 @@ void higlight_back_to_menu(int index, bool selected)
     default:
         break;
     }
-    cout << "\033[0m" << setw(l) << char(186); //<< setw(l)
+    cout << "\033[0m" << setw(l) << char(186);
 }
 
 void receipt_depos(Dataformat ID1, float amount)
@@ -122,7 +101,7 @@ void receipt_depos(Dataformat ID1, float amount)
             cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -130,19 +109,18 @@ void receipt_depos(Dataformat ID1, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+
         switch (choice)
         {
         case 1:
@@ -165,7 +143,6 @@ void receipt_depos(Dataformat ID1, float amount)
             cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
             cout << "|                                       |\n";
-            // display the menu options
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -173,19 +150,18 @@ void receipt_depos(Dataformat ID1, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13);
+        
         switch (choice)
         {
         case 1:
@@ -205,7 +181,7 @@ void receipt_wdraw(Dataformat ID1, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
@@ -222,7 +198,7 @@ void receipt_wdraw(Dataformat ID1, float amount)
             cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -230,19 +206,18 @@ void receipt_wdraw(Dataformat ID1, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -258,13 +233,13 @@ void receipt_wdraw(Dataformat ID1, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
             cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -272,19 +247,18 @@ void receipt_wdraw(Dataformat ID1, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
-
-            // update the choice variable based on the arrow key input
+            ch = getch(); 
+            
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -304,7 +278,7 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
@@ -508,7 +482,7 @@ void higlight_new_account_Yes_or_No(int index, bool selected)
     int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     cout << index << ". ";
 
@@ -814,7 +788,7 @@ void higlight_deposit(int index, bool selected)
     int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     cout << index << ". ";
 
@@ -1070,7 +1044,7 @@ void higlight_Yes_or_No(int index, bool selected)
     // int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     // cout << index << ". ";
 
@@ -1568,16 +1542,6 @@ void mainTransferMoney(string id)
                 break;
             }
         }
-
-        /*
-         TransferMoney(amount, ID1, ID2);
-         writefile_1.open(userfile_1);
-         writefile_2.open(userfile_2);
-         writefile_1 << ID1.Pass[0] << "," << ID1.ID[0] << "," << ID1.money[0] << "," << ID1.name<< endl;
-         writefile_2 << ID2.Pass[0] << "," << ID2.ID[0] << "," << ID2.money[0] << "," << ID2.name<< endl;
-         writefile_1.close();
-         writefile_2.close();
-         */
     }
 }
 
@@ -1587,7 +1551,7 @@ void highlight_ATM_MENU(int index, bool selected)
     int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     cout << index << ". ";
 
@@ -1669,7 +1633,7 @@ void higlight_Withdraw(int index, bool selected)
     int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     cout << index << ". ";
 
@@ -2398,7 +2362,7 @@ void highlight_Payment_MENU(int index, bool selected)
     int l = 0;
     if (selected)
     {
-        cout << "\033[1;7m"; // set background and foreground color to white and black
+        cout << "\033[1;7m"; 
     }
     cout << index << ". ";
 
@@ -2439,7 +2403,7 @@ void highlight_Login_Sing_in(int index, bool selected)
         cout << "               ";
     if (selected)
     {
-        cout << "\033[1;4m"; // set background and foreground color to white and black
+        cout << "\033[1;4m"; 
     }
     //cout << "--> ";
 
