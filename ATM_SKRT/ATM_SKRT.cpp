@@ -954,8 +954,8 @@ void deposit(Dataformat &ID1, string userfile_1)
                 { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13); 
+
             switch (choice)
             {
             case 1:
@@ -970,17 +970,17 @@ void deposit(Dataformat &ID1, string userfile_1)
         }
 
     case 8:
-        // cout << "7 - cancel deposition \n";
+        
         notfinished = false;
         do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
             cout << char(186) << "          "<<"\033[1;1m"<<"Deposition canceled."<<"\033[0m"<<"         " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 higlight_back_to_menu(i, i == choice);
@@ -988,19 +988,18 @@ void deposit(Dataformat &ID1, string userfile_1)
             cout << endl
                  << char(200) ; windows(); cout << char(188) << endl;
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -1020,30 +1019,26 @@ void deposit(Dataformat &ID1, string userfile_1)
 // higlight_yes_or_No
 void higlight_Yes_or_No(int index, bool selected)
 {
-    // int l = 0;
     if (selected)
     {
         cout << "\033[1;7m"; 
     }
-    // cout << index << ". ";
-
-    // print the option label
+    
     switch (index)
     {
     case 1:
-        // l = 5;
+        
         cout << "Yes";
         break;
     case 2:
-        // l = 5;
+        
         cout << "No";
         break;
     default:
         break;
     }
 
-    cout << "\033[0m"
-         << "    "; //<< setw(l)  // window
+    cout << "\033[0m" << "    ";
 }
 
 // Login failed
@@ -1059,7 +1054,7 @@ int Login_failed()
         cout << char(186) << setw(29) << "Please try again." << setw(11) << char(186) << endl;
         cout << char(199) << "---------------------------------------" << char(182) << endl;
         cout << char(186) << "                                       " << char(186) << endl;
-        // display the menu options
+        
         for (int i = 1; i < 2; i++)
         {
             higlight_back_to_menu(i, i == choice);
@@ -1067,19 +1062,18 @@ int Login_failed()
         cout << endl
              << char(200) ; windows(); cout << char(188) << endl;
 
-        ch = getch(); // wait for a key press
+        ch = getch(); 
 
-        // update the choice variable based on the arrow key input
         if (ch == 72 && choice > 1)
-        { // up arrow key
+        {
             choice--;
         }
         else if (ch == 80 && choice < 1)
-        { // down arrow key
+        {
             choice++;
         }
-    } while (ch != 13); // enter key
-    // display the selected option
+    } while (ch != 13);
+    
     switch (choice)
     {
     case 1:
@@ -1091,7 +1085,7 @@ int Login_failed()
     }
 }
 
-void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
+void ImportFile(Dataformat &ID, string fileindex, bool check) 
 {
     ifstream data;
     data.open(fileindex);
@@ -1103,7 +1097,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
     {
         if (data.is_open())
         {
-            while (getline(data, line)) // importfile
+            while (getline(data, line)) 
             {
                 sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
@@ -1130,8 +1124,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
                 cout << char(186) << "               ";
-                // display the menu options
-                // higlight_Yes_or_No
+                
                 for (int i = 1; i < 3; i++)
                 {
                     higlight_Yes_or_No(i, i == choice);
@@ -1142,18 +1135,18 @@ void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝา
                 windows();
                 cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 75 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 77 && choice < 2)
-                { // down arrow key
+                { 
                     choice++;
                 }
             } while (ch != 13);
+            
             switch (choice)
             {
             case 1:
