@@ -300,7 +300,7 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -308,19 +308,18 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
-
-            // update the choice variable based on the arrow key input
+            ch = getch();
+            
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            {
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            {
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -336,13 +335,13 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls");
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
             cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -350,19 +349,19 @@ void receipt_transf(Dataformat ID1, Dataformat ID2, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
+            
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -382,7 +381,7 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls"); 
             cout << " _______________________________________\n";
             cout << "|                                       |\n";
             cout << "|               + "<< "\033[1;1m"<<"RECEIPT"<< "\033[0m"<<" +             |\n";
@@ -397,12 +396,11 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             cout << "|                                       |\n";
             cout << "| Name :" << setw(31) << ID2.name << " |\n";
             cout << "|                                       |\n";
-            //        cout << "| Total : " << fixed << setw(29) << setprecision(2) << ID2.money[0] << setw(3) << "|\n";
             cout << "|                                       |\n";
             cout << "|               "<< "\033[1;3m"<<"Skrt Bank <3"<< "\033[0m"<<"            |\n";
             cout << "|_______________________________________|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -410,19 +408,19 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch();
 
-            // update the choice variable based on the arrow key input
+            
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            {
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            {
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13);
+        
         switch (choice)
         {
         case 1:
@@ -436,13 +434,13 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
     }else{
         do
         {
-            system("cls"); // clear the console
+            system("cls");
             cout << "+_______________________________________+\n";
             cout << "|                 Deposit               |\n";
             cout << "|             Invalid! amount.          |\n";
             cout << "|=======================================|\n";
             cout << "|                                       |\n";
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 cout << "|";
@@ -450,19 +448,18 @@ void receipt_paybill(Dataformat ID1, Dataformat ID2, float amount)
             }
             cout << "|_______________________________________|\n";
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -486,7 +483,6 @@ void higlight_new_account_Yes_or_No(int index, bool selected)
     }
     cout << index << ". ";
 
-    // print the option label
     switch (index)
     {
     case 1:
@@ -501,7 +497,7 @@ void higlight_new_account_Yes_or_No(int index, bool selected)
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186); // window
+    cout << "\033[0m" << setw(l) << char(186); 
 }
 
 // new_account
@@ -515,7 +511,6 @@ int new_account()
     cout << char(186) << "  Do you want to create a new account? " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << " What is your name: ";
-   // getline(cin, name);
     cin >> name;
     cout << " Enter your ID: ";
     cin >> UserID;
@@ -541,7 +536,7 @@ int new_account()
                 windows();
                 cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -551,19 +546,18 @@ int new_account()
                 windows();
                 cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13);
+            
             switch (choice)
             {
             case 1:
@@ -578,17 +572,17 @@ int new_account()
     cout << " Enter your password: ";
     UserPass1 = 0;
     while ((ch = _getch()) != '\r')
-    {  // Stop reading when user presses Enter key
+    {  
         if (ch == '\b')
-        { // Handle backspace character
+        { 
             if (UserPass1 > 0)
             {
                 UserPass1 /= 10;
-                cout << "\b \b"; // Move cursor back and overwrite character with space
+                cout << "\b \b"; 
             }
         }
         else if (isdigit(ch))
-        { // Handle numeric characters
+        { 
             UserPass1 = UserPass1 * 10 + (ch - '0');
             cout << "*";
         }
@@ -597,17 +591,17 @@ int new_account()
     cout << "\n Confirm password: ";
     UserPass2 = 0;
     while ((ch = _getch()) != '\r')
-    { // Stop reading when user presses Enter key
+    { 
         if (ch == '\b')
-        { // Handle backspace character
+        {
             if (UserPass2 > 0)
             {
                 UserPass2 /= 10;
-                cout << "\b \b"; // Move cursor back and overwrite character with space
+                cout << "\b \b"; 
             }
         }
         else if (isdigit(ch))
-        { // Handle numeric characters
+        { 
             UserPass2 = UserPass2 * 10 + (ch - '0');
             cout << "*";
         }
@@ -627,7 +621,7 @@ int new_account()
                 outfile.close();
                 do
                 {
-                    system("cls"); // clear the console
+                    system("cls"); 
                     cout << char(201) ; windows(); cout << char(187) << endl;
                     cout << char(186) << "          Created successfully         " << char(186) << endl;
                     cout << char(204) ; windows(); cout << char(185) << endl;
@@ -636,7 +630,7 @@ int new_account()
                     cout << char(186) << " Now you have money : " << setw(12) << money << " THB " << char(186) << endl;
                     cout << char(199) << "---------------------------------------" << char(182) << endl;
                     cout << char(186) << "                                       " << char(186) << endl;
-                    // display the menu options
+                    
                     for (int i = 1; i < 2; i++)
                     {
                         higlight_back_to_menu(i, i == choice);
@@ -644,19 +638,18 @@ int new_account()
                     cout << endl
                          << char(200) ; windows(); cout << char(188) << endl;
 
-                    ch = getch(); // wait for a key press
+                    ch = getch(); 
 
-                    // update the choice variable based on the arrow key input
                     if (ch == 72 && choice > 1)
-                    { // up arrow key
+                    {
                         choice--;
                     }
                     else if (ch == 80 && choice < 2)
-                    { // down arrow key
+                    {
                         choice++;
                     }
-                } while (ch != 13); // enter key
-                // display the selected option
+                } while (ch != 13);
+                
                 switch (choice)
                 {
                 case 1:
@@ -680,7 +673,6 @@ int new_account()
                 cout << char(186) << setw(30) << "Please try again." << setw(10) << char(186) << endl;
                 cout << char(199) << "---------------------------------------" << char(182) << endl;
 
-                // display the menu options
                 for (int i = 1; i < 3; i++)
                 {
                     cout << "\n"
@@ -690,19 +682,18 @@ int new_account()
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 5)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13); 
+            
             switch (choice)
             {
             case 1:
@@ -729,7 +720,7 @@ int new_account()
             cout << char(204) ; windows(); cout << char(185) << endl;
             cout << char(186) << setw(30) << "Please try again." << setw(10) << char(186) << endl;
             cout << char(199) << "---------------------------------------" << char(182);
-            // display the menu options
+            
             for (int i = 1; i < 3; i++)
             {
                 cout << "\n"
@@ -739,19 +730,18 @@ int new_account()
             cout << endl
                  << char(200) ; windows(); cout << char(188) << endl;
 
-            ch = getch(); // wait for a key press
+            ch = getch(); 
 
-            // update the choice variable based on the arrow key input
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 5)
-            { // down arrow key
+            { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -792,7 +782,6 @@ void higlight_deposit(int index, bool selected)
     }
     cout << index << ". ";
 
-    // print the option label
     switch (index)
     {
     case 1:
@@ -831,7 +820,7 @@ void higlight_deposit(int index, bool selected)
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+    cout << "\033[0m" << setw(l) << char(186) << endl; 
 }
 
 void deposit(Dataformat &ID1, string userfile_1)
@@ -843,38 +832,35 @@ void deposit(Dataformat &ID1, string userfile_1)
 
     do
     {
-        system("cls"); // clear the console
+        system("cls"); 
         cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
         cout << char(204) ; windows(); cout << char(185) << endl;
-        // display the menu options
+        
         for (int i = 1; i < 9; i++)
         {
             cout << char(186) << " ";
             higlight_deposit(i, i == choice);
         }
-        // cout << "|                                     |\n";
+        
         cout << char(200) ; windows(); cout << char(188) << endl;
 
-        ch = getch(); // wait for a key press
+        ch = getch(); 
 
-        // update the choice variable based on the arrow key input
         if (ch == 72 && choice > 1)
-        { // up arrow key
+        { 
             choice--;
         }
         else if (ch == 80 && choice < 8)
-        { // down arrow key
+        { 
             choice++;
         }
-        // cout << "How much money do you want to deposit? :" << endl;
-        // cout << "choose a deposit option (1-7)" << endl;
-
+        
     } while (ch != 13);
+
     switch (choice)
     {
     case 1:
-        // cout << "1 - $20" ;
         ID1.money[0] = ID1.money[0] + 20;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -883,7 +869,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 20);
         break;
     case 2:
-        // cout << "2 - $50" ;
         ID1.money[0] = ID1.money[0] + 50;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -892,7 +877,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 50);
         break;
     case 3:
-        // cout << "3 - $100" ;
         ID1.money[0] = ID1.money[0] + 100;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -901,7 +885,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 100);
         break;
     case 4:
-        // cout << "4 - $200" ;
         ID1.money[0] = ID1.money[0] + 200;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -910,7 +893,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 200);
         break;
     case 5:
-        // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 500;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -919,7 +901,6 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 500);
         break;
     case 6:
-        // cout << "5 - $500" ;
         ID1.money[0] = ID1.money[0] + 1000;
         notfinished = false;
         writefile_1.open(userfile_1);
@@ -928,8 +909,7 @@ void deposit(Dataformat &ID1, string userfile_1)
         receipt_depos(ID1, 1000);
         break;
     case 7:
-        // cout << "6 - choose your own deposition amount" ;
-        system("cls"); // clear the console
+        system("cls"); 
         cout << char(201) ; windows(); cout << char(187) << endl;
         cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
         cout << char(186) << "           "<<"\033[1;1m"<<"Enter your amount."<<"\033[0m"<<"          " << char(186) << endl;
@@ -950,13 +930,13 @@ void deposit(Dataformat &ID1, string userfile_1)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls"); 
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "                "<<"\033[1;1m"<<"Deposit"<<"\033[0m"<<"                " << char(186) << endl;
                 cout << char(186) << "       "<<"\033[1;1m"<<"Invalid! Please try again."<<"\033[0m"<<"      " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -964,15 +944,14 @@ void deposit(Dataformat &ID1, string userfile_1)
                 cout << endl
                      << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
             } while (ch != 13); // enter key
