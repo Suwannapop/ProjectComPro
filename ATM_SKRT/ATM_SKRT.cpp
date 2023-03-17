@@ -1276,8 +1276,8 @@ void mainTransferMoney(string id)
             { 
                 choice++;
             }
-        } while (ch != 13); // enter key
-        // display the selected option
+        } while (ch != 13); 
+        
         switch (choice)
         {
         case 1:
@@ -1292,7 +1292,6 @@ void mainTransferMoney(string id)
     else
     {
         straight_line(); cout << char(196) << char(196)  << endl;
-        //cout << "=========================================" << endl;
         cout << "             How much money  \n";
         cout << "             THB : ";
         cin >> amount;
@@ -1302,7 +1301,7 @@ void mainTransferMoney(string id)
             {
                 do
                 {
-                    system("cls"); // clear the console
+                    system("cls"); 
                     cout << char(201) ; windows(); cout << char(187) << endl;
                     cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
                     cout << char(204) ; windows(); cout << char(185) << endl;
@@ -1312,7 +1311,7 @@ void mainTransferMoney(string id)
                     cout << char(199) << "---------------------------------------" << char(182) << endl;
                     cout << char(204) ; windows(); cout << char(185) << endl;
                     cout << char(186) << "                                       " << char(186) << endl;
-                    // display the menu options
+                    
                     for (int i = 1; i < 2; i++)
                     {
                         higlight_back_to_menu(i, i == choice);
@@ -1320,19 +1319,18 @@ void mainTransferMoney(string id)
                     cout << endl
                          << char(200) ; windows(); cout << char(188) << endl;
 
-                    ch = getch(); // wait for a key press
+                    ch = getch(); 
 
-                    // update the choice variable based on the arrow key input
                     if (ch == 72 && choice > 1)
-                    { // up arrow key
+                    { 
                         choice--;
                     }
                     else if (ch == 80 && choice < 1)
-                    { // down arrow key
+                    { 
                         choice++;
                     }
-                } while (ch != 13); // enter key
-                // display the selected option
+                } while (ch != 13); 
+            
                 switch (choice)
                 {
                 case 1:
@@ -1364,33 +1362,32 @@ void mainTransferMoney(string id)
         {
             do
             {
-                system("cls"); // clear the console
+                system("cls"); 
                 cout << char(201) ; windows(); cout << char(187) << endl;
                 cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "            invalid amount             " << char(186) << endl; // ม่ายมีตังค่าาา แก้ให้ถูกด้วย
                 cout << char(204) ; windows(); cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
                 }
                 cout << endl << char(200) ; windows(); cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13); 
+            
             switch (choice)
             {
             case 1:
@@ -1415,73 +1412,65 @@ void highlight_ATM_MENU(int index, bool selected)
     }
     cout << index << ". ";
 
-    // print the option label
     switch (index)
     {
     case 1:
         l = 21;
-        cout << "Balance Inquiry"; // เช็ค
+        cout << "Balance Inquiry";
         break;
     case 2:
         l = 29;
-        cout << "Deposit"; // ฝาก
+        cout << "Deposit"; 
         break;
     case 3:
         l = 28;
-        cout << "Withdraw"; // ถอน
+        cout << "Withdraw"; 
         break;
     case 4:
         l = 21;
-        cout << "Transfers money"; // โอน
+        cout << "Transfers money";
         break;
     case 5:
         l = 29;
-        cout << "Payment"; // จ่ายบิลลลลลลลลล
+        cout << "Payment";
         break;
     case 6:
         l = 32;
-        cout << "Exit"; // ออก
+        cout << "Exit";
         break;
     default:
         break;
     }
 
-    cout << "\033[0m" << setw(l) << char(186) << endl; // window
+    cout << "\033[0m" << setw(l) << char(186) << endl;
 }
 
 // Login ATM
 int login(string &id, int &password)
 {
     char ch;
-    // Display login window frame
     system("cls");
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "               " << "\033[1;1m""Login ATM" << "\033[0m""               " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
-    // Display prompts for ID and password
     cout << "\n Enter your ID: ";
     cin >> id;
     cout << " Enter your Password: ";
 
-    // Read in password character by character without displaying on screen
     password = 0;
     while ((ch = _getch()) != '\r')
-    { // Stop reading when user presses Enter key
+    { 
         if (ch == '\b')
-        { // Handle backspace character
+        {
             if (password > 0)
             {
                 password /= 10;
-                cout << "\b \b"; // Move cursor back and overwrite character with space
+                cout << "\b \b"; 
             }
         }
         else if (isdigit(ch))
-        { // Handle numeric characters 
-            //password = password * 10 ;
-            //cout << password <<  endl ; 
-            // 1  10  + 2-0
+        { 
             password = password * 10 + (ch - '0');
-            //cout << password <<  endl ;
             cout << "*";
         }
     }
@@ -1497,7 +1486,6 @@ void higlight_Withdraw(int index, bool selected)
     }
     cout << index << ". ";
 
-    // print the option label
     switch (index)
     {
     case 1:
