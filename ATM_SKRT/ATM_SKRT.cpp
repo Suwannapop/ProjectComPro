@@ -2354,33 +2354,29 @@ int main()
                                     system("cls");
                                     cout << char(201) ; windows(); cout << char(187) << endl;
                                     cout << char(186) << "              "<<"\033[1;1m"<<"Payment MENU"<<"\033[0m"<<"             " << char(186) << endl;
-                                    // cout << "+---------------------------------------+\n";
-                                    // cout << "  =====================================  \n";
-                                    // cout << "   Your current balance is: $" << fixed << setprecision(2) << ID1.money[0] << "\n" ; //setprecision(1000)
-                                    // cout << "  =====================================  \n";
                                     cout << char(204) ; windows(); cout << char(185) << endl;
+                                    
                                     for (int i = 1; i < 6; i++)
                                     {
                                         cout << char(186) << " ";
                                         highlight_Payment_MENU(i, i == choice);
                                     }
-                                    // cout << "|_______________________________________|";
-                                    // cout << "\n+---------------------------------------+";
+
                                     cout << char(186) << "                "<< "\033[1;3m" << "CPE102" << "\033[0m" << "                 " << char(186) << endl;
                                     cout << char(200) ; windows(); cout << char(188) << endl;
-                                    ch = getch(); // wait for a key press
+                                    
+                                    ch = getch(); 
 
-                                    // update the choice variable based on the arrow key input
                                     if (ch == 72 && choice > 1)
-                                    { // up arrow key
+                                    {
                                         choice--;
                                     }
                                     else if (ch == 80 && choice < 5)
-                                    { // down arrow key
+                                    {
                                         choice++;
                                     }
-                                } while (ch != 13); // enter key
-                                // display the selected option
+                                } while (ch != 13);
+                                
                                 switch (choice)
                                 {
                                 case 1:
@@ -2400,7 +2396,7 @@ int main()
                                     main_topup(id);
                                     break;
                                 case 5:
-                                    cout << "Exit"; // ออก
+                                    cout << "Exit";
                                     main();
                                     break;
                                 default:
@@ -2409,13 +2405,13 @@ int main()
                                 }
                             case 6:
                                 // Exit
-                                system("cls"); // clear the console
+                                system("cls"); 
                                 cout << char(201) ; windows(); cout << char(187) << endl;
                                 cout << char(186) << "                 "<<"\033[1;1m"<<"Exit"<<"\033[0m"<<"                  " << char(186) << endl;
                                 cout << char(200) ; windows(); cout << char(188) << endl;
                                 cout << "Thank you for using this ATM. Goodbye!\n";
-                                Sleep(2000); // Wait for 1000 milliseconds
-                                main();      // Return to login page
+                                Sleep(2000); 
+                                main(); 
                                 break;
                             }
 
