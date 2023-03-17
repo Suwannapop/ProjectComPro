@@ -1146,7 +1146,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
                     choice++;
                 }
             } while (ch != 13);
-            
+
             switch (choice)
             {
             case 1:
@@ -1166,7 +1166,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
     {
         if (data.is_open())
         {
-            while (getline(data, line)) // importfile
+            while (getline(data, line)) 
             {
                 sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
                 ID.Pass.push_back(pass);
@@ -1190,7 +1190,7 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
                 windows();
                 cout << char(185) << endl;
                 cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
+                
                 for (int i = 1; i < 2; i++)
                 {
                     higlight_back_to_menu(i, i == choice);
@@ -1200,19 +1200,18 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
                 windows();
                 cout << char(188) << endl;
 
-                ch = getch(); // wait for a key press
+                ch = getch(); 
 
-                // update the choice variable based on the arrow key input
                 if (ch == 72 && choice > 1)
-                { // up arrow key
+                { 
                     choice--;
                 }
                 else if (ch == 80 && choice < 1)
-                { // down arrow key
+                { 
                     choice++;
                 }
-            } while (ch != 13); // enter key
-            // display the selected option
+            } while (ch != 13);
+            
             switch (choice)
             {
             case 1:
@@ -1227,141 +1226,31 @@ void ImportFile(Dataformat &ID, string fileindex, bool check)
     }  
 }
 
-// ใช้สำหรับแก้บัคตอนโอนเงิน
-/*void ImportFile(Dataformat &ID, string fileindex, bool check) // ใช้ฝากถอนโอน
-{
-    ifstream data;
-    data.open(fileindex);
-    string line;
-    int idnumber, pass;
-    double balnace;
-    char name[99];
-
-    if (check = false)
-    {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-    }
-    else if (check = true)
-    {
-        if (data.is_open())
-        {
-            while (getline(data, line)) // importfile
-            {
-                sscanf(line.c_str(), "%d,%d,%lf,%s", &pass, &idnumber, &balnace, name);
-                ID.Pass.push_back(pass);
-                ID.ID.push_back(idnumber);
-                ID.money.push_back(balnace);
-                ID.name = name;
-            }
-        }
-        else
-        {
-            do
-            {
-                system("cls");
-                cout << char(201) ; windows(); cout << char(187) << endl;
-                cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(186) << "       Don't have ID in Database       " << char(186) << endl;
-                cout << char(186) << "                                       " << char(186) << endl;
-                cout << char(204) ; windows(); cout << char(185) << endl;
-                cout << char(186) << "                                       " << char(186) << endl;
-                // display the menu options
-                for (int i = 1; i < 2; i++)
-                {
-                    higlight_back_to_menu(i, i == choice);
-                }
-                cout << endl
-                     << char(200) ; windows(); cout << char(188) << endl;
-
-                ch = getch(); // wait for a key press
-
-                // update the choice variable based on the arrow key input
-                if (ch == 72 && choice > 1)
-                { // up arrow key
-                    choice--;
-                }
-                else if (ch == 80 && choice < 1)
-                { // down arrow key
-                    choice++;
-                }
-            } while (ch != 13); // enter key
-            // display the selected option
-            switch (choice)
-            {
-            case 1:
-                cout << "Back To Login Menu";
-                main();
-                break;
-            default:
-                main();
-                break;
-            }
-        }
-    }
-}
-*/
-
-/*void TransferMoney(double amount, Dataformat &ID1, Dataformat &ID2) // เเปปปกติ // Kong(ล่าสุดเอาไปยัดไว้ในฟังก์ชั่นหลักการโอนล่ะ)
-{
-    if (amount > 0)
-    {
-        if (amount > ID1.money[0])
-        {
-            cout << "You don't have enough money\n";
-            cout << "Now you have money : " << ID1.money[0] << " You can't tranfer money\n";
-            Sleep(2000);
-        }
-        else
-        {
-
-            ID1.money[0] = ID1.money[0] - amount;
-            ID2.money[0] = ID2.money[0] + amount;
-
-            receipt_transf(ID1,ID2,amount);
-        }
-    }
-    else if (amount <= 0)
-    {
-        cout << "You can't tranfer money less than 0 or = 0\n";
-        Sleep(2000);
-    }
-}*/
-
+//min TransferMoney
 void mainTransferMoney(string id)
 {
     Dataformat ID1;
     Dataformat ID2;
     string IdTranfer;
     float amount;
-    system("cls"); // clear the console
+    system("cls");
     cout << char(201) ; windows(); cout << char(187) << endl;
     cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
     cout << char(200) ; windows(); cout << char(188) << endl;
     cout << "           Destination Account         \n";   
-//    cout << "      Do What ID you want to tranfer   \n";
     cout << "             ID : ";
     cin >> IdTranfer;
     string userfile_1 = id + ".txt";
     string userfile_2 = IdTranfer + ".txt";
     ofstream writefile_1, writefile_2;
-    ImportFile(ID1, userfile_1);         // importfile
-    ImportFile(ID2, userfile_2, true); // Bug , true
+    ImportFile(ID1, userfile_1);         
+    ImportFile(ID2, userfile_2, true); 
 
     if (userfile_1 == userfile_2)
     {
         do
         {
-            system("cls"); // clear the console
+            system("cls");
             cout << char(201) ; windows(); cout << char(187) << endl;
             cout << char(186) << "             "<<"\033[1;1m"<<"TransferMoney"<<"\033[0m"<<"             " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
@@ -1369,7 +1258,7 @@ void mainTransferMoney(string id)
             cout << char(186) << "         can't transfer money          " << char(186) << endl;
             cout << char(186) << "                                       " << char(186) << endl;
             cout << char(204) ; windows(); cout << char(185) << endl;
-            // display the menu options
+            
             for (int i = 1; i < 2; i++)
             {
                 higlight_back_to_menu(i, i == choice);
@@ -1377,15 +1266,14 @@ void mainTransferMoney(string id)
             cout << endl
                  << char(200) ; windows(); cout << char(188) << endl;
 
-            ch = getch(); // wait for a key press
-
-            // update the choice variable based on the arrow key input
+            ch = getch();
+            
             if (ch == 72 && choice > 1)
-            { // up arrow key
+            { 
                 choice--;
             }
             else if (ch == 80 && choice < 1)
-            { // down arrow key
+            { 
                 choice++;
             }
         } while (ch != 13); // enter key
